@@ -20,4 +20,5 @@ export default App;
 const Headline = styled.h1`
   font-family: 'Open Sans';
   font-variation-settings: 'wght' 700;
+  color: ${(props) => props.theme.color.blue};
 `;
