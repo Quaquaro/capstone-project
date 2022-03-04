@@ -8,8 +8,8 @@ assignees: ""
 
 ## Value proposition
 
-**As a**
-**I need**
+**As a** user
+**I need** to
 **to be able to**
 
 ## Description
