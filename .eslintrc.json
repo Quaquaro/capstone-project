@@ -7,8 +7,7 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "plugin:react/jsx-runtime"
+        "plugin:prettier/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -22,5 +21,8 @@
     ],
     "rules": {
        "react/react-in-jsx-scope": "off"
+    },
+    "settings": {
+      "react":{"version": "detected"}
     }
 }
