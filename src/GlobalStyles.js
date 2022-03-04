@@ -1,11 +1,16 @@
 import { createGlobalStyle } from 'styled-components';
+// import OpenSans from './assets/variable/OpenSans-VariableFont_wdth,wght.ttf';
 
 export default createGlobalStyle`
+
  * {
     box-sizing: border-box;
  }
  body {
-    font-family: sans-serif;
+    /*font-family: 'Open Sans';*/
+    /* font-variation-settings: 'wght' 800; */
+    background-color: #1B1B1B;
+    color: #EEFFFD;
  }
  .sr-only{
     position: absolute;

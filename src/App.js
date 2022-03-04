@@ -1,10 +1,13 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from './components/ErrorFallback.js';
+import GlobalFonts from './assets/variable/fonts.js';
+import styled from 'styled-components';
 
 function App() {
   return (
     <div>
-      <h1>Hello Players!</h1>
+      <GlobalFonts />
+      <Headline>Hello Players!</Headline>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <p>First Component</p>
       </ErrorBoundary>
@@ -13,3 +16,8 @@ function App() {
 }
 
 export default App;
+
+const Headline = styled.h1`
+  font-family: 'Open Sans';
+  font-variation-settings: 'wght' 700;
+`;
