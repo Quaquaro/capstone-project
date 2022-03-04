@@ -28,7 +28,7 @@ jobs:
       - name: npm ci
         run: npm ci
       - name: test
-        run: npm test
+        run: npm test -- --passWithNoTests
       - name: format
         run : npm run format
       - name: lint
