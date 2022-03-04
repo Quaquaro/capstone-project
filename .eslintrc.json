@@ -23,6 +23,6 @@
        "react/react-in-jsx-scope": "off"
     },
     "settings": {
-      "react":{"version": "detected"}
+      "react":{"version": "detect"}
     }
 }
