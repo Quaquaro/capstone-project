@@ -10,6 +10,7 @@ const TrackGameButton = styled.button`
   color: ${(props) => props.theme.color.primary};
   border: none;
   font-variation-settings: 'wght' 600;
+  font-size: 24px;
   box-shadow: rgba(5, 242, 219, 0.4) 0px 5px;
   &:active {
     box-shadow: rgba(5, 242, 219, 0.4) 0px 5px, rgba(5, 242, 219, 0.3) 0px 10px,
