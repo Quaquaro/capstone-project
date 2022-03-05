@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 export default function Button() {
-  return (
-    <div>
-      <TrackGameButton>TRACK GAME</TrackGameButton>
-    </div>
-  );
+  return <TrackGameButton>TRACK GAME</TrackGameButton>;
 }
 
 const TrackGameButton = styled.button`
