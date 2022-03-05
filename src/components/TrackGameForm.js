@@ -30,6 +30,7 @@ export default function TrackGameForm({ onTrackGame }) {
     const form = event.target;
     const input = form.elements.nameOfGame;
     onTrackGame(input.value);
+    input.value = '';
   }
 }
 

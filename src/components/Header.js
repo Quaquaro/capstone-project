@@ -3,15 +3,16 @@ import logo from '../img/neonBlueDice.svg';
 
 export default function Header() {
   return (
-    <Headline>
+    <StyledHeader>
       <img src={logo} alt="Display dice as a logo" />
       <h1>TABULA RASA</h1>
-    </Headline>
+    </StyledHeader>
   );
 }
 
-const Headline = styled.header`
+const StyledHeader = styled.header`
   display: flex;
+  padding-left: 10px;
   gap: 8px;
   font-family: 'Open Sans';
   font-variation-settings: 'wght' 600;
