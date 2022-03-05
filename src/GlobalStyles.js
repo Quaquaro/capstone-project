@@ -7,8 +7,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
  }
  body {
-    /*font-family: 'Open Sans';*/
-    /* font-variation-settings: 'wght' 800; */
+    font-family: 'Open Sans';
     background-color: #1B1B1B;
     color: #EEFFFD;
     margin: 0;
