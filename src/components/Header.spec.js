@@ -3,13 +3,12 @@ import Header from './Header.js';
 import Theme from '../Theme.js';
 
 describe('Header', () => {
-  it('render...', () => {
+  it('renders a header with a img and a h1', () => {
     render(
       <Theme>
         <Header />
       </Theme>
     );
-    screen.debug();
     expect(screen.getByRole('banner')).toBeInTheDocument();
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByRole('heading')).toBeInTheDocument();
