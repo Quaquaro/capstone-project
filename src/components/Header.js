@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <Headline>
       <img src={logo} alt="Display dice as a logo" />
-      <h1>TABULA LUDUS</h1>
+      <h1>TABULA RASA</h1>
     </Headline>
   );
 }
