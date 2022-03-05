@@ -11,6 +11,8 @@ export default createGlobalStyle`
     /* font-variation-settings: 'wght' 800; */
     background-color: #1B1B1B;
     color: #EEFFFD;
+    margin: 0;
+    padding: 0;
  }
  .sr-only{
     position: absolute;
