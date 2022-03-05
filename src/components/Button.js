@@ -5,7 +5,7 @@ export default function Button() {
 
 const TrackGameButton = styled.button`
   background-color: ${(props) => props.theme.color.neonBlue};
-  border-radius: 20px;
+  border-radius: 9999em;
   padding: 5px 15px;
   color: ${(props) => props.theme.color.primary};
   border: none;

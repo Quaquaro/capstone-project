@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Input from './Input.js';
-import Theme from './Theme.js';
+import Theme from '../Theme.js';
 
 describe('Input', () => {
   it('renders a label and a input', () => {
@@ -9,7 +9,9 @@ describe('Input', () => {
         <Input labelText="Name of Game" placeholder="Monopoly..." name="nameOfGame" />
       </Theme>
     );
-    expect(screen.getByLabelText(/name of game/i)).toHaveAttribute('placeholder', 'Monopoly...');
-    expect(screen.getByLabelText(/name of game/i)).toHaveAttribute('name', 'nameOfGame');
+    const inputElement = screen.getByLabelText(/name of game/i);
+
+    expect(inputElement).toHaveAttribute('placeholder', 'Monopoly...');
+    expect(inputElement).toHaveAttribute('name', 'nameOfGame');
   });
 });
