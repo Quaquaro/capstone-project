@@ -8,21 +8,29 @@ import TrackGameForm from './components/TrackGameForm.js';
 import TrackedGamesList from './components/TrackedGamesList.js';
 
 function App() {
-  const [nameOfGame, setNameOfGame] = useState('Start tracking your first game.');
+  const [nameOfGame, setNameOfGame] = useState([]);
+  const infoText = ['Start tracking your first game'];
   return (
     <>
       <GlobalFonts />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Header />
         <AppLayout>
-          <TrackedGamesList nameOfGame={nameOfGame} />
+          {nameOfGame.length === 0 ? (
+            <TrackedGamesList nameOfGame={infoText} />
+          ) : (
+            <TrackedGamesList nameOfGame={nameOfGame} />
+          )}
+
           <TrackGameForm onTrackGame={trackGame} />
         </AppLayout>
       </ErrorBoundary>
     </>
   );
-  function trackGame(nameOfGame) {
-    setNameOfGame(nameOfGame);
+  function trackGame(gameString) {
+    const gamesArray = [...nameOfGame, gameString];
+    console.log(gamesArray);
+    setNameOfGame(gamesArray);
   }
 }
 

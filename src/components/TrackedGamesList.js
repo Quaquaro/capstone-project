@@ -2,15 +2,17 @@ import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 TrackedGamesList.propTypes = {
-  nameOfGame: PropTypes.string
+  nameOfGame: PropTypes.array
 };
 
 export default function TrackedGamesList({ nameOfGame }) {
   return (
     <StyledList role="list">
-      <Card>
-        <CardContent>{nameOfGame}</CardContent>
-      </Card>
+      {nameOfGame.map((name, index) => (
+        <Card key={index}>
+          <CardContent>{name}</CardContent>
+        </Card>
+      ))}
     </StyledList>
   );
 }
