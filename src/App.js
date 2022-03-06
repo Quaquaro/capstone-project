@@ -5,6 +5,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Header from './components/Header.js';
 import TrackGameForm from './components/TrackGameForm.js';
+import TrackedGamesList from './components/TrackedGamesList.js';
 
 function App() {
   const [nameOfGame, setNameOfGame] = useState('Start tracking your first game.');
@@ -13,8 +14,10 @@ function App() {
       <GlobalFonts />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Header />
-        {<InfoText>{nameOfGame}</InfoText>}
-        <TrackGameForm onTrackGame={trackGame} />
+        <AppLayout>
+          <TrackedGamesList nameOfGame={nameOfGame} />
+          <TrackGameForm onTrackGame={trackGame} />
+        </AppLayout>
       </ErrorBoundary>
     </>
   );
@@ -23,9 +26,10 @@ function App() {
   }
 }
 
-const InfoText = styled.p`
-  font-variation-settings: 'wght' 500;
-  text-align: center;
+const AppLayout = styled.div`
+  display: grid;
+  place-content: center;
+  grid-template-rows: 3fr 1fr;
 `;
 
 export default App;

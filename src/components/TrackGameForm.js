@@ -1,13 +1,12 @@
 import Button from './Button.js';
 import Input from './Input.js';
-
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 TrackGameForm.propTypes = {
   onTrackGame: PropTypes.func
 };
 
-import styled from 'styled-components';
 export default function TrackGameForm({ onTrackGame }) {
   return (
     <>
