@@ -26,6 +26,7 @@ const Card = styled.div`
   position: relative;
   z-index: 2;
   border-radius: 20px;
+  margin: 60px 0;
 
   &::before,
   ::after {
@@ -48,7 +49,7 @@ const Card = styled.div`
     animation: ${spin} 4000ms infinite alternate;
   }
   &::after {
-    filter: blur(62px);
+    filter: blur(30px);
   }
 `;
 
@@ -62,5 +63,6 @@ const CardContent = styled.li`
 
 const StyledList = styled.ul`
   list-style: none;
-  margin: 60px 0;
+  height: 55vh;
+  overflow: scroll;
 `;
