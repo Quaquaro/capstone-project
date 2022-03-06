@@ -24,7 +24,7 @@ function App() {
 }
 
 const InfoText = styled.p`
-  font-variation-settings: 'wght' 700;
+  font-variation-settings: 'wght' 500;
   text-align: center;
 `;
 
