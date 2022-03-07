@@ -1,4 +1,10 @@
+import GlobalStyles from "../src/GlobalStyles"
+import Theme from '../src/Theme.js';
+import GlobalFonts from '../src/assets/variable/fonts.js';
+
+
 export const parameters = {
+   layout: 'fullscreen',
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
@@ -7,3 +13,15 @@ export const parameters = {
     },
   },
 }
+
+export const decorators = [
+  (Story) => (
+    <>
+      <GlobalStyles />
+      <GlobalFonts />
+      <Theme>
+      <Story />
+      </Theme>
+    </>
+  ),
+]
