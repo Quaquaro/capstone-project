@@ -11,6 +11,8 @@ describe('TrackGameForm', () => {
       </Theme>
     );
     expect(screen.getByLabelText(/name of game/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/playername/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/score/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /track game/i })).toBeInTheDocument();
   });
 
@@ -22,12 +24,16 @@ describe('TrackGameForm', () => {
       </Theme>
     );
     const nameOfGameInput = screen.getByLabelText(/name of game/i);
+    const playernameInput = screen.getByLabelText(/playername/i);
+    const scoreInput = screen.getByLabelText(/score/i);
     const submitButton = screen.getByRole('button', { name: /track game/i });
 
     userEvent.type(nameOfGameInput, 'Imperial Settlers');
+    userEvent.type(playernameInput, 'Max');
+    userEvent.type(scoreInput, 75);
     userEvent.click(submitButton);
 
-    expect(handleTrackGame).toHaveBeenCalledTimes(1); //({);
+    expect(handleTrackGame).toHaveBeenCalledTimes(1);
   });
   it('should not submit if input is empty', () => {
     const handleTrackGame = jest.fn();
@@ -39,8 +45,9 @@ describe('TrackGameForm', () => {
     const nameOfGameInput = screen.getByLabelText(/name of game/i);
     const submitButton = screen.getByRole('button', { name: /track game/i });
 
+    userEvent.type(nameOfGameInput, 'Dominion');
     userEvent.click(submitButton);
 
-    expect(nameOfGameInput.value).toBeFalsy();
+    expect(handleTrackGame).not.toHaveBeenCalled();
   });
 });
