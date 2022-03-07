@@ -8,18 +8,18 @@ import TrackGameForm from './components/TrackGameForm.js';
 import TrackedGamesList from './components/TrackedGamesList.js';
 
 function App() {
-  const [nameOfGame, setNameOfGame] = useState([]);
-  const infoText = ['Start tracking your first game.'];
+  const [games, setGames] = useState([]);
+  const infoText = [{ nameOfGame: 'Start tracking your first game' }];
   return (
     <>
       <GlobalFonts />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Header />
         <AppLayout>
-          {nameOfGame.length === 0 ? (
-            <TrackedGamesList nameOfGame={infoText} />
+          {games.length === 0 ? (
+            <TrackedGamesList games={infoText} />
           ) : (
-            <TrackedGamesList nameOfGame={nameOfGame} />
+            <TrackedGamesList games={games} />
           )}
 
           <TrackGameForm onTrackGame={trackGame} />
@@ -27,17 +27,16 @@ function App() {
       </ErrorBoundary>
     </>
   );
-  function trackGame(gameString) {
-    const gamesArray = [gameString, ...nameOfGame];
-    console.log(gamesArray);
-    setNameOfGame(gamesArray);
+  function trackGame(gamesObject) {
+    const gamesArray = [gamesObject, ...games];
+    setGames(gamesArray);
   }
 }
 
 const AppLayout = styled.div`
   display: grid;
   place-content: center;
-  grid-template-rows: 280px auto;
+  grid-template-rows: 280px 520px;
 `;
 
 export default App;

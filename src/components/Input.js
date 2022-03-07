@@ -5,12 +5,12 @@ Input.propTypes = {
   name: PropTypes.string,
   labelText: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
   required: PropTypes.bool,
   autocomplete: PropTypes.string,
   inputmode: PropTypes.string,
   type: PropTypes.string,
-  width: PropTypes.string
+  onChange: PropTypes.func,
+  value: PropTypes.string
 };
 
 export default function Input({
@@ -18,10 +18,11 @@ export default function Input({
   labelText,
   required,
   placeholder,
-  value,
   autocomplete,
   inputmode,
-  type
+  onChange,
+  type,
+  value
 }) {
   return (
     <>
@@ -31,10 +32,11 @@ export default function Input({
         id={name}
         name={name}
         placeholder={placeholder}
-        value={value}
         required={required}
         autocomplete={autocomplete}
         inputmode={inputmode}
+        value={value}
+        onChange={onChange}
       />
     </>
   );

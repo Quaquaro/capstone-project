@@ -2,12 +2,24 @@ import Button from './Button.js';
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 TrackGameForm.propTypes = {
   onTrackGame: PropTypes.func
 };
 
+const initialGameData = {
+  nameOfGame: '',
+  playerName: '',
+  score: ''
+};
+
 export default function TrackGameForm({ onTrackGame }) {
+  const [gameData, setGameData] = useState(initialGameData);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setGameData({ ...gameData, [name]: value });
+  };
   return (
     <>
       <Form onSubmit={handleTrackGame}>
@@ -20,6 +32,8 @@ export default function TrackGameForm({ onTrackGame }) {
           type="text"
           required
           autofocus
+          onChange={handleChange}
+          value={gameData.nameOfGame}
         />
         <Input
           name="playerName"
@@ -28,6 +42,8 @@ export default function TrackGameForm({ onTrackGame }) {
           inputmode="text"
           type="text"
           placeholder="Player one"
+          onChange={handleChange}
+          value={gameData.playerName}
           required
         />
         <Input
@@ -37,6 +53,8 @@ export default function TrackGameForm({ onTrackGame }) {
           inputmode="number"
           required
           placeholder="777"
+          onChange={handleChange}
+          value={gameData.score}
         />
         <Button type="submit" />
       </Form>
@@ -45,10 +63,12 @@ export default function TrackGameForm({ onTrackGame }) {
 
   function handleTrackGame(event) {
     event.preventDefault();
-    const form = event.target;
-    const input = form.elements.nameOfGame;
-    onTrackGame(input.value);
-    input.value = '';
+    onTrackGame({
+      nameOfGame: gameData.nameOfGame,
+      playerName: gameData.playerName,
+      score: gameData.score
+    });
+    setGameData(initialGameData);
   }
 }
 
