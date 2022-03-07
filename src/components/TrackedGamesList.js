@@ -2,18 +2,23 @@ import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 TrackedGamesList.propTypes = {
-  nameOfGame: PropTypes.array
+  games: PropTypes.array,
+  nameOfGame: PropTypes.string
 };
 
-export default function TrackedGamesList({ nameOfGame }) {
+export default function TrackedGamesList({ games }) {
   return (
-    <StyledList role="list">
-      {nameOfGame.map((name, index) => (
+    <OuterList role="list">
+      {games.map((game, index) => (
         <Card key={index}>
-          <CardContent>{name}</CardContent>
+          <CardContent role="list">
+            <NameOfGame>{game.nameOfGame}</NameOfGame>
+            <li>{game.playerName}</li>
+            <li>{game.score}</li>
+          </CardContent>
         </Card>
       ))}
-    </StyledList>
+    </OuterList>
   );
 }
 
@@ -24,7 +29,7 @@ const spin = keyframes`
 
 const Card = styled.div`
   width: 250px;
-  height: 45px;
+  height: 90px;
   position: relative;
   z-index: 2;
   border-radius: 20px;
@@ -34,7 +39,7 @@ const Card = styled.div`
   ::after {
     content: '';
     width: 260px;
-    height: 55px;
+    height: 100px;
     display: block;
     position: absolute;
     z-index: -1;
@@ -55,7 +60,13 @@ const Card = styled.div`
   }
 `;
 
-const CardContent = styled.li`
+const CardContent = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  list-style: none;
   width: 100%;
   height: 100%;
   padding: 10px;
@@ -63,8 +74,14 @@ const CardContent = styled.li`
   border-radius: 15px;
 `;
 
-const StyledList = styled.ul`
+const OuterList = styled.ul`
   list-style: none;
-  height: 55vh;
+  height: 45vh;
   overflow: auto;
+  margin: auto;
+  padding: 0 50px;
+`;
+
+const NameOfGame = styled.li`
+  grid-area: 1 / 1 / 2 / 6;
 `;

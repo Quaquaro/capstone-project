@@ -3,7 +3,7 @@ export default function Button() {
   return <TrackGameButton>TRACK GAME</TrackGameButton>;
 }
 
-const TrackGameButton = styled.button`
+export const TrackGameButton = styled.button`
   background-color: ${(props) => props.theme.color.neonBlue};
   border-radius: 9999em;
   padding: 5px 15px;

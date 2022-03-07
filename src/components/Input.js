@@ -5,10 +5,13 @@ Input.propTypes = {
   name: PropTypes.string,
   labelText: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
   required: PropTypes.bool,
   autocomplete: PropTypes.string,
-  inputmode: PropTypes.string
+  inputmode: PropTypes.string,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
+  style: PropTypes.any
 };
 
 export default function Input({
@@ -16,22 +19,27 @@ export default function Input({
   labelText,
   required,
   placeholder,
-  value,
   autocomplete,
-  inputmode
+  inputmode,
+  onChange,
+  type,
+  value,
+  style
 }) {
   return (
     <>
       <InputLabel htmlFor={name}>{labelText}</InputLabel>
       <InputBox
-        type="text"
+        type={type}
         id={name}
         name={name}
         placeholder={placeholder}
-        value={value}
         required={required}
         autocomplete={autocomplete}
         inputmode={inputmode}
+        value={value}
+        onChange={onChange}
+        style={style}
       />
     </>
   );
@@ -45,9 +53,8 @@ const InputBox = styled.input`
   font-family: inherit;
   font-size: 18px;
   padding: 5px 10px;
-  margin: 10px 0;
+  margin: 10px 10px;
   transition: 0.5s;
-  width: 350px;
   &::placeholder {
     color: ${(props) => props.theme.color.white};
     opacity: 0.6;

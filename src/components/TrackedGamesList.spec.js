@@ -4,10 +4,10 @@ import Theme from '../Theme.js';
 
 describe('TrackedGamesList', () => {
   it('renders name of game as a list item', () => {
-    const nameOfGame = ['7Wonders'];
+    const nameOfGame = [{ nameOfGame: '7Wonders', playerName: 'Chris', score: '75' }];
     render(
       <Theme>
-        <TrackedGamesList nameOfGame={nameOfGame} />
+        <TrackedGamesList games={nameOfGame} />
       </Theme>
     );
     expect(screen.getByText(/7wonders/i)).toBeInTheDocument();
