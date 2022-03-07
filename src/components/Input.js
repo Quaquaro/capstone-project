@@ -8,7 +8,8 @@ Input.propTypes = {
   value: PropTypes.string,
   required: PropTypes.bool,
   autocomplete: PropTypes.string,
-  inputmode: PropTypes.string
+  inputmode: PropTypes.string,
+  type: PropTypes.string
 };
 
 export default function Input({
@@ -18,13 +19,14 @@ export default function Input({
   placeholder,
   value,
   autocomplete,
-  inputmode
+  inputmode,
+  type
 }) {
   return (
     <>
       <InputLabel htmlFor={name}>{labelText}</InputLabel>
       <InputBox
-        type="text"
+        type={type}
         id={name}
         name={name}
         placeholder={placeholder}

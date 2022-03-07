@@ -19,6 +19,7 @@ export default function TrackGameForm({ onTrackGame }) {
           inputmode="text"
           size="50"
           maxlength="50"
+          type="text"
           required
           autofocus
         />
