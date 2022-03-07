@@ -66,5 +66,5 @@ const CardContent = styled.li`
 const StyledList = styled.ul`
   list-style: none;
   height: 55vh;
-  overflow: scroll;
+  overflow: auto;
 `;

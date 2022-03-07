@@ -4,6 +4,7 @@ import GlobalFonts from '../src/assets/variable/fonts.js';
 
 
 export const parameters = {
+   layout: 'fullscreen',
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
