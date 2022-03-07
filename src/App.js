@@ -36,7 +36,7 @@ function App() {
 const AppLayout = styled.div`
   display: grid;
   place-content: center;
-  grid-template-rows: 280px 520px;
+  grid-template-rows: 400px 450px;
 `;
 
 export default App;

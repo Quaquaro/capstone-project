@@ -76,8 +76,10 @@ const CardContent = styled.ul`
 
 const OuterList = styled.ul`
   list-style: none;
-  height: 55vh;
+  height: 45vh;
   overflow: auto;
+  margin: auto;
+  padding: 0 50px;
 `;
 
 const NameOfGame = styled.li`

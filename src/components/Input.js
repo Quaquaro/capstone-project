@@ -10,7 +10,8 @@ Input.propTypes = {
   inputmode: PropTypes.string,
   type: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.string,
+  style: PropTypes.any
 };
 
 export default function Input({
@@ -22,7 +23,8 @@ export default function Input({
   inputmode,
   onChange,
   type,
-  value
+  value,
+  style
 }) {
   return (
     <>
@@ -37,6 +39,7 @@ export default function Input({
         inputmode={inputmode}
         value={value}
         onChange={onChange}
+        style={style}
       />
     </>
   );
@@ -50,9 +53,8 @@ const InputBox = styled.input`
   font-family: inherit;
   font-size: 18px;
   padding: 5px 10px;
-  margin: 10px 0;
+  margin: 10px 10px;
   transition: 0.5s;
-  width: 350px;
   &::placeholder {
     color: ${(props) => props.theme.color.white};
     opacity: 0.6;
