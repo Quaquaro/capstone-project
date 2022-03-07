@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-// import OpenSans from './assets/variable/OpenSans-VariableFont_wdth,wght.ttf';
 
 export default createGlobalStyle`
 

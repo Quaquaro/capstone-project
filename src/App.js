@@ -9,7 +9,7 @@ import TrackedGamesList from './components/TrackedGamesList.js';
 
 function App() {
   const [nameOfGame, setNameOfGame] = useState([]);
-  const infoText = ['Start tracking your first game'];
+  const infoText = ['Start tracking your first game.'];
   return (
     <>
       <GlobalFonts />
@@ -28,7 +28,7 @@ function App() {
     </>
   );
   function trackGame(gameString) {
-    const gamesArray = [...nameOfGame, gameString];
+    const gamesArray = [gameString, ...nameOfGame];
     console.log(gamesArray);
     setNameOfGame(gamesArray);
   }

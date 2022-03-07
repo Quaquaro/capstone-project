@@ -17,7 +17,10 @@ export default function TrackGameForm({ onTrackGame }) {
           placeholder="e.g. Uno"
           autocomplete="on"
           inputmode="text"
+          size="50"
+          maxlength="50"
           required
+          autofocus
         />
         <Button type="submit" />
       </Form>

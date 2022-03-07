@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 Input.propTypes = {
   name: PropTypes.string,
-  labelText: PropTypes.string,
+  labelText: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
   required: PropTypes.bool,
@@ -45,9 +45,9 @@ const InputBox = styled.input`
   font-family: inherit;
   font-size: 18px;
   padding: 5px 10px;
-  width: 80vw;
   margin: 10px 0;
   transition: 0.5s;
+  width: 350px;
   &::placeholder {
     color: ${(props) => props.theme.color.white};
     opacity: 0.6;
