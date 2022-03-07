@@ -9,7 +9,8 @@ Input.propTypes = {
   required: PropTypes.bool,
   autocomplete: PropTypes.string,
   inputmode: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  width: PropTypes.string
 };
 
 export default function Input({

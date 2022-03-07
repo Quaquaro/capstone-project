@@ -4,7 +4,7 @@ import TrackGameForm from './TrackGameForm.js';
 import Theme from '../Theme.js';
 
 describe('TrackGameForm', () => {
-  it('renders one input and a button', () => {
+  it('renders three inputs and a button', () => {
     render(
       <Theme>
         <TrackGameForm />
@@ -16,7 +16,7 @@ describe('TrackGameForm', () => {
     expect(screen.getByRole('button', { name: /track game/i })).toBeInTheDocument();
   });
 
-  it('should submit form data when input is filled', () => {
+  it('should submit form data when all inputs are filled', () => {
     const handleTrackGame = jest.fn();
     render(
       <Theme>
@@ -30,7 +30,7 @@ describe('TrackGameForm', () => {
 
     userEvent.type(nameOfGameInput, 'Imperial Settlers');
     userEvent.type(playernameInput, 'Max');
-    userEvent.type(scoreInput, 75);
+    userEvent.type(scoreInput, '75');
     userEvent.click(submitButton);
 
     expect(handleTrackGame).toHaveBeenCalledTimes(1);
@@ -48,6 +48,6 @@ describe('TrackGameForm', () => {
     userEvent.type(nameOfGameInput, 'Dominion');
     userEvent.click(submitButton);
 
-    expect(handleTrackGame).not.toHaveBeenCalled();
+    expect(handleTrackGame).not.toHaveBeenCalledTimes(0);
   });
 });

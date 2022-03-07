@@ -17,11 +17,26 @@ export default function TrackGameForm({ onTrackGame }) {
           placeholder="e.g. Uno"
           autocomplete="on"
           inputmode="text"
-          size="50"
-          maxlength="50"
           type="text"
           required
           autofocus
+        />
+        <Input
+          name="playerName"
+          labelText="Playername"
+          autocomplete="off"
+          inputmode="text"
+          type="text"
+          placeholder="Player one"
+          required
+        />
+        <Input
+          name="score"
+          labelText="Score"
+          type="number"
+          inputmode="number"
+          required
+          placeholder="777"
         />
         <Button type="submit" />
       </Form>
