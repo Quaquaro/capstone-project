@@ -2,18 +2,19 @@ import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 
 TrackedGamesList.propTypes = {
-  games: PropTypes.array,
-  nameOfGame: PropTypes.string
+  games: PropTypes.array
 };
 
 export default function TrackedGamesList({ games }) {
   return (
     <Card>
       <CardContent role="list">
-        {games.map((game, index) => (
-          <GameContainer key={index}>
+        {games.map((game) => (
+          <GameContainer key={game.id}>
             <GameGrid role="list">
               <NameOfGame>{game.nameOfGame}</NameOfGame>
+              <li>{game.playerName}</li>
+              <li>{game.score}</li>
             </GameGrid>
           </GameContainer>
         ))}
@@ -75,6 +76,7 @@ const CardContent = styled.ul`
 const GameContainer = styled.div`
   border-radius: 15px;
   border: 1px solid ${(props) => props.theme.color.white};
+  margin-top: 20px;
 `;
 
 const GameGrid = styled.ul`
@@ -89,4 +91,5 @@ const GameGrid = styled.ul`
 
 const NameOfGame = styled.li`
   grid-area: 1 / 1 / 2 / 6;
+  display: inline-block;
 `;

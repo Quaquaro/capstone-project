@@ -3,6 +3,7 @@ import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 TrackGameForm.propTypes = {
   onTrackGame: PropTypes.func
@@ -36,6 +37,7 @@ export default function TrackGameForm({ onTrackGame }) {
             autofocus
             onChange={handleChange}
             value={gameData.nameOfGame}
+            maxLength={50}
           />
         </GameNameContainer>
         <PlayernameContainer>
@@ -50,6 +52,7 @@ export default function TrackGameForm({ onTrackGame }) {
             onChange={handleChange}
             value={gameData.playerName}
             required
+            maxLength={25}
           />
         </PlayernameContainer>
         <ScoreContainer>
@@ -63,6 +66,8 @@ export default function TrackGameForm({ onTrackGame }) {
             placeholder="777"
             onChange={handleChange}
             value={gameData.score}
+            min={0}
+            max={999}
           />
         </ScoreContainer>
         <ButtonContainer>
@@ -77,7 +82,8 @@ export default function TrackGameForm({ onTrackGame }) {
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
       playerName: gameData.playerName,
-      score: gameData.score
+      score: gameData.score,
+      id: nanoid()
     });
     setGameData(initialGameData);
   }
