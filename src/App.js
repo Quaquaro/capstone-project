@@ -2,10 +2,10 @@ import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from './components/ErrorFallback.js';
 import GlobalFonts from './assets/variable/fonts.js';
 import { useState } from 'react';
-import styled from 'styled-components';
+import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header.js';
-import TrackGameForm from './components/TrackGameForm.js';
-import TrackedGamesList from './components/TrackedGamesList.js';
+import GamesPage from './pages/GamesPage.js';
+import AddGameFormPage from './pages/AddGameFormPage.js';
 
 function App() {
   const [games, setGames] = useState([]);
@@ -15,15 +15,15 @@ function App() {
       <GlobalFonts />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Header />
-        <AppLayout>
-          {games.length === 0 ? (
-            <TrackedGamesList games={infoText} />
-          ) : (
-            <TrackedGamesList games={games} />
-          )}
-
-          <TrackGameForm onTrackGame={trackGame} />
-        </AppLayout>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              games.length === 0 ? <GamesPage games={infoText} /> : <GamesPage games={games} />
+            }
+          />
+          <Route path="/addgame" element={<AddGameFormPage onTrackGame={trackGame} />} />
+        </Routes>
       </ErrorBoundary>
     </>
   );
@@ -32,11 +32,5 @@ function App() {
     setGames(gamesArray);
   }
 }
-
-const AppLayout = styled.div`
-  display: grid;
-  place-content: center;
-  grid-template-rows: 400px 450px;
-`;
 
 export default App;
