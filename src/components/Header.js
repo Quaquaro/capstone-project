@@ -11,7 +11,7 @@ export default function Header() {
   );
 }
 
-const StyledHeader = styled.header`
+export const StyledHeader = styled.header`
   display: flex;
   padding-left: 10px;
   gap: 20px;
