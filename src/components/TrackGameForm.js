@@ -39,7 +39,7 @@ export default function TrackGameForm({ onTrackGame }) {
             autofocus
             onChange={handleChange}
             value={gameData.nameOfGame}
-            maxLength={50}
+            maxLength={24}
           />
         </GameNameContainer>
         <FlexContainer>

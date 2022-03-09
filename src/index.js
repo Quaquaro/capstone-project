@@ -5,10 +5,12 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './GlobalStyles.js';
 import Theme from './Theme.js';
+import ScrollToTop from './components/ScrollToTop.js';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <GlobalStyles />
       <Theme>
         <App />
