@@ -1,21 +1,33 @@
 import TrackedGamesList from '../components/TrackedGamesList.js';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from '../components/Button.js';
+import { useNavigate } from 'react-router-dom';
+import { TrackGameButton } from '../components/Button.js';
+import Header from '../components/Header.js';
 
 GamesPage.propTypes = {
   games: PropTypes.array
 };
 
 export default function GamesPage({ games }) {
+  const navigate = useNavigate('');
   return (
-    <GamePageLayout>
-      <TrackedGamesList games={games} />
-      <ButtonContainer>
-        <Button />
-      </ButtonContainer>
-    </GamePageLayout>
+    <>
+      <Header />
+      <GamePageLayout>
+        <TrackedGamesList games={games} />
+        <ButtonContainer>
+          <TrackGameButton type="button" onClick={handleOnClick}>
+            TRACK GAME
+          </TrackGameButton>
+        </ButtonContainer>
+      </GamePageLayout>
+    </>
   );
+  async function handleOnClick(e) {
+    e.preventDefault();
+    navigate('/addgame', { replace: true });
+  }
 }
 
 const GamePageLayout = styled.main`

@@ -1,9 +1,10 @@
-import Button from './Button.js';
+import { ConfirmButton } from './Button.js';
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
+import { useNavigate } from 'react-router-dom';
 
 TrackGameForm.propTypes = {
   onTrackGame: PropTypes.func
@@ -21,6 +22,7 @@ export default function TrackGameForm({ onTrackGame }) {
     const { name, value } = event.target;
     setGameData({ ...gameData, [name]: value });
   };
+  const navigate = useNavigate('');
   return (
     <>
       <Form onSubmit={handleTrackGame}>
@@ -71,13 +73,13 @@ export default function TrackGameForm({ onTrackGame }) {
           />
         </ScoreContainer>
         <ButtonContainer>
-          <Button type="submit" />
+          <ConfirmButton>CONFIRM</ConfirmButton>
         </ButtonContainer>
       </Form>
     </>
   );
 
-  function handleTrackGame(event) {
+  async function handleTrackGame(event) {
     event.preventDefault();
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
@@ -86,6 +88,7 @@ export default function TrackGameForm({ onTrackGame }) {
       id: nanoid()
     });
     setGameData(initialGameData);
+    navigate('/', { replace: true });
   }
 }
 

@@ -3,18 +3,16 @@ import ErrorFallback from './components/ErrorFallback.js';
 import GlobalFonts from './assets/variable/fonts.js';
 import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header.js';
 import GamesPage from './pages/GamesPage.js';
 import AddGameFormPage from './pages/AddGameFormPage.js';
 
 function App() {
   const [games, setGames] = useState([]);
-  const infoText = [{ nameOfGame: 'Start tracking your first game' }];
+  const infoText = [{ nameOfGame: 'Start tracking your first game', id: 1 }];
   return (
     <>
       <GlobalFonts />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Header />
         <Routes>
           <Route
             path="/"

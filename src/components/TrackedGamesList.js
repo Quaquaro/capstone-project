@@ -92,4 +92,6 @@ const GameGrid = styled.ul`
 const NameOfGame = styled.li`
   grid-area: 1 / 1 / 2 / 6;
   display: inline-block;
+  font-variation-settings: 'wght' 700;
+  font-size: 20px;
 `;
