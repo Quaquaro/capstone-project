@@ -62,7 +62,7 @@ const InputBox = styled.input`
   font-family: inherit;
   font-size: 18px;
   padding: 5px 10px;
-  margin: 10px 10px;
+  margin: 10px 0;
   transition: 0.5s;
   &::placeholder {
     color: ${(props) => props.theme.color.white};

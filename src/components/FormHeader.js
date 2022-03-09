@@ -7,8 +7,11 @@ export default function FormHeader() {
   const navigate = useNavigate('');
   return (
     <StyledHeader>
-      <img src={logo} alt="Display dice as a logo" />
-      <h1>TABULA RASA</h1>
+      <FlexBox>
+        <img src={logo} alt="Display dice as a logo" />
+        <h1>TABULA RASA</h1>
+      </FlexBox>
+
       <CancelButton onClick={handleOnClick}>
         <img src={cancel} alt="A button with a X" width="70" aria-label="cancel" />
       </CancelButton>
@@ -29,6 +32,12 @@ const CancelButton = styled.button`
   &:active {
     opacity: 0.7;
   }
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledHeader = styled.header`

@@ -29,7 +29,7 @@ export default function TrackGameForm({ onTrackGame }) {
         <GameNameContainer>
           <Input
             name="nameOfGame"
-            style={{ width: '350px' }}
+            style={{ width: '335px' }}
             labelText="Name of game"
             placeholder="e.g. Uno"
             autocomplete="on"
@@ -42,36 +42,39 @@ export default function TrackGameForm({ onTrackGame }) {
             maxLength={50}
           />
         </GameNameContainer>
-        <PlayernameContainer>
-          <Input
-            name="playerName"
-            style={{ width: '260px' }}
-            labelText="Playername"
-            autocomplete="off"
-            inputmode="text"
-            type="text"
-            placeholder="Player one"
-            onChange={handleChange}
-            value={gameData.playerName}
-            required
-            maxLength={25}
-          />
-        </PlayernameContainer>
-        <ScoreContainer>
-          <Input
-            style={{ width: '80px' }}
-            name="score"
-            labelText="Score"
-            type="number"
-            inputmode="number"
-            required
-            placeholder="777"
-            onChange={handleChange}
-            value={gameData.score}
-            min={0}
-            max={999}
-          />
-        </ScoreContainer>
+        <FlexContainer>
+          <PlayernameContainer>
+            <Input
+              name="playerName"
+              style={{ width: '190px' }}
+              labelText="Playername"
+              autocomplete="off"
+              inputmode="text"
+              type="text"
+              placeholder="Player one"
+              onChange={handleChange}
+              value={gameData.playerName}
+              required
+              maxLength={20}
+            />
+          </PlayernameContainer>
+          <ScoreContainer>
+            <Input
+              style={{ width: '85px' }}
+              name="score"
+              labelText="Score"
+              type="number"
+              inputmode="number"
+              required
+              placeholder="777"
+              onChange={handleChange}
+              value={gameData.score}
+              min={0}
+              max={999}
+            />
+          </ScoreContainer>
+        </FlexContainer>
+
         <ButtonContainer>
           <ConfirmButton>CONFIRM</ConfirmButton>
         </ButtonContainer>
@@ -94,16 +97,19 @@ export default function TrackGameForm({ onTrackGame }) {
 
 const Form = styled.form`
   padding: 0 8px 0 15px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 8px;
-  grid-row-gap: 8px;
-  place-content: center;
+  @media (max-width: 500px) {
+    align-self: center;
+  }
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 20px;
 `;
 
 const GameNameContainer = styled.div`
-  grid-area: 1 / 1 / 2 / 4;
   display: flex;
   justify-content: end;
   align-items: center;
@@ -111,7 +117,6 @@ const GameNameContainer = styled.div`
 `;
 
 const PlayernameContainer = styled.div`
-  grid-area: 2 / 1 / 3 / 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,14 +124,13 @@ const PlayernameContainer = styled.div`
 `;
 
 const ScoreContainer = styled.div`
-  grid-area: 2 / 3 / 3 / 4;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
 const ButtonContainer = styled.div`
-  grid-area: 3 / 1 / 4 / 4;
+  margin-top: 20px;
   display: flex;
   justify-content: start;
   align-items: center;
