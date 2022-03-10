@@ -77,7 +77,7 @@ export default function TrackGameForm({ onTrackGame }) {
               placeholder="1"
               onChange={handleChange}
               value={gameData.scoreOne}
-              pattern="[1-9]\d\d"
+              pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
             />
           </ScoreContainer>
         </FlexContainer>
@@ -107,7 +107,7 @@ export default function TrackGameForm({ onTrackGame }) {
               placeholder="2"
               onChange={handleChange}
               value={gameData.scoreTwo}
-              pattern="[1-9]\d\d"
+              pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
             />
           </ScoreContainer>
         </FlexContainer>
@@ -137,7 +137,7 @@ export default function TrackGameForm({ onTrackGame }) {
               placeholder="3"
               onChange={handleChange}
               value={gameData.scoreThree}
-              pattern="[1-9]\d\d"
+              pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
             />
           </ScoreContainer>
         </FlexContainer>
@@ -167,7 +167,7 @@ export default function TrackGameForm({ onTrackGame }) {
               placeholder="4"
               onChange={handleChange}
               value={gameData.scoreFour}
-              pattern="[1-9]\d\d"
+              pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
             />
           </ScoreContainer>
         </FlexContainer>
@@ -199,7 +199,6 @@ export default function TrackGameForm({ onTrackGame }) {
 }
 
 const Form = styled.form`
-  padding: 0 8px 0 15px;
   @media (max-width: 500px) {
     align-self: center;
   }
