@@ -13,8 +13,7 @@ Input.propTypes = {
   value: PropTypes.string,
   style: PropTypes.any,
   maxLength: PropTypes.number,
-  min: PropTypes.number,
-  max: PropTypes.number
+  pattern: PropTypes.string
 };
 
 export default function Input({
@@ -29,8 +28,7 @@ export default function Input({
   value,
   style,
   maxLength,
-  max,
-  min
+  pattern
 }) {
   return (
     <>
@@ -47,8 +45,7 @@ export default function Input({
         onChange={onChange}
         style={style}
         maxLength={maxLength}
-        min={min}
-        max={max}
+        pattern={pattern}
       />
     </>
   );
@@ -64,9 +61,11 @@ const InputBox = styled.input`
   padding: 5px 10px;
   margin: 10px 0;
   transition: 0.5s;
+  text-align: center;
   &::placeholder {
     color: ${(props) => props.theme.color.white};
     opacity: 0.6;
+    text-align: center;
   }
   &:focus {
     box-shadow: 0 0 10px 4px rgba(238, 255, 253, 0.75);

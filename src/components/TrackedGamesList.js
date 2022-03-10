@@ -13,8 +13,14 @@ export default function TrackedGamesList({ games }) {
           <GameContainer key={game.id}>
             <GameGrid role="list">
               <NameOfGame>{game.nameOfGame}</NameOfGame>
-              <li>{game.playerName}</li>
-              <li>{game.score}</li>
+              {game.playerNameOne && <PlayerOne>{game.playerNameOne}</PlayerOne>}
+              {game.scoreOne && <ScoreOne>{game.scoreOne}</ScoreOne>}
+              {game.playerNameTwo && <PlayerTwo>{game?.playerNameTwo}</PlayerTwo>}
+              {game.scoreTwo && <ScoreTwo>{game?.scoreTwo}</ScoreTwo>}
+              {game.playerNameThree && <PlayerThree>{game?.playerNameThree}</PlayerThree>}
+              {game.scoreThree && <ScoreThree>{game?.scoreThree}</ScoreThree>}
+              {game.playerNameFour && <PlayerFour>{game?.playerNameFour}</PlayerFour>}
+              {game.scoreFour && <ScoreFour>{game?.scoreFour}</ScoreFour>}
             </GameGrid>
           </GameContainer>
         ))}
@@ -83,15 +89,45 @@ const GameGrid = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-template-rows: repeat(5, 1fr);
+
   padding-left: 1rem;
 `;
 
 const NameOfGame = styled.li`
-  grid-area: 1 / 1 / 2 / 6;
+  grid-area: 1 / 1 / 2 / 3;
   display: inline-block;
   font-variation-settings: 'wght' 700;
   font-size: 20px;
+`;
+const PlayerOne = styled.li`
+  grid-area: 2 / 1 / 3 / 2;
+`;
+
+const ScoreOne = styled.li`
+  grid-area: 2 / 2 / 3 / 3;
+`;
+
+const PlayerTwo = styled.li`
+  grid-area: 3 / 1 / 4 / 2;
+`;
+
+const ScoreTwo = styled.li`
+  grid-area: 3 / 2 / 4 / 3;
+`;
+
+const PlayerThree = styled.li`
+  grid-area: 4 / 1 / 5 / 2;
+`;
+
+const ScoreThree = styled.li`
+  grid-area: 4 / 2 / 5 / 3;
+`;
+
+const PlayerFour = styled.li`
+  grid-area: 5 / 1 / 6 / 2;
+`;
+
+const ScoreFour = styled.li`
+  grid-area: 5 / 2 / 5 / 3;
 `;

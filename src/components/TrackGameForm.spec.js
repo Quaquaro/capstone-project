@@ -5,7 +5,7 @@ import TrackGameForm from './TrackGameForm.js';
 import Theme from '../Theme.js';
 
 describe('TrackGameForm', () => {
-  it('renders three inputs and a button', () => {
+  it('renders 5 textboxes, 4 spinbuttons and one button', () => {
     render(
       <MemoryRouter>
         <Theme>
@@ -13,13 +13,13 @@ describe('TrackGameForm', () => {
         </Theme>
       </MemoryRouter>
     );
-    expect(screen.getByLabelText(/name of game/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/playername/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/score/i)).toBeInTheDocument();
+    const allTextboxes = screen.getAllByRole('textbox');
+
+    expect(allTextboxes.length).toBe(9);
     expect(screen.getByRole('button', { name: /confirm/i })).toBeInTheDocument();
   });
 
-  it('should submit form data when all inputs are filled', () => {
+  it('should submit form data when all required inputs are filled', () => {
     const handleTrackGame = jest.fn();
     render(
       <MemoryRouter>
@@ -29,8 +29,8 @@ describe('TrackGameForm', () => {
       </MemoryRouter>
     );
     const nameOfGameInput = screen.getByLabelText(/name of game/i);
-    const playernameInput = screen.getByLabelText(/playername/i);
-    const scoreInput = screen.getByLabelText(/score/i);
+    const playernameInput = screen.getByLabelText(/player one/i);
+    const scoreInput = screen.getByPlaceholderText('1');
     const submitButton = screen.getByRole('button', { name: /confirm/i });
 
     userEvent.type(nameOfGameInput, 'Imperial Settlers');

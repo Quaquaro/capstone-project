@@ -12,12 +12,19 @@ TrackGameForm.propTypes = {
 
 const initialGameData = {
   nameOfGame: '',
-  playerName: '',
-  score: ''
+  playerNameOne: '',
+  scoreOne: '',
+  playerNameTwo: '',
+  scoreTwo: '',
+  playerNameThree: '',
+  scoreThree: '',
+  playerNameFour: '',
+  scoreFour: ''
 };
 
 export default function TrackGameForm({ onTrackGame }) {
   const [gameData, setGameData] = useState(initialGameData);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setGameData({ ...gameData, [name]: value });
@@ -42,18 +49,19 @@ export default function TrackGameForm({ onTrackGame }) {
             maxLength={24}
           />
         </GameNameContainer>
+        {/* ===========Player one================= */}
         <FlexContainer>
           <PlayernameContainer>
             <Input
-              name="playerName"
+              name="playerNameOne"
               style={{ width: '190px' }}
-              labelText="Playername"
+              labelText="Player one"
               autocomplete="off"
               inputmode="text"
               type="text"
-              placeholder="Player one"
+              placeholder="Name"
               onChange={handleChange}
-              value={gameData.playerName}
+              value={gameData.playerNameOne}
               required
               maxLength={20}
             />
@@ -61,16 +69,105 @@ export default function TrackGameForm({ onTrackGame }) {
           <ScoreContainer>
             <Input
               style={{ width: '85px' }}
-              name="score"
+              name="scoreOne"
               labelText="Score"
-              type="number"
-              inputmode="number"
+              type="text"
+              inputmode="numeric"
               required
-              placeholder="777"
+              placeholder="1"
               onChange={handleChange}
-              value={gameData.score}
-              min={0}
-              max={999}
+              value={gameData.scoreOne}
+              pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
+            />
+          </ScoreContainer>
+        </FlexContainer>
+        {/* ===========Player two================= */}
+        <FlexContainer>
+          <PlayernameContainer>
+            <Input
+              name="playerNameTwo"
+              style={{ width: '190px' }}
+              labelText="Player two"
+              autocomplete="off"
+              inputmode="text"
+              type="text"
+              placeholder="Name"
+              onChange={handleChange}
+              value={gameData.playerNameTwo}
+              maxLength={20}
+            />
+          </PlayernameContainer>
+          <ScoreContainer>
+            <Input
+              style={{ width: '85px' }}
+              name="scoreTwo"
+              labelText="Score"
+              type="text"
+              inputmode="numeric"
+              placeholder="2"
+              onChange={handleChange}
+              value={gameData.scoreTwo}
+              pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
+            />
+          </ScoreContainer>
+        </FlexContainer>
+        {/* ===========Player three================= */}
+        <FlexContainer>
+          <PlayernameContainer>
+            <Input
+              name="playerNameThree"
+              style={{ width: '190px' }}
+              labelText="Player three"
+              autocomplete="off"
+              inputmode="text"
+              type="text"
+              placeholder="Name"
+              onChange={handleChange}
+              value={gameData.playerNameThree}
+              maxLength={20}
+            />
+          </PlayernameContainer>
+          <ScoreContainer>
+            <Input
+              style={{ width: '85px' }}
+              name="scoreThree"
+              labelText="Score"
+              type="text"
+              inputmode="numeric"
+              placeholder="3"
+              onChange={handleChange}
+              value={gameData.scoreThree}
+              pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
+            />
+          </ScoreContainer>
+        </FlexContainer>
+        {/* ===========Player four================= */}
+        <FlexContainer>
+          <PlayernameContainer>
+            <Input
+              name="playerNameFour"
+              style={{ width: '190px' }}
+              labelText="Player four"
+              autocomplete="off"
+              inputmode="text"
+              type="text"
+              placeholder="Name"
+              onChange={handleChange}
+              value={gameData.playerNameFour}
+              maxLength={20}
+            />
+          </PlayernameContainer>
+          <ScoreContainer>
+            <Input
+              style={{ width: '85px' }}
+              name="scoreFour"
+              labelText="Score"
+              type="text"
+              inputmode="numeric"
+              placeholder="4"
+              onChange={handleChange}
+              value={gameData.scoreFour}
+              pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
             />
           </ScoreContainer>
         </FlexContainer>
@@ -86,8 +183,14 @@ export default function TrackGameForm({ onTrackGame }) {
     event.preventDefault();
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
-      playerName: gameData.playerName,
-      score: gameData.score,
+      playerNameOne: gameData.playerNameOne,
+      scoreOne: gameData.scoreOne,
+      playerNameTwo: gameData.playerNameTwo,
+      scoreTwo: gameData.scoreTwo,
+      playerNameThree: gameData.playerNameThree,
+      scoreThree: gameData.scoreThree,
+      playerNameFour: gameData.playerNameFour,
+      scoreFour: gameData.scoreFour,
       id: nanoid()
     });
     setGameData(initialGameData);
@@ -96,7 +199,6 @@ export default function TrackGameForm({ onTrackGame }) {
 }
 
 const Form = styled.form`
-  padding: 0 8px 0 15px;
   @media (max-width: 500px) {
     align-self: center;
   }
