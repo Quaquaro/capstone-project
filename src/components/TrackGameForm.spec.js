@@ -14,14 +14,12 @@ describe('TrackGameForm', () => {
       </MemoryRouter>
     );
     const allTextboxes = screen.getAllByRole('textbox');
-    const allScoreInputs = screen.getAllByRole('spinbutton');
 
-    expect(allScoreInputs.length).toBe(4);
-    expect(allTextboxes.length).toBe(5);
+    expect(allTextboxes.length).toBe(9);
     expect(screen.getByRole('button', { name: /confirm/i })).toBeInTheDocument();
   });
 
-  it('should submit form data when all inputs are filled', () => {
+  it('should submit form data when all required inputs are filled', () => {
     const handleTrackGame = jest.fn();
     render(
       <MemoryRouter>
@@ -31,8 +29,8 @@ describe('TrackGameForm', () => {
       </MemoryRouter>
     );
     const nameOfGameInput = screen.getByLabelText(/name of game/i);
-    const playernameInput = screen.getByLabelText(/playername/i);
-    const scoreInput = screen.getByLabelText(/score/i);
+    const playernameInput = screen.getByLabelText(/player one/i);
+    const scoreInput = screen.getByPlaceholderText('1');
     const submitButton = screen.getByRole('button', { name: /confirm/i });
 
     userEvent.type(nameOfGameInput, 'Imperial Settlers');

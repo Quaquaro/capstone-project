@@ -71,14 +71,13 @@ export default function TrackGameForm({ onTrackGame }) {
               style={{ width: '85px' }}
               name="scoreOne"
               labelText="Score"
-              type="number"
-              inputmode="number"
+              type="text"
+              inputmode="numeric"
               required
-              placeholder="777"
+              placeholder="1"
               onChange={handleChange}
               value={gameData.scoreOne}
-              min={0}
-              max={999}
+              pattern="[1-9]\d\d"
             />
           </ScoreContainer>
         </FlexContainer>
@@ -103,13 +102,12 @@ export default function TrackGameForm({ onTrackGame }) {
               style={{ width: '85px' }}
               name="scoreTwo"
               labelText="Score"
-              type="number"
-              inputmode="number"
-              placeholder="777"
+              type="text"
+              inputmode="numeric"
+              placeholder="2"
               onChange={handleChange}
               value={gameData.scoreTwo}
-              min={0}
-              max={999}
+              pattern="[1-9]\d\d"
             />
           </ScoreContainer>
         </FlexContainer>
@@ -134,16 +132,16 @@ export default function TrackGameForm({ onTrackGame }) {
               style={{ width: '85px' }}
               name="scoreThree"
               labelText="Score"
-              type="number"
-              inputmode="number"
-              placeholder="777"
+              type="text"
+              inputmode="numeric"
+              placeholder="3"
               onChange={handleChange}
               value={gameData.scoreThree}
-              min={0}
-              max={999}
+              pattern="[1-9]\d\d"
             />
           </ScoreContainer>
         </FlexContainer>
+        {/* ===========Player three================= */}
         <FlexContainer>
           <PlayernameContainer>
             <Input
@@ -164,13 +162,12 @@ export default function TrackGameForm({ onTrackGame }) {
               style={{ width: '85px' }}
               name="scoreFour"
               labelText="Score"
-              type="number"
-              inputmode="number"
-              placeholder="777"
+              type="text"
+              inputmode="numeric"
+              placeholder="4"
               onChange={handleChange}
               value={gameData.scoreFour}
-              min={0}
-              max={999}
+              pattern="[1-9]\d\d"
             />
           </ScoreContainer>
         </FlexContainer>
