@@ -13,8 +13,8 @@ export default function TrackedGamesList({ games }) {
           <GameContainer key={game.id}>
             <GameGrid role="list">
               <NameOfGame>{game.nameOfGame}</NameOfGame>
-              <PlayerOne>{game.playerNameOne}</PlayerOne>
-              <ScoreOne>{game.scoreOne}</ScoreOne>
+              {game.playerNameOne && <PlayerOne>{game.playerNameOne}</PlayerOne>}
+              {game.ScoreOne && <ScoreOne>{game.scoreOne}</ScoreOne>}
               {game.playerNameTwo && <PlayerTwo>{game?.playerNameTwo}</PlayerTwo>}
               {game.ScoreTwo && <ScoreTwo>{game?.scoreTwo}</ScoreTwo>}
               {game.playerNameThree && <PlayerThree>{game?.playerNameThree}</PlayerThree>}
