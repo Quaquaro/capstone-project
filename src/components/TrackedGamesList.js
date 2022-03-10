@@ -15,12 +15,12 @@ export default function TrackedGamesList({ games }) {
               <NameOfGame>{game.nameOfGame}</NameOfGame>
               <PlayerOne>{game.playerNameOne}</PlayerOne>
               <ScoreOne>{game.scoreOne}</ScoreOne>
-              <PlayerTwo>{game?.playerNameTwo}</PlayerTwo>
-              <ScoreTwo>{game?.scoreTwo}</ScoreTwo>
-              <PlayerThree>{game?.playerNameThree}</PlayerThree>
-              <ScoreThree>{game?.scoreThree}</ScoreThree>
-              <PlayerFour>{game?.playerNameFour}</PlayerFour>
-              <ScoreFour>{game?.scoreFour}</ScoreFour>
+              {game.playerNameTwo && <PlayerTwo>{game?.playerNameTwo}</PlayerTwo>}
+              {game.ScoreTwo && <ScoreTwo>{game?.scoreTwo}</ScoreTwo>}
+              {game.playerNameThree && <PlayerThree>{game?.playerNameThree}</PlayerThree>}
+              {game.scoreThree && <ScoreThree>{game?.scoreThree}</ScoreThree>}
+              {game.playerNameFour && <PlayerFour>{game?.playerNameFour}</PlayerFour>}
+              {game.scoreFour && <ScoreFour>{game?.scoreFour}</ScoreFour>}
             </GameGrid>
           </GameContainer>
         ))}
@@ -131,13 +131,3 @@ const PlayerFour = styled.li`
 const ScoreFour = styled.li`
   grid-area: 5 / 2 / 5 / 3;
 `;
-
-// .div1 { grid-area: 1 / 1 / 2 / 6; }
-// .div2 { grid-area: 2 / 1 / 3 / 2; }
-// .div3 { grid-area: 2 / 2 / 3 / 3; }
-// .div4 { grid-area: 3 / 1 / 4 / 2; }
-// .div5 { grid-area: 3 / 2 / 4 / 3; }
-// .div6 { grid-area: 4 / 1 / 5 / 2; }
-// .div7 { grid-area: 4 / 2 / 5 / 3; }
-// .div8 { grid-area: 5 / 1 / 6 / 2; }
-// .div9 { grid-area: 5 / 2 / 6 / 3; }
