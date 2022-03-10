@@ -16,7 +16,7 @@ export default function TrackedGamesList({ games }) {
               {game.playerNameOne && <PlayerOne>{game.playerNameOne}</PlayerOne>}
               {game.scoreOne && <ScoreOne>{game.scoreOne}</ScoreOne>}
               {game.playerNameTwo && <PlayerTwo>{game?.playerNameTwo}</PlayerTwo>}
-              {game.ScoreTwo && <ScoreTwo>{game?.scoreTwo}</ScoreTwo>}
+              {game.scoreTwo && <ScoreTwo>{game?.scoreTwo}</ScoreTwo>}
               {game.playerNameThree && <PlayerThree>{game?.playerNameThree}</PlayerThree>}
               {game.scoreThree && <ScoreThree>{game?.scoreThree}</ScoreThree>}
               {game.playerNameFour && <PlayerFour>{game?.playerNameFour}</PlayerFour>}
