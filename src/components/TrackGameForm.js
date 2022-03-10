@@ -95,7 +95,6 @@ export default function TrackGameForm({ onTrackGame }) {
               placeholder="Name"
               onChange={handleChange}
               value={gameData.playerNameTwo}
-              required
               maxLength={20}
             />
           </PlayernameContainer>
@@ -106,7 +105,6 @@ export default function TrackGameForm({ onTrackGame }) {
               labelText="Score"
               type="number"
               inputmode="number"
-              required
               placeholder="777"
               onChange={handleChange}
               value={gameData.scoreTwo}
@@ -128,7 +126,6 @@ export default function TrackGameForm({ onTrackGame }) {
               placeholder="Name"
               onChange={handleChange}
               value={gameData.playerNameThree}
-              required
               maxLength={20}
             />
           </PlayernameContainer>
@@ -139,7 +136,6 @@ export default function TrackGameForm({ onTrackGame }) {
               labelText="Score"
               type="number"
               inputmode="number"
-              required
               placeholder="777"
               onChange={handleChange}
               value={gameData.scoreThree}
@@ -160,7 +156,6 @@ export default function TrackGameForm({ onTrackGame }) {
               placeholder="Name"
               onChange={handleChange}
               value={gameData.playerNameFour}
-              required
               maxLength={20}
             />
           </PlayernameContainer>
@@ -171,7 +166,6 @@ export default function TrackGameForm({ onTrackGame }) {
               labelText="Score"
               type="number"
               inputmode="number"
-              required
               placeholder="777"
               onChange={handleChange}
               value={gameData.scoreFour}

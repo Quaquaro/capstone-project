@@ -15,12 +15,12 @@ export default function TrackedGamesList({ games }) {
               <NameOfGame>{game.nameOfGame}</NameOfGame>
               <PlayerOne>{game.playerNameOne}</PlayerOne>
               <ScoreOne>{game.scoreOne}</ScoreOne>
-              <PlayerTwo>{game.playerNameTwo}</PlayerTwo>
-              <ScoreTwo>{game.scoreTwo}</ScoreTwo>
-              <PlayerThree>{game.playerNameThree}</PlayerThree>
-              <ScoreThree>{game.scoreThree}</ScoreThree>
-              <PlayerFour>{game.playerNameFour}</PlayerFour>
-              <ScoreFour>{game.scoreFour}</ScoreFour>
+              <PlayerTwo>{game?.playerNameTwo}</PlayerTwo>
+              <ScoreTwo>{game?.scoreTwo}</ScoreTwo>
+              <PlayerThree>{game?.playerNameThree}</PlayerThree>
+              <ScoreThree>{game?.scoreThree}</ScoreThree>
+              <PlayerFour>{game?.playerNameFour}</PlayerFour>
+              <ScoreFour>{game?.scoreFour}</ScoreFour>
             </GameGrid>
           </GameContainer>
         ))}
