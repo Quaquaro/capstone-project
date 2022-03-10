@@ -1,13 +1,13 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from './components/ErrorFallback.js';
 import GlobalFonts from './assets/variable/fonts.js';
-import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
 import AddGameFormPage from './pages/AddGameFormPage.js';
+import useLocalStorage from './hooks/useLocalStorage.js';
 
 function App() {
-  const [games, setGames] = useState([]);
+  const [games, setGames] = useLocalStorage('games', []);
   const infoText = [{ nameOfGame: 'Start tracking your first game', id: 1 }];
   return (
     <>
