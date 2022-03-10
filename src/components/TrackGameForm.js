@@ -141,7 +141,7 @@ export default function TrackGameForm({ onTrackGame }) {
             />
           </ScoreContainer>
         </FlexContainer>
-        {/* ===========Player three================= */}
+        {/* ===========Player four================= */}
         <FlexContainer>
           <PlayernameContainer>
             <Input
