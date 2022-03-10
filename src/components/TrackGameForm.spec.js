@@ -5,7 +5,7 @@ import TrackGameForm from './TrackGameForm.js';
 import Theme from '../Theme.js';
 
 describe('TrackGameForm', () => {
-  it('renders three inputs and a button', () => {
+  it('renders 5 textboxes, 4 spinbuttons and one button', () => {
     render(
       <MemoryRouter>
         <Theme>
@@ -13,9 +13,11 @@ describe('TrackGameForm', () => {
         </Theme>
       </MemoryRouter>
     );
-    expect(screen.getByLabelText(/name of game/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/playername/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/score/i)).toBeInTheDocument();
+    const allTextboxes = screen.getAllByRole('textbox');
+    const allScoreInputs = screen.getAllByRole('spinbutton');
+
+    expect(allScoreInputs.length).toBe(4);
+    expect(allTextboxes.length).toBe(5);
     expect(screen.getByRole('button', { name: /confirm/i })).toBeInTheDocument();
   });
 

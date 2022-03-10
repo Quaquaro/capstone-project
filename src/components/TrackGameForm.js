@@ -18,6 +18,7 @@ const initialGameData = {
 
 export default function TrackGameForm({ onTrackGame }) {
   const [gameData, setGameData] = useState(initialGameData);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setGameData({ ...gameData, [name]: value });
