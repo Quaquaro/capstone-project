@@ -12,8 +12,14 @@ TrackGameForm.propTypes = {
 
 const initialGameData = {
   nameOfGame: '',
-  playerName: '',
-  score: ''
+  playerNameOne: '',
+  scoreOne: '',
+  playerNameTwo: '',
+  scoreTwo: '',
+  playerNameThree: '',
+  scoreThree: '',
+  playerNameFour: '',
+  scoreFour: ''
 };
 
 export default function TrackGameForm({ onTrackGame }) {
@@ -43,18 +49,19 @@ export default function TrackGameForm({ onTrackGame }) {
             maxLength={24}
           />
         </GameNameContainer>
+        {/* ===========Player one================= */}
         <FlexContainer>
           <PlayernameContainer>
             <Input
-              name="playerName"
+              name="playerNameOne"
               style={{ width: '190px' }}
-              labelText="Playername"
+              labelText="Player one"
               autocomplete="off"
               inputmode="text"
               type="text"
-              placeholder="Player one"
+              placeholder="Name"
               onChange={handleChange}
-              value={gameData.playerName}
+              value={gameData.playerNameOne}
               required
               maxLength={20}
             />
@@ -62,14 +69,112 @@ export default function TrackGameForm({ onTrackGame }) {
           <ScoreContainer>
             <Input
               style={{ width: '85px' }}
-              name="score"
+              name="scoreOne"
               labelText="Score"
               type="number"
               inputmode="number"
               required
               placeholder="777"
               onChange={handleChange}
-              value={gameData.score}
+              value={gameData.scoreOne}
+              min={0}
+              max={999}
+            />
+          </ScoreContainer>
+        </FlexContainer>
+        {/* ===========Player two================= */}
+        <FlexContainer>
+          <PlayernameContainer>
+            <Input
+              name="playerNameTwo"
+              style={{ width: '190px' }}
+              labelText="Player two"
+              autocomplete="off"
+              inputmode="text"
+              type="text"
+              placeholder="Name"
+              onChange={handleChange}
+              value={gameData.playerNameTwo}
+              required
+              maxLength={20}
+            />
+          </PlayernameContainer>
+          <ScoreContainer>
+            <Input
+              style={{ width: '85px' }}
+              name="scoreTwo"
+              labelText="Score"
+              type="number"
+              inputmode="number"
+              required
+              placeholder="777"
+              onChange={handleChange}
+              value={gameData.scoreTwo}
+              min={0}
+              max={999}
+            />
+          </ScoreContainer>
+        </FlexContainer>
+        {/* ===========Player three================= */}
+        <FlexContainer>
+          <PlayernameContainer>
+            <Input
+              name="playerNameThree"
+              style={{ width: '190px' }}
+              labelText="Player three"
+              autocomplete="off"
+              inputmode="text"
+              type="text"
+              placeholder="Name"
+              onChange={handleChange}
+              value={gameData.playerNameThree}
+              required
+              maxLength={20}
+            />
+          </PlayernameContainer>
+          <ScoreContainer>
+            <Input
+              style={{ width: '85px' }}
+              name="scoreThree"
+              labelText="Score"
+              type="number"
+              inputmode="number"
+              required
+              placeholder="777"
+              onChange={handleChange}
+              value={gameData.scoreThree}
+              min={0}
+              max={999}
+            />
+          </ScoreContainer>
+        </FlexContainer>
+        <FlexContainer>
+          <PlayernameContainer>
+            <Input
+              name="playerNameFour"
+              style={{ width: '190px' }}
+              labelText="Player four"
+              autocomplete="off"
+              inputmode="text"
+              type="text"
+              placeholder="Name"
+              onChange={handleChange}
+              value={gameData.playerNameFour}
+              required
+              maxLength={20}
+            />
+          </PlayernameContainer>
+          <ScoreContainer>
+            <Input
+              style={{ width: '85px' }}
+              name="scoreFour"
+              labelText="Score"
+              type="number"
+              inputmode="number"
+              required
+              placeholder="777"
+              onChange={handleChange}
+              value={gameData.scoreFour}
               min={0}
               max={999}
             />
@@ -87,8 +192,14 @@ export default function TrackGameForm({ onTrackGame }) {
     event.preventDefault();
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
-      playerName: gameData.playerName,
-      score: gameData.score,
+      playerNameOne: gameData.playerNameOne,
+      scoreOne: gameData.scoreOne,
+      playerNameTwo: gameData.playerNameTwo,
+      scoreTwo: gameData.scoreTwo,
+      playerNameThree: gameData.playerNameThree,
+      scoreThree: gameData.scoreThree,
+      playerNameFour: gameData.playerNameFour,
+      scoreFour: gameData.scoreFour,
       id: nanoid()
     });
     setGameData(initialGameData);

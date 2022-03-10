@@ -13,8 +13,14 @@ export default function TrackedGamesList({ games }) {
           <GameContainer key={game.id}>
             <GameGrid role="list">
               <NameOfGame>{game.nameOfGame}</NameOfGame>
-              <li>{game.playerName}</li>
-              <li>{game.score}</li>
+              <PlayerOne>{game.playerNameOne}</PlayerOne>
+              <ScoreOne>{game.scoreOne}</ScoreOne>
+              <PlayerTwo>{game.playerNameTwo}</PlayerTwo>
+              <ScoreTwo>{game.scoreTwo}</ScoreTwo>
+              <PlayerThree>{game.playerNameThree}</PlayerThree>
+              <ScoreThree>{game.scoreThree}</ScoreThree>
+              <PlayerFour>{game.playerNameFour}</PlayerFour>
+              <ScoreFour>{game.scoreFour}</ScoreFour>
             </GameGrid>
           </GameContainer>
         ))}
@@ -83,15 +89,55 @@ const GameGrid = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-template-rows: repeat(5, 1fr);
+
   padding-left: 1rem;
 `;
 
 const NameOfGame = styled.li`
-  grid-area: 1 / 1 / 2 / 6;
+  grid-area: 1 / 1 / 2 / 3;
   display: inline-block;
   font-variation-settings: 'wght' 700;
   font-size: 20px;
 `;
+const PlayerOne = styled.li`
+  grid-area: 2 / 1 / 3 / 2;
+`;
+
+const ScoreOne = styled.li`
+  grid-area: 2 / 2 / 3 / 3;
+`;
+
+const PlayerTwo = styled.li`
+  grid-area: 3 / 1 / 4 / 2;
+`;
+
+const ScoreTwo = styled.li`
+  grid-area: 3 / 2 / 4 / 3;
+`;
+
+const PlayerThree = styled.li`
+  grid-area: 4 / 1 / 5 / 2;
+`;
+
+const ScoreThree = styled.li`
+  grid-area: 4 / 2 / 5 / 3;
+`;
+
+const PlayerFour = styled.li`
+  grid-area: 5 / 1 / 6 / 2;
+`;
+
+const ScoreFour = styled.li`
+  grid-area: 5 / 2 / 5 / 3;
+`;
+
+// .div1 { grid-area: 1 / 1 / 2 / 6; }
+// .div2 { grid-area: 2 / 1 / 3 / 2; }
+// .div3 { grid-area: 2 / 2 / 3 / 3; }
+// .div4 { grid-area: 3 / 1 / 4 / 2; }
+// .div5 { grid-area: 3 / 2 / 4 / 3; }
+// .div6 { grid-area: 4 / 1 / 5 / 2; }
+// .div7 { grid-area: 4 / 2 / 5 / 3; }
+// .div8 { grid-area: 5 / 1 / 6 / 2; }
+// .div9 { grid-area: 5 / 2 / 6 / 3; }
