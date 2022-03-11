@@ -36,7 +36,6 @@ export default function TrackGameForm({ onTrackGame }) {
     { player: gameData.playerNameThree, score: gameData.scoreThree },
     { player: gameData.playerNameFour, score: gameData.scoreFour }
   ];
-  console.log(players);
   const [sortedPlayers, setSortedPlayers] = useState([]);
 
   useEffect(() => {
