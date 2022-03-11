@@ -8,7 +8,8 @@ import useLocalStorage from './hooks/useLocalStorage.js';
 
 function App() {
   const [games, setGames] = useLocalStorage('games', []);
-  const infoText = [{ nameOfGame: 'Start tracking your first game', id: 1 }];
+  const infoText = [{ nameOfGame: 'Start tracking your first game', players: [], id: 1 }];
+
   return (
     <>
       <GlobalFonts />
@@ -25,6 +26,7 @@ function App() {
       </ErrorBoundary>
     </>
   );
+
   function trackGame(gamesObject) {
     const gamesArray = [gamesObject, ...games];
     setGames(gamesArray);

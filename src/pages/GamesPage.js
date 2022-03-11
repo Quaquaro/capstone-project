@@ -11,6 +11,7 @@ GamesPage.propTypes = {
 
 export default function GamesPage({ games }) {
   const navigate = useNavigate('');
+
   return (
     <>
       <Header />
@@ -26,6 +27,7 @@ export default function GamesPage({ games }) {
   );
   async function handleOnClick(e) {
     e.preventDefault();
+
     navigate('/addgame', { replace: true });
   }
 }
