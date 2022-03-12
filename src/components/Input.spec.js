@@ -9,8 +9,9 @@ describe('Input', () => {
         <Input labelText="Name of Game" placeholder="Monopoly..." name="nameOfGame" />
       </Theme>
     );
-    const inputElement = screen.getByLabelText(/name of game/i);
 
+    const inputElement = screen.getByRole('textbox');
+    expect(screen.findByText('Name of Game')).toBeInTheDocument;
     expect(inputElement).toHaveAttribute('placeholder', 'Monopoly...');
     expect(inputElement).toHaveAttribute('name', 'nameOfGame');
   });

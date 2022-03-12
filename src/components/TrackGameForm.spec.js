@@ -28,8 +28,8 @@ describe('TrackGameForm', () => {
         </Theme>
       </MemoryRouter>
     );
-    const nameOfGameInput = screen.getByLabelText(/name of game/i);
-    const playernameInput = screen.getByLabelText(/player one/i);
+    const nameOfGameInput = screen.getByText(/name of game/i);
+    const playernameInput = screen.getByText(/player one/i);
     const scoreInput = screen.getByPlaceholderText('1');
     const submitButton = screen.getByRole('button', { name: /confirm/i });
 
@@ -49,7 +49,7 @@ describe('TrackGameForm', () => {
         </Theme>
       </MemoryRouter>
     );
-    const nameOfGameInput = screen.getByLabelText(/name of game/i);
+    const nameOfGameInput = screen.getByText(/name of game/i);
     const submitButton = screen.getByRole('button', { name: /confirm/i });
 
     userEvent.type(nameOfGameInput, 'Dominion');
