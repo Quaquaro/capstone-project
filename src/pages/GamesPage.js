@@ -6,17 +6,18 @@ import DefaultButton from '../components/DefaultButton.js';
 import Header from '../components/Header.js';
 
 GamesPage.propTypes = {
-  games: PropTypes.array
+  games: PropTypes.array,
+  onDeleteGame: PropTypes.func
 };
 
-export default function GamesPage({ games }) {
+export default function GamesPage({ games, onDeleteGame }) {
   const navigate = useNavigate('');
 
   return (
     <>
       <Header />
       <GamePageLayout>
-        <TrackedGamesList games={games} />
+        <TrackedGamesList games={games} onDelete={onDeleteGame} />
         <ButtonContainer>
           <DefaultButton onClick={handleOnClick} label="TRACK GAME" />
         </ButtonContainer>

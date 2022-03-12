@@ -1,28 +1,39 @@
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
+import bin from '../img/bin.svg';
 
 TrackedGamesList.propTypes = {
-  games: PropTypes.array
+  games: PropTypes.array,
+  onDelete: PropTypes.func,
+  display: PropTypes.bool
 };
 
-export default function TrackedGamesList({ games }) {
+export default function TrackedGamesList({ games, onDelete }) {
   return (
     <Card>
       <CardContent role="list">
         {games.map(({ id, players, nameOfGame }) => (
           <GameContainer key={id}>
-            <GameGrid role="list">
-              <NameOfGame>{nameOfGame}</NameOfGame>
-              <button type="button">delete</button>
-              {players[0]?.player && <PlayerOne>{players[0]?.player}</PlayerOne>}
-              {players[0]?.score && <ScoreOne>{players[0]?.score}</ScoreOne>}
-              {players[1]?.player && <PlayerTwo>{players[1]?.player}</PlayerTwo>}
-              {players[1]?.score && <ScoreTwo>{players[1]?.score}</ScoreTwo>}
-              {players[2]?.player && <PlayerThree>{players[2]?.player}</PlayerThree>}
-              {players[2]?.score && <ScoreThree>{players[2]?.score}</ScoreThree>}
-              {players[3]?.player && <PlayerFour>{players[3]?.player}</PlayerFour>}
-              {players[3]?.score && <ScoreFour>{players[3]?.score}</ScoreFour>}
-            </GameGrid>
+            {id !== 1 ? (
+              <GameGrid role="list">
+                <NameOfGame>{nameOfGame}</NameOfGame>
+                <DeleteButton type="button" onClick={() => onDelete(id)}>
+                  <img src={bin} alt="delete game button" width="18" aria-label="delete" />
+                </DeleteButton>
+                {players[0]?.player && <PlayerOne>{players[0]?.player}</PlayerOne>}
+                {players[0]?.score && <ScoreOne>{players[0]?.score}</ScoreOne>}
+                {players[1]?.player && <PlayerTwo>{players[1]?.player}</PlayerTwo>}
+                {players[1]?.score && <ScoreTwo>{players[1]?.score}</ScoreTwo>}
+                {players[2]?.player && <PlayerThree>{players[2]?.player}</PlayerThree>}
+                {players[2]?.score && <ScoreThree>{players[2]?.score}</ScoreThree>}
+                {players[3]?.player && <PlayerFour>{players[3]?.player}</PlayerFour>}
+                {players[3]?.score && <ScoreFour>{players[3]?.score}</ScoreFour>}
+              </GameGrid>
+            ) : (
+              <GameGrid flex role="list">
+                <NameOfGame empty>{nameOfGame}</NameOfGame>
+              </GameGrid>
+            )}
           </GameContainer>
         ))}
       </CardContent>
@@ -89,18 +100,33 @@ const GameContainer = styled.div`
 const GameGrid = styled.ul`
   list-style: none;
   display: grid;
+  ${(props) => props.flex && `display:flex; justify-content:center;`}
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
-
   padding-left: 1rem;
 `;
 
 const NameOfGame = styled.li`
-  grid-area: 1 / 1 / 2 / 3;
+  grid-area: 1 / 1 / 2 / 2;
+  ${(props) => props.empty && `grid-area: 1 / 1 / 2 / 3; text-align:center;`}
   display: inline-block;
   font-variation-settings: 'wght' 700;
   font-size: 20px;
 `;
+
+const DeleteButton = styled.button`
+  grid-area: 1 / 3 / 2 / 3;
+  background: none;
+  border: none;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  margin: 5px 5px 0 0;
+  &:active {
+    opacity: 0.7;
+  }
+`;
+
 const PlayerOne = styled.li`
   grid-area: 2 / 1 / 3 / 2;
 `;

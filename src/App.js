@@ -8,7 +8,7 @@ import useLocalStorage from './hooks/useLocalStorage.js';
 
 function App() {
   const [games, setGames] = useLocalStorage('games', []);
-  const infoText = [{ nameOfGame: 'Start tracking your first game', players: [], id: 1 }];
+  const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: 1 }];
 
   return (
     <>
@@ -18,7 +18,11 @@ function App() {
           <Route
             path="/"
             element={
-              games.length === 0 ? <GamesPage games={infoText} /> : <GamesPage games={games} />
+              games.length === 0 ? (
+                <GamesPage games={infoText} onDeleteGame={handleDeleteGame} />
+              ) : (
+                <GamesPage games={games} onDeleteGame={handleDeleteGame} />
+              )
             }
           />
           <Route path="/addgame" element={<AddGameFormPage onTrackGame={trackGame} />} />
@@ -30,6 +34,9 @@ function App() {
   function trackGame(gamesObject) {
     const gamesArray = [gamesObject, ...games];
     setGames(gamesArray);
+  }
+  function handleDeleteGame(gameId) {
+    setGames(games.filter((game) => game.id !== gameId));
   }
 }
 
