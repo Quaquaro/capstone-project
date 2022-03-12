@@ -4,15 +4,17 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import DefaultButton from '../components/DefaultButton.js';
 import Header from '../components/Header.js';
+import Dialog from '../components/Dialog.js';
 
 GamesPage.propTypes = {
   games: PropTypes.array,
-  onDeleteGame: PropTypes.func
+  onDeleteGame: PropTypes.func,
+  dialog: PropTypes.object,
+  onDialog: PropTypes.func
 };
 
-export default function GamesPage({ games, onDeleteGame }) {
+export default function GamesPage({ games, onDeleteGame, onDialog, dialog }) {
   const navigate = useNavigate('');
-
   return (
     <>
       <Header />
@@ -21,6 +23,9 @@ export default function GamesPage({ games, onDeleteGame }) {
         <ButtonContainer>
           <DefaultButton onClick={handleOnClick} label="TRACK GAME" />
         </ButtonContainer>
+        {dialog.isLoading && (
+          <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
+        )}
       </GamePageLayout>
     </>
   );

@@ -5,10 +5,23 @@ import { Route, Routes } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
 import AddGameFormPage from './pages/AddGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
-
+import { useState, useRef } from 'react';
 function App() {
   const [games, setGames] = useLocalStorage('games', []);
   const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: 1 }];
+  const [dialog, setDialog] = useState({
+    message: '',
+    isLoading: false,
+    nameOfGame: ''
+  });
+  const idGameRef = useRef();
+  function handleDialog(message, isLoading, nameOfGame) {
+    setDialog({
+      message,
+      isLoading,
+      nameOfGame
+    });
+  }
 
   return (
     <>
@@ -19,9 +32,19 @@ function App() {
             path="/"
             element={
               games.length === 0 ? (
-                <GamesPage games={infoText} onDeleteGame={handleDeleteGame} />
+                <GamesPage
+                  games={infoText}
+                  onDeleteGame={handleDeleteGame}
+                  dialog={dialog}
+                  onDialog={confirmDelete}
+                />
               ) : (
-                <GamesPage games={games} onDeleteGame={handleDeleteGame} />
+                <GamesPage
+                  games={games}
+                  onDeleteGame={handleDeleteGame}
+                  dialog={dialog}
+                  onDialog={confirmDelete}
+                />
               )
             }
           />
@@ -36,7 +59,18 @@ function App() {
     setGames(gamesArray);
   }
   function handleDeleteGame(gameId) {
-    setGames(games.filter((game) => game.id !== gameId));
+    const index = games.findIndex((game) => game.id === gameId);
+    handleDialog('Are you sure you want to delete?', true, games[index].nameOfGame);
+    idGameRef.current = gameId;
+  }
+
+  function confirmDelete(choose) {
+    if (choose) {
+      setGames(games.filter((game) => game.id !== idGameRef.current));
+      handleDialog('', false);
+    } else {
+      handleDialog('', false);
+    }
   }
 }
 
