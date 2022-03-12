@@ -13,6 +13,7 @@ export default function TrackedGamesList({ games }) {
           <GameContainer key={id}>
             <GameGrid role="list">
               <NameOfGame>{nameOfGame}</NameOfGame>
+              <button type="button">delete</button>
               {players[0]?.player && <PlayerOne>{players[0]?.player}</PlayerOne>}
               {players[0]?.score && <ScoreOne>{players[0]?.score}</ScoreOne>}
               {players[1]?.player && <PlayerTwo>{players[1]?.player}</PlayerTwo>}

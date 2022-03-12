@@ -2,7 +2,7 @@ import TrackedGamesList from '../components/TrackedGamesList.js';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { TrackGameButton } from '../components/Button.js';
+import DefaultButton from '../components/DefaultButton.js';
 import Header from '../components/Header.js';
 
 GamesPage.propTypes = {
@@ -18,9 +18,7 @@ export default function GamesPage({ games }) {
       <GamePageLayout>
         <TrackedGamesList games={games} />
         <ButtonContainer>
-          <TrackGameButton type="button" onClick={handleOnClick}>
-            TRACK GAME
-          </TrackGameButton>
+          <DefaultButton onClick={handleOnClick} label="TRACK GAME" />
         </ButtonContainer>
       </GamePageLayout>
     </>

@@ -5,7 +5,7 @@ import TrackGameForm from './TrackGameForm.js';
 import Theme from '../Theme.js';
 
 describe('TrackGameForm', () => {
-  it('renders 5 textboxes, 4 spinbuttons and one button', () => {
+  it('renders 9 textboxes and one button', () => {
     render(
       <MemoryRouter>
         <Theme>

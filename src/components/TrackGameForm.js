@@ -1,4 +1,4 @@
-import { ConfirmButton } from './Button.js';
+import PrimaryButton from './PrimaryButton.js';
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -63,7 +63,7 @@ export default function TrackGameForm({ onTrackGame }) {
             inputmode="text"
             type="text"
             required
-            autofocus
+            autoFocus
             onChange={handleChange}
             value={gameData.nameOfGame}
             maxLength={24}
@@ -193,7 +193,7 @@ export default function TrackGameForm({ onTrackGame }) {
         </FlexContainer>
 
         <ButtonContainer>
-          <ConfirmButton>CONFIRM</ConfirmButton>
+          <PrimaryButton label="CONFIRM" />
         </ButtonContainer>
       </Form>
     </>
