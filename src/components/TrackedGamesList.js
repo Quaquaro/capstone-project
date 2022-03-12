@@ -9,18 +9,18 @@ export default function TrackedGamesList({ games }) {
   return (
     <Card>
       <CardContent role="list">
-        {games.map((game) => (
-          <GameContainer key={game.id}>
+        {games.map(({ id, players, nameOfGame }) => (
+          <GameContainer key={id}>
             <GameGrid role="list">
-              <NameOfGame>{game.nameOfGame}</NameOfGame>
-              {game.playerNameOne && <PlayerOne>{game.playerNameOne}</PlayerOne>}
-              {game.scoreOne && <ScoreOne>{game.scoreOne}</ScoreOne>}
-              {game.playerNameTwo && <PlayerTwo>{game?.playerNameTwo}</PlayerTwo>}
-              {game.scoreTwo && <ScoreTwo>{game?.scoreTwo}</ScoreTwo>}
-              {game.playerNameThree && <PlayerThree>{game?.playerNameThree}</PlayerThree>}
-              {game.scoreThree && <ScoreThree>{game?.scoreThree}</ScoreThree>}
-              {game.playerNameFour && <PlayerFour>{game?.playerNameFour}</PlayerFour>}
-              {game.scoreFour && <ScoreFour>{game?.scoreFour}</ScoreFour>}
+              <NameOfGame>{nameOfGame}</NameOfGame>
+              {players[0]?.player && <PlayerOne>{players[0]?.player}</PlayerOne>}
+              {players[0]?.score && <ScoreOne>{players[0]?.score}</ScoreOne>}
+              {players[1]?.player && <PlayerTwo>{players[1]?.player}</PlayerTwo>}
+              {players[1]?.score && <ScoreTwo>{players[1]?.score}</ScoreTwo>}
+              {players[2]?.player && <PlayerThree>{players[2]?.player}</PlayerThree>}
+              {players[2]?.score && <ScoreThree>{players[2]?.score}</ScoreThree>}
+              {players[3]?.player && <PlayerFour>{players[3]?.player}</PlayerFour>}
+              {players[3]?.score && <ScoreFour>{players[3]?.score}</ScoreFour>}
             </GameGrid>
           </GameContainer>
         ))}

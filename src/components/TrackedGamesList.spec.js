@@ -4,7 +4,9 @@ import Theme from '../Theme.js';
 
 describe('TrackedGamesList', () => {
   it('renders name of game as a list item', () => {
-    const nameOfGame = [{ nameOfGame: '7Wonders', playerName: 'Chris', score: '75', id: '5' }];
+    const nameOfGame = [
+      { nameOfGame: '7Wonders', players: [{ player: 'Gustav', score: '5' }], id: '5' }
+    ];
     render(
       <Theme>
         <TrackedGamesList games={nameOfGame} />

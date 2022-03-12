@@ -2,7 +2,7 @@ import { ConfirmButton } from './Button.js';
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,6 +30,26 @@ export default function TrackGameForm({ onTrackGame }) {
     setGameData({ ...gameData, [name]: value });
   };
   const navigate = useNavigate('');
+  const players = [
+    { player: gameData.playerNameOne, score: gameData.scoreOne },
+    { player: gameData.playerNameTwo, score: gameData.scoreTwo },
+    { player: gameData.playerNameThree, score: gameData.scoreThree },
+    { player: gameData.playerNameFour, score: gameData.scoreFour }
+  ];
+  const [sortedPlayers, setSortedPlayers] = useState([]);
+
+  useEffect(() => {
+    const sortArray = (type) => {
+      const types = {
+        score: 'score'
+      };
+      const sortProperty = types[type];
+      const sorted = [...players].sort((a, b) => b[sortProperty] - a[sortProperty]);
+      setSortedPlayers(sorted);
+    };
+    sortArray('score');
+  }, [gameData]);
+
   return (
     <>
       <Form onSubmit={handleTrackGame}>
@@ -183,14 +203,7 @@ export default function TrackGameForm({ onTrackGame }) {
     event.preventDefault();
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
-      playerNameOne: gameData.playerNameOne,
-      scoreOne: gameData.scoreOne,
-      playerNameTwo: gameData.playerNameTwo,
-      scoreTwo: gameData.scoreTwo,
-      playerNameThree: gameData.playerNameThree,
-      scoreThree: gameData.scoreThree,
-      playerNameFour: gameData.playerNameFour,
-      scoreFour: gameData.scoreFour,
+      players: sortedPlayers,
       id: nanoid()
     });
     setGameData(initialGameData);
