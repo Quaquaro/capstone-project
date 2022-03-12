@@ -68,8 +68,10 @@ function App() {
     if (choose) {
       setGames(games.filter((game) => game.id !== idGameRef.current));
       handleDialog('', false);
+      alert('Game was successfully deleted.');
     } else {
       handleDialog('', false);
+      alert('Game was not deleted.');
     }
   }
 }
