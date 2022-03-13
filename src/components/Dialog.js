@@ -16,8 +16,8 @@ export default function Dialog({ onDialog, message, nameOfGame }) {
         <StyledPhrase>{message}</StyledPhrase>
         <h1>{nameOfGame}</h1>
         <ButtonContainer style={{ display: 'flex', alignItems: 'center' }}>
-          <PinkButton label="YES" onClick={() => onDialog(true)}></PinkButton>
-          <PrimaryButton label="NO" onClick={() => onDialog(false)}></PrimaryButton>
+          <PinkButton label="NO" onClick={() => onDialog(false)}></PinkButton>
+          <PrimaryButton label="YES" onClick={() => onDialog(true)}></PrimaryButton>
         </ButtonContainer>
       </DialogBox>
     </Background>
@@ -30,7 +30,7 @@ const Background = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 10;
 `;
 
