@@ -5,19 +5,22 @@ import { useNavigate } from 'react-router-dom';
 import DefaultButton from '../components/DefaultButton.js';
 import Header from '../components/Header.js';
 import Dialog from '../components/Dialog.js';
+import Alert from '../components/Alert.js';
 
 GamesPage.propTypes = {
   games: PropTypes.array,
   onDeleteGame: PropTypes.func,
   dialog: PropTypes.object,
+  alert: PropTypes.object,
   onDialog: PropTypes.func
 };
 
-export default function GamesPage({ games, onDeleteGame, onDialog, dialog }) {
+export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert }) {
   const navigate = useNavigate('');
   return (
     <>
       <Header />
+      {alert.isVisible && <Alert alertMessage={alert.message} />}
       <GamePageLayout>
         <TrackedGamesList games={games} onDelete={onDeleteGame} />
         <ButtonContainer>

@@ -6,6 +6,7 @@ import GamesPage from './pages/GamesPage.js';
 import AddGameFormPage from './pages/AddGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
+
 function App() {
   const [games, setGames] = useLocalStorage('games', []);
   const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: 1 }];
@@ -14,7 +15,9 @@ function App() {
     isLoading: false,
     nameOfGame: ''
   });
+
   const idGameRef = useRef();
+
   function handleDialog(message, isLoading, nameOfGame) {
     setDialog({
       message,
@@ -23,6 +26,17 @@ function App() {
     });
   }
 
+  const [alert, setAlert] = useState({
+    message: 'Game was successfully deleted!',
+    isVisible: false
+  });
+
+  function handleAlert(isVisible) {
+    setAlert({
+      isVisible
+    });
+    setTimeout(() => setAlert({ isVisible: false }), 5000);
+  }
   return (
     <>
       <GlobalFonts />
@@ -37,6 +51,7 @@ function App() {
                   onDeleteGame={handleDeleteGame}
                   dialog={dialog}
                   onDialog={confirmDelete}
+                  alert={alert}
                 />
               ) : (
                 <GamesPage
@@ -44,6 +59,7 @@ function App() {
                   onDeleteGame={handleDeleteGame}
                   dialog={dialog}
                   onDialog={confirmDelete}
+                  alert={alert}
                 />
               )
             }
@@ -68,10 +84,9 @@ function App() {
     if (choose) {
       setGames(games.filter((game) => game.id !== idGameRef.current));
       handleDialog('', false);
-      alert('The game was successfully deleted.');
+      handleAlert(true);
     } else {
       handleDialog('', false);
-      alert('Nothing happend.');
     }
   }
 }
