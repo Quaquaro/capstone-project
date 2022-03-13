@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 Input.propTypes = {
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   labelText: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
   required: PropTypes.bool,
@@ -16,37 +16,17 @@ Input.propTypes = {
   pattern: PropTypes.string
 };
 
-export default function Input({
-  name,
-  labelText,
-  required,
-  placeholder,
-  autocomplete,
-  inputmode,
-  onChange,
-  type,
-  value,
-  style,
-  maxLength,
-  pattern
-}) {
+Input.defaultProps = {
+  type: 'text',
+  placeholder: 'What is on your mind?',
+  labelText: 'Label '
+};
+
+export default function Input({ name, labelText, ...props }) {
   return (
     <>
       <InputLabel htmlFor={name}>{labelText}</InputLabel>
-      <InputBox
-        type={type}
-        id={name}
-        name={name}
-        placeholder={placeholder}
-        required={required}
-        autocomplete={autocomplete}
-        inputmode={inputmode}
-        value={value}
-        onChange={onChange}
-        style={style}
-        maxLength={maxLength}
-        pattern={pattern}
-      />
+      <InputBox name={name} {...props} />
     </>
   );
 }
