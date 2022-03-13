@@ -16,27 +16,18 @@ function App() {
     nameOfGame: ''
   });
 
-  const idGameRef = useRef();
+  const [notification, setNotification] = useState({
+    message: 'Game was successfully deleted!',
+    isVisible: false
+  });
 
-  function handleDialog(message, isLoading, nameOfGame) {
-    setDialog({
-      message,
-      isLoading,
-      nameOfGame
-    });
-  }
+  const idGameRef = useRef();
 
   const [alert, setAlert] = useState({
     message: 'Game was successfully deleted!',
     isVisible: false
   });
 
-  function handleAlert(isVisible) {
-    setAlert({
-      isVisible
-    });
-    setTimeout(() => setAlert({ isVisible: false }), 5000);
-  }
   return (
     <>
       <GlobalFonts />
@@ -52,6 +43,7 @@ function App() {
                   dialog={dialog}
                   onDialog={confirmDelete}
                   alert={alert}
+                  notification={notification}
                 />
               ) : (
                 <GamesPage
@@ -60,6 +52,7 @@ function App() {
                   dialog={dialog}
                   onDialog={confirmDelete}
                   alert={alert}
+                  notification={notification}
                 />
               )
             }
@@ -80,6 +73,27 @@ function App() {
     idGameRef.current = gameId;
   }
 
+  function handleDialog(message, isLoading, nameOfGame) {
+    setDialog({
+      message,
+      isLoading,
+      nameOfGame
+    });
+  }
+
+  function handleAlert(isVisible) {
+    setAlert({
+      isVisible
+    });
+    setTimeout(() => setAlert({ isVisible: false }), 3000);
+  }
+
+  function handleNotification(isVisible) {
+    setNotification({
+      isVisible
+    });
+    setTimeout(() => setNotification({ isVisible: false }), 2000);
+  }
   function confirmDelete(choose) {
     if (choose) {
       setGames(games.filter((game) => game.id !== idGameRef.current));
@@ -87,6 +101,7 @@ function App() {
       handleAlert(true);
     } else {
       handleDialog('', false);
+      handleNotification(true);
     }
   }
 }

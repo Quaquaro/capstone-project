@@ -19,7 +19,7 @@ export default function Alert({ alertMessage }) {
   );
 }
 
-const AlertContainer = styled.div`
+export const AlertContainer = styled.div`
   background-color: ${(props) => props.theme.color.secondary};
   color: ${(props) => props.theme.color.green};
   border: 1px solid ${(props) => props.theme.color.green};

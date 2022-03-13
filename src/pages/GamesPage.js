@@ -6,21 +6,25 @@ import DefaultButton from '../components/DefaultButton.js';
 import Header from '../components/Header.js';
 import Dialog from '../components/Dialog.js';
 import Alert from '../components/Alert.js';
+import Notification from '../components/Notification.js';
 
 GamesPage.propTypes = {
   games: PropTypes.array,
   onDeleteGame: PropTypes.func,
   dialog: PropTypes.object,
   alert: PropTypes.object,
-  onDialog: PropTypes.func
+  onDialog: PropTypes.func,
+  notification: PropTypes.object
 };
 
-export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert }) {
+export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert, notification }) {
   const navigate = useNavigate('');
   return (
     <>
       <Header />
+
       {alert.isVisible && <Alert alertMessage={alert.message} />}
+      {notification.isVisible && <Notification notification={notification.message} />}
       <GamePageLayout>
         <TrackedGamesList games={games} onDelete={onDeleteGame} />
         <ButtonContainer>
