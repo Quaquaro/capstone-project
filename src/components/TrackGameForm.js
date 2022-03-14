@@ -213,7 +213,7 @@ export default function TrackGameForm({ onTrackGame }) {
 
 const Form = styled.form`
   @media (max-width: 500px) {
-    align-self: center;
+    align-self: start;
   }
 `;
 
