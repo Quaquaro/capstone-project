@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import bin from '../img/bin.svg';
@@ -9,25 +10,30 @@ TrackedGamesList.propTypes = {
 };
 
 export default function TrackedGamesList({ games, onDelete }) {
+  const [isOtherPlayersVisible, setIsOtherPlayersVisible] = useState(false);
   return (
     <Card>
       <CardContent role="list">
         {games.map(({ id, players, nameOfGame }) => (
           <GameContainer key={id}>
             {id !== 1 ? (
-              <GameGrid role="list">
+              <GameGrid role="list" onClick={handleClick}>
                 <NameOfGame>{nameOfGame}</NameOfGame>
                 <DeleteButton type="button" onClick={() => onDelete(id)}>
                   <img src={bin} alt="delete game button" width="18" aria-label="delete" />
                 </DeleteButton>
                 {players[0]?.player && <PlayerOne>{players[0]?.player}</PlayerOne>}
                 {players[0]?.score && <ScoreOne>{players[0]?.score}</ScoreOne>}
-                {players[1]?.player && <PlayerTwo>{players[1]?.player}</PlayerTwo>}
-                {players[1]?.score && <ScoreTwo>{players[1]?.score}</ScoreTwo>}
-                {players[2]?.player && <PlayerThree>{players[2]?.player}</PlayerThree>}
-                {players[2]?.score && <ScoreThree>{players[2]?.score}</ScoreThree>}
-                {players[3]?.player && <PlayerFour>{players[3]?.player}</PlayerFour>}
-                {players[3]?.score && <ScoreFour>{players[3]?.score}</ScoreFour>}
+                {isOtherPlayersVisible && (
+                  <>
+                    {players[1]?.player && <PlayerTwo>{players[1]?.player}</PlayerTwo>}
+                    {players[1]?.score && <ScoreTwo>{players[1]?.score}</ScoreTwo>}
+                    {players[2]?.player && <PlayerThree>{players[2]?.player}</PlayerThree>}
+                    {players[2]?.score && <ScoreThree>{players[2]?.score}</ScoreThree>}
+                    {players[3]?.player && <PlayerFour>{players[3]?.player}</PlayerFour>}
+                    {players[3]?.score && <ScoreFour>{players[3]?.score}</ScoreFour>}
+                  </>
+                )}
               </GameGrid>
             ) : (
               <GameGrid flex role="list">
@@ -39,6 +45,9 @@ export default function TrackedGamesList({ games, onDelete }) {
       </CardContent>
     </Card>
   );
+  function handleClick() {
+    setIsOtherPlayersVisible(!isOtherPlayersVisible);
+  }
 }
 
 const spin = keyframes`
