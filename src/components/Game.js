@@ -12,17 +12,18 @@ Game.propTypes = {
 
 export default function Game({ id, nameOfGame, players, onDelete }) {
   const [isPlayersVisible, setIsPlayersVisible] = useState(false);
+  const [rows, setRows] = useState(2);
+  const playersWithScore = players.filter((player) => player.score !== '');
   return (
     <GameContainer>
       {id !== '1' ? (
-        <GameGrid role="list" twolines onClick={handleClick}>
+        <GameGrid role="list" lines={`repeat(${rows},1fr)`} onClick={handleClick}>
           <NameOfGame>{nameOfGame}</NameOfGame>
           {isPlayersVisible && (
             <DeleteButton type="button" onClick={() => onDelete(id)}>
               <img src={bin} alt="delete game button" width="18" aria-label="delete" />
             </DeleteButton>
           )}
-
           {players[0]?.player && <PlayerOne>{players[0]?.player}</PlayerOne>}
           {players[0]?.score && <ScoreOne>{players[0]?.score}</ScoreOne>}
           {isPlayersVisible && (
@@ -45,6 +46,11 @@ export default function Game({ id, nameOfGame, players, onDelete }) {
   );
   function handleClick() {
     setIsPlayersVisible(!isPlayersVisible);
+    if (rows > 2) {
+      setRows(2);
+    } else {
+      setRows(playersWithScore.length + 1);
+    }
   }
 }
 
@@ -54,12 +60,12 @@ const GameGrid = styled.ul`
   display: grid;
   ${(props) => props.flex && `display:flex; justify-content:center;`}
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  ${(props) => props.twolines && `grid-template-rows: repeat(2, 1fr);`}
+  grid-template-rows: ${(props) => props.lines || 'repeat(2, 1fr)'};
   padding-left: 1rem;
 `;
 
 const GameContainer = styled.div`
+  position: relative;
   border-radius: 15px;
   border: 1px solid ${(props) => props.theme.color.white};
   margin-top: 20px;
@@ -75,6 +81,9 @@ const NameOfGame = styled.li`
 
 const DeleteButton = styled.button`
   grid-area: 1 / 3 / 2 / 3;
+  position: absolute;
+  right: 5px;
+  top: 5px;
   background: none;
   border: none;
   width: 25px;

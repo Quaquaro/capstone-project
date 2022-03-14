@@ -38,6 +38,7 @@ const FlexBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 20px;
 `;
 
 const StyledHeader = styled.header`
