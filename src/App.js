@@ -9,7 +9,7 @@ import { useState, useRef } from 'react';
 
 function App() {
   const [games, setGames] = useLocalStorage('games', []);
-  const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: 1 }];
+  const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: '1' }];
   const [dialog, setDialog] = useState({
     message: '',
     isLoading: false,
