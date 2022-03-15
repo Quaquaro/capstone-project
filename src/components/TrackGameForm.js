@@ -19,7 +19,8 @@ const initialGameData = {
   playerNameThree: '',
   scoreThree: '',
   playerNameFour: '',
-  scoreFour: ''
+  scoreFour: '',
+  isPlayersVisible: false
 };
 
 export default function TrackGameForm({ onTrackGame }) {
@@ -204,7 +205,8 @@ export default function TrackGameForm({ onTrackGame }) {
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
       players: sortedPlayers,
-      id: nanoid()
+      id: nanoid(),
+      isPlayersVisible: false
     });
     setGameData(initialGameData);
     navigate('/', { replace: true });

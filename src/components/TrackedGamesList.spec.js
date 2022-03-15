@@ -24,6 +24,5 @@ describe('TrackedGamesList', () => {
     expect(screen.getByText(/7wonders/i)).toBeInTheDocument();
     expect(screen.getByText(/gustav/i)).toBeInTheDocument();
     expect(screen.getByText(/5/i)).toBeInTheDocument();
-    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 });
