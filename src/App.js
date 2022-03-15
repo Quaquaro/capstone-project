@@ -7,9 +7,10 @@ import AddGameFormPage from './pages/AddGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
 
+const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: '1' }];
+
 function App() {
-  const [games, setGames] = useLocalStorage('games', []);
-  const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: '1' }];
+  const [games, setGames] = useLocalStorage('games', infoText);
   const [dialog, setDialog] = useState({
     message: '',
     isLoading: false,
@@ -36,25 +37,14 @@ function App() {
           <Route
             path="/"
             element={
-              games.length === 0 ? (
-                <GamesPage
-                  games={infoText}
-                  onDeleteGame={handleDeleteGame}
-                  dialog={dialog}
-                  onDialog={confirmDelete}
-                  alert={alert}
-                  notification={notification}
-                />
-              ) : (
-                <GamesPage
-                  games={games}
-                  onDeleteGame={handleDeleteGame}
-                  dialog={dialog}
-                  onDialog={confirmDelete}
-                  alert={alert}
-                  notification={notification}
-                />
-              )
+              <GamesPage
+                games={games}
+                onDeleteGame={handleDeleteGame}
+                dialog={dialog}
+                onDialog={confirmDelete}
+                alert={alert}
+                notification={notification}
+              />
             }
           />
           <Route path="/addgame" element={<AddGameFormPage onTrackGame={trackGame} />} />
@@ -65,7 +55,8 @@ function App() {
 
   function trackGame(gamesObject) {
     const gamesArray = [gamesObject, ...games];
-    setGames(gamesArray);
+    const filteredGamesArray = gamesArray.filter((game) => game.id !== '1');
+    setGames(filteredGamesArray);
   }
   function handleDeleteGame(gameId) {
     const index = games.findIndex((game) => game.id === gameId);
