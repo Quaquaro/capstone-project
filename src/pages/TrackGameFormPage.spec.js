@@ -1,22 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import TrackGameForm from './TrackGameForm.js';
+import TrackGameFormPage from './TrackGameFormPage.js';
 import Theme from '../Theme.js';
 
-describe('TrackGameForm', () => {
+describe('TrackGameFormPage', () => {
   it('renders 9 textboxes and one button', () => {
     render(
       <MemoryRouter>
         <Theme>
-          <TrackGameForm />
+          <TrackGameFormPage />
         </Theme>
       </MemoryRouter>
     );
     const allTextboxes = screen.getAllByRole('textbox');
 
-    expect(allTextboxes.length).toBe(9);
-    expect(screen.getByRole('button', { name: /confirm/i })).toBeInTheDocument();
+    expect(allTextboxes.length).toBe(1);
+    expect(screen.getByRole('button', { name: /continue/i })).toBeInTheDocument();
   });
 
   it('should submit form data when all required inputs are filled', () => {
@@ -24,7 +24,7 @@ describe('TrackGameForm', () => {
     render(
       <MemoryRouter>
         <Theme>
-          <TrackGameForm onTrackGame={handleTrackGame} />
+          <TrackGameFormPage onTrackGame={handleTrackGame} />
         </Theme>
       </MemoryRouter>
     );
@@ -45,7 +45,7 @@ describe('TrackGameForm', () => {
     render(
       <MemoryRouter>
         <Theme>
-          <TrackGameForm onTrackGame={handleTrackGame} />
+          <TrackGameFormPage onTrackGame={handleTrackGame} />
         </Theme>
       </MemoryRouter>
     );
