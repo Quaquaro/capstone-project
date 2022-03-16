@@ -13,7 +13,8 @@ Input.propTypes = {
   value: PropTypes.string,
   style: PropTypes.any,
   maxLength: PropTypes.number,
-  pattern: PropTypes.string
+  pattern: PropTypes.string,
+  id: PropTypes.string
 };
 
 Input.defaultProps = {
@@ -26,7 +27,7 @@ export default function Input({ name, labelText, ...props }) {
   return (
     <>
       <InputLabel htmlFor={name}>{labelText}</InputLabel>
-      <InputBox name={name} {...props} />
+      <InputBox name={name} {...props} id={name} />
     </>
   );
 }
