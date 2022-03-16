@@ -13,9 +13,8 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
       {/* ===========Player one================= */}
       <FlexContainer>
         <PlayernameContainer>
-          <Input
+          <StyledNameInput
             name="playerNameOne"
-            style={{ width: '190px' }}
             labelText="Player one"
             autocomplete="off"
             inputmode="text"
@@ -28,8 +27,7 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
           />
         </PlayernameContainer>
         <ScoreContainer>
-          <Input
-            style={{ width: '85px' }}
+          <StyledScoreInput
             name="scoreOne"
             labelText="Score"
             type="text"
@@ -45,9 +43,8 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
       {/* ===========Player two================= */}
       <FlexContainer>
         <PlayernameContainer>
-          <Input
+          <StyledNameInput
             name="playerNameTwo"
-            style={{ width: '190px' }}
             labelText="Player two"
             autocomplete="off"
             inputmode="text"
@@ -59,8 +56,7 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
           />
         </PlayernameContainer>
         <ScoreContainer>
-          <Input
-            style={{ width: '85px' }}
+          <StyledScoreInput
             name="scoreTwo"
             labelText="Score"
             type="text"
@@ -75,9 +71,8 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
       {/* ===========Player three================= */}
       <FlexContainer>
         <PlayernameContainer>
-          <Input
+          <StyledNameInput
             name="playerNameThree"
-            style={{ width: '190px' }}
             labelText="Player three"
             autocomplete="off"
             inputmode="text"
@@ -89,8 +84,7 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
           />
         </PlayernameContainer>
         <ScoreContainer>
-          <Input
-            style={{ width: '85px' }}
+          <StyledScoreInput
             name="scoreThree"
             labelText="Score"
             type="text"
@@ -105,9 +99,8 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
       {/* ===========Player four================= */}
       <FlexContainer>
         <PlayernameContainer>
-          <Input
+          <StyledNameInput
             name="playerNameFour"
-            style={{ width: '190px' }}
             labelText="Player four"
             autocomplete="off"
             inputmode="text"
@@ -119,8 +112,7 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
           />
         </PlayernameContainer>
         <ScoreContainer>
-          <Input
-            style={{ width: '85px' }}
+          <StyledScoreInput
             name="scoreFour"
             labelText="Score"
             type="text"
@@ -154,4 +146,11 @@ const ScoreContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+`;
+
+const StyledScoreInput = styled(Input)`
+  width: 85px;
+`;
+const StyledNameInput = styled(Input)`
+  width: 190px;
 `;

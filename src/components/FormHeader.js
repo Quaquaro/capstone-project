@@ -4,7 +4,7 @@ import logo from '../img/greenDice.svg';
 import cancel from '../img/circle-cross.svg';
 
 export default function FormHeader() {
-  const navigate = useNavigate('');
+  const navigate = useNavigate();
   return (
     <StyledHeader>
       <FlexBox>

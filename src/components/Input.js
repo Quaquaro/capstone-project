@@ -11,7 +11,6 @@ Input.propTypes = {
   type: PropTypes.string,
   onChange: PropTypes.func,
   value: PropTypes.string,
-  style: PropTypes.any,
   maxLength: PropTypes.number,
   pattern: PropTypes.string,
   id: PropTypes.string

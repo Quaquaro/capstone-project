@@ -18,7 +18,7 @@ GamesPage.propTypes = {
 };
 
 export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert, notification }) {
-  const navigate = useNavigate('');
+  const navigate = useNavigate();
   return (
     <>
       <Header />

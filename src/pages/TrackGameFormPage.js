@@ -29,7 +29,7 @@ const initialGameData = {
 
 export default function AddGameFormPage({ onTrackGame }) {
   const [step, setStep] = useState(1);
-  const navigate = useNavigate('');
+  const navigate = useNavigate();
 
   const [gameData, setGameData] = useState(initialGameData);
 

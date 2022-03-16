@@ -9,24 +9,21 @@ TrackGameOne.propTypes = {
 
 export default function TrackGameOne({ onHandleChange, gameData }) {
   return (
-    <>
-      <GameNameContainer>
-        <Input
-          name="nameOfGame"
-          style={{ width: '335px' }}
-          labelText="Name of game"
-          placeholder="e.g. Uno"
-          autocomplete="on"
-          inputmode="text"
-          type="text"
-          required
-          autoFocus
-          onChange={onHandleChange}
-          value={gameData}
-          maxLength={24}
-        />
-      </GameNameContainer>
-    </>
+    <GameNameContainer>
+      <StyledInput
+        name="nameOfGame"
+        labelText="Name of game"
+        placeholder="e.g. Uno"
+        autocomplete="on"
+        inputmode="text"
+        type="text"
+        required
+        autoFocus
+        onChange={onHandleChange}
+        value={gameData}
+        maxLength={24}
+      />
+    </GameNameContainer>
   );
 }
 
@@ -35,4 +32,8 @@ const GameNameContainer = styled.div`
   justify-content: end;
   align-items: center;
   flex-direction: column;
+`;
+
+const StyledInput = styled(Input)`
+  width: 335px;
 `;
