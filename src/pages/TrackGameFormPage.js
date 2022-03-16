@@ -88,6 +88,10 @@ export default function AddGameFormPage({ onTrackGame }) {
 
   async function handleTrackGame(event) {
     event.preventDefault();
+    if (gameData.playerNameOne === '') {
+      nextStep();
+      return;
+    }
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
       players: sortedPlayers,
@@ -99,7 +103,7 @@ export default function AddGameFormPage({ onTrackGame }) {
   }
 
   function nextStep() {
-    if (step === 2) return;
+    if (step === 2 || gameData.nameOfGame === '') return;
     setStep((step) => step + 1);
   }
   function prevStep() {
