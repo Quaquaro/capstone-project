@@ -11,7 +11,7 @@ describe('Input', () => {
     );
 
     const inputElement = screen.getByRole('textbox');
-    expect(screen.findByText('Name of Game')).toBeInTheDocument;
+    expect(screen.getByLabelText('Name of Game')).toBeInTheDocument;
     expect(inputElement).toHaveAttribute('placeholder', 'Monopoly...');
     expect(inputElement).toHaveAttribute('name', 'nameOfGame');
   });

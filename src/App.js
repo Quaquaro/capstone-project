@@ -3,7 +3,7 @@ import ErrorFallback from './components/ErrorFallback.js';
 import GlobalFonts from './assets/variable/fonts.js';
 import { Route, Routes } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
-import AddGameFormPage from './pages/AddGameFormPage.js';
+import AddGameFormPage from './pages/TrackGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
 
@@ -86,10 +86,17 @@ function App() {
     setTimeout(() => setNotification({ isVisible: false }), 2000);
   }
   function confirmDelete(choose) {
+    const gamesArray = games.filter((game) => game.id !== idGameRef.current);
     if (choose) {
-      setGames(games.filter((game) => game.id !== idGameRef.current));
-      handleDialog('', false);
-      handleAlert(true);
+      if (gamesArray.length === 0) {
+        setGames(infoText);
+        handleDialog('', false);
+        handleAlert(true);
+      } else {
+        setGames(gamesArray);
+        handleDialog('', false);
+        handleAlert(true);
+      }
     } else {
       handleDialog('', false);
       handleNotification(true);
