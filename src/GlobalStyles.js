@@ -37,15 +37,4 @@ export default createGlobalStyle`
     white-space: nowrap;
     border-width: 0;
  }
-
- 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input[type=number] {
-  -moz-appearance: textfield;
-  text-align: center;
-}
 `;

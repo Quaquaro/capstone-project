@@ -90,6 +90,8 @@ function App() {
     if (choose) {
       if (gamesArray.length === 0) {
         setGames(infoText);
+        handleDialog('', false);
+        handleAlert(true);
       } else {
         setGames(gamesArray);
         handleDialog('', false);
