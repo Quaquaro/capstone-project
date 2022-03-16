@@ -36,7 +36,7 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
             placeholder="1"
             onChange={onHandleChange}
             value={gameData.scoreOne}
-            pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
+            pattern="^-?([1-9]{1}|[0-9]{2}|[0-9]{3})$"
           />
         </ScoreContainer>
       </FlexContainer>
@@ -64,7 +64,7 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
             placeholder="2"
             onChange={onHandleChange}
             value={gameData.scoreTwo}
-            pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
+            pattern="^-?([1-9]{1}|[0-9]{2}|[0-9]{3})$"
           />
         </ScoreContainer>
       </FlexContainer>
@@ -92,7 +92,7 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
             placeholder="3"
             onChange={onHandleChange}
             value={gameData.scoreThree}
-            pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
+            pattern="^-?([1-9]{1}|[0-9]{2}|[0-9]{3})$"
           />
         </ScoreContainer>
       </FlexContainer>
@@ -120,7 +120,7 @@ export default function TrackGameTwo({ onHandleChange, gameData }) {
             placeholder="4"
             onChange={onHandleChange}
             value={gameData.scoreFour}
-            pattern="^([1-9]{1}|[0-9]{2}|[0-9]{3})$"
+            pattern="^-?([1-9]{1}|[0-9]{2}|[0-9]{3})$"
           />
         </ScoreContainer>
       </FlexContainer>
