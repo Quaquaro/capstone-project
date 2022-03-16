@@ -8,6 +8,13 @@ TrackGameTwo.propTypes = {
 };
 
 export default function TrackGameTwo({ onHandleChange, gameData }) {
+  // Implement in the next issue
+  //   const gameDataArray = [
+  // { name: "playerNameOne", value: gameData.playerNameOne, score: ...},
+  // { name: "playerNameTwo", value: ..., score: ...},
+  // { name: "playerNameThree", value: ..., score: ...},
+  // { name: "playerNameFour", value: ..., score: ...},
+  // ]
   return (
     <>
       {/* ===========Player one================= */}
