@@ -3,7 +3,7 @@ import ErrorFallback from './components/ErrorFallback.js';
 import GlobalFonts from './assets/variable/fonts.js';
 import { Route, Routes } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
-import AddGameFormPage from './pages/AddGameFormPage.js';
+import AddGameFormPage from './pages/TrackGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
 
