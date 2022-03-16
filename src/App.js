@@ -86,10 +86,15 @@ function App() {
     setTimeout(() => setNotification({ isVisible: false }), 2000);
   }
   function confirmDelete(choose) {
+    const gamesArray = games.filter((game) => game.id !== idGameRef.current);
     if (choose) {
-      setGames(games.filter((game) => game.id !== idGameRef.current));
-      handleDialog('', false);
-      handleAlert(true);
+      if (gamesArray.length === 0) {
+        setGames(infoText);
+      } else {
+        setGames(gamesArray);
+        handleDialog('', false);
+        handleAlert(true);
+      }
     } else {
       handleDialog('', false);
       handleNotification(true);
