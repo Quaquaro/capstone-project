@@ -1,70 +1,97 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🚀 About Me
+I'm a webdev student at neue fische.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Lessons Learned
 
-### `npm start`
+I learned how to build multi-step forms with react and how to process user input. I also learned how to build components in Storybook and how to test them with the react testing library.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# TABULA RASA
 
-### `npm test`
+This is my capstone-project, which I created in connection with the webdevelopment-bootcamp at neue fische.
+TABULA RASA is an app for board players that tracks the results of individual games.  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+**Client:** React, styled-components
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Tools:** Storybook
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Screenshots
 
-### `npm run eject`
+![Game Page](https://user-images.githubusercontent.com/67676597/158783020-8c0247f8-1f12-475f-8a0d-7781e22fbdcf.jpg)
+![Form Page 1](https://user-images.githubusercontent.com/67676597/158783028-d4500c97-dbc1-4382-9226-adac566ab4b1.jpg)
+![Form Page 2](https://user-images.githubusercontent.com/67676597/158783031-89b1837a-10fe-4feb-8ab3-76627b585a09.jpg)
+![Game Page after entry a game](https://user-images.githubusercontent.com/67676597/158783033-4f629666-b4e5-4a08-9b62-5604eb453963.jpg)
+![Detail view](https://user-images.githubusercontent.com/67676597/158783035-9b8a0246-805b-4a2c-add1-dd100ce9b0f8.jpg)
+![Delete Dialog](https://user-images.githubusercontent.com/67676597/158783039-70809614-3028-491a-8171-1669c354b24d.jpg)
+![Succes message](https://user-images.githubusercontent.com/67676597/158783040-3c2a9fca-d7a5-4c5d-a219-42d376c56ed1.jpg)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Run Locally
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Clone the project
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+  git clone git@github.com:Quaquaro/capstone-project.git
+```
 
-## Learn More
+Go to the project directory
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  cd capstone-project
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Install dependencies
 
-### Code Splitting
+```bash
+  npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Start the server
 
-### Analyzing the Bundle Size
+```bash
+  npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Running Tests
 
-### Making a Progressive Web App
+To run tests, run the following command
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+  npm test
+```
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Roadmap
 
-### Deployment
+- Add Boargame Atlas API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Add STRAPI Backend
 
-### `npm run build` fails to minify
+## Color Reference
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+| Color             | Hex                                                                |
+| ----------------- | ------------------------------------------------------------------ |
+| Black | ![#1B1B1B](https://via.placeholder.com/10/1b1b1b?text=+) #1B1B1B |
+| Darkgrey | ![#313131](https://via.placeholder.com/10/313131?text=+) #313131 |
+| White | ![#EEFFFD](https://via.placeholder.com/10/eefffd?text=+) EEFFFD |
+| Green | ![#31CC62](https://via.placeholder.com/10/31CC62?text=+) #31CC62 |
+| Pink | ![#F631A7](https://via.placeholder.com/10/F631A7?text=+) #F631A7 |
+| Neon blue | ![#05F2DB](https://via.placeholder.com/10/05F2DB?text=+) #05F2DB |
+
+
+## Feedback
+
+If you have any feedback, please reach out to me at quaquaro@gmail.com
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+
+
