@@ -1,21 +1,24 @@
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import useCounter from '../hooks/useCounter.js';
+//import useCounter from '../hooks/useCounter.js';
 import DefaultButton from '../components/DefaultButton.js';
 
 TrackGameOne.propTypes = {
   onHandleChange: PropTypes.func,
-  gameData: PropTypes.string
+  onRemoveFormFields: PropTypes.func,
+  onAddFormFields: PropTypes.func,
+  nameOfGame: PropTypes.string,
+  players: PropTypes.array
 };
 
-export default function TrackGameOne({ onHandleChange, gameData }) {
-  const { count, increment, decrement } = useCounter({
-    initialState: 2,
-    step: 1,
-    minCount: 1,
-    maxCount: 6
-  });
+export default function TrackGameOne({
+  onHandleChange,
+  nameOfGame,
+  onRemoveFormFields,
+  onAddFormFields,
+  players
+}) {
   return (
     <GameNameContainer>
       <StyledInput
@@ -28,19 +31,23 @@ export default function TrackGameOne({ onHandleChange, gameData }) {
         required
         autoFocus
         onChange={onHandleChange}
-        value={gameData}
+        value={nameOfGame}
         maxLength={24}
       />
-      <StyledParagraph>
-        How many people played along?
-        <br />
-        (max. 6 players)
-      </StyledParagraph>
+      <StyledParagraph>How many people played along?</StyledParagraph>
 
       <FlexContainer>
-        <CircleButton label="-" aria-label="decrease button" onClick={decrement}></CircleButton>
-        <p>{count}</p>
-        <CircleButton label="+" aria-label="increase button" onClick={increment}></CircleButton>
+        <CircleButton
+          label="-"
+          aria-label="decrease button"
+          onClick={onRemoveFormFields}
+        ></CircleButton>
+        <p>{players.length}</p>
+        <CircleButton
+          label="+"
+          aria-label="increase button"
+          onClick={onAddFormFields}
+        ></CircleButton>
       </FlexContainer>
     </GameNameContainer>
   );
