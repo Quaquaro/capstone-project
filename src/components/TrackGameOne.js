@@ -1,7 +1,7 @@
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import useCounter from '../hooks/useCounter.js';
 
 TrackGameOne.propTypes = {
   onHandleChange: PropTypes.func,
@@ -9,19 +9,12 @@ TrackGameOne.propTypes = {
 };
 
 export default function TrackGameOne({ onHandleChange, gameData }) {
-  const [count, setCount] = useState(2);
-  const decrement = () => {
-    if (count === 1) {
-      return;
-    }
-    setCount(count - 1);
-  };
-  const increment = () => {
-    if (count === 6) {
-      return;
-    }
-    setCount(count + 1);
-  };
+  const { count, increment, decrement } = useCounter({
+    initialState: 2,
+    step: 1,
+    minCount: 1,
+    maxCount: 6
+  });
   return (
     <GameNameContainer>
       <StyledInput
@@ -37,7 +30,12 @@ export default function TrackGameOne({ onHandleChange, gameData }) {
         value={gameData}
         maxLength={24}
       />
-      <p>{count}</p>{' '}
+      <p>
+        How many people played along?
+        <br />
+        (max. 6 players)
+      </p>
+      <p>{count}</p>
       <button type="button" onClick={increment}>
         +
       </button>
