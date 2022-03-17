@@ -2,6 +2,7 @@ import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import useCounter from '../hooks/useCounter.js';
+import DefaultButton from '../components/DefaultButton.js';
 
 TrackGameOne.propTypes = {
   onHandleChange: PropTypes.func,
@@ -30,18 +31,17 @@ export default function TrackGameOne({ onHandleChange, gameData }) {
         value={gameData}
         maxLength={24}
       />
-      <p>
+      <StyledParagraph>
         How many people played along?
         <br />
         (max. 6 players)
-      </p>
-      <p>{count}</p>
-      <button type="button" onClick={increment}>
-        +
-      </button>
-      <button type="button" onClick={decrement}>
-        -
-      </button>
+      </StyledParagraph>
+
+      <FlexContainer>
+        <CircleButton label="-" aria-label="decrease button" onClick={decrement}></CircleButton>
+        <p>{count}</p>
+        <CircleButton label="+" aria-label="increase button" onClick={increment}></CircleButton>
+      </FlexContainer>
     </GameNameContainer>
   );
 }
@@ -55,4 +55,23 @@ const GameNameContainer = styled.div`
 
 const StyledInput = styled(Input)`
   width: 335px;
+`;
+
+const StyledParagraph = styled.p`
+  text-align: center;
+`;
+
+const FlexContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Roboto';
+  font-size: 24px;
+  margin: 20px 0;
+`;
+const CircleButton = styled(DefaultButton)`
+  width: 64px;
+  height: 64px;
+  font-family: 'Roboto';
+  font-size: 28px;
 `;
