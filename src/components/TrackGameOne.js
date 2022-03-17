@@ -1,6 +1,7 @@
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 TrackGameOne.propTypes = {
   onHandleChange: PropTypes.func,
@@ -8,6 +9,19 @@ TrackGameOne.propTypes = {
 };
 
 export default function TrackGameOne({ onHandleChange, gameData }) {
+  const [count, setCount] = useState(2);
+  const decrement = () => {
+    if (count === 1) {
+      return;
+    }
+    setCount(count - 1);
+  };
+  const increment = () => {
+    if (count === 6) {
+      return;
+    }
+    setCount(count + 1);
+  };
   return (
     <GameNameContainer>
       <StyledInput
@@ -23,6 +37,13 @@ export default function TrackGameOne({ onHandleChange, gameData }) {
         value={gameData}
         maxLength={24}
       />
+      <p>{count}</p>{' '}
+      <button type="button" onClick={increment}>
+        +
+      </button>
+      <button type="button" onClick={decrement}>
+        -
+      </button>
     </GameNameContainer>
   );
 }
