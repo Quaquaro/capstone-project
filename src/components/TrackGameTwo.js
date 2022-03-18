@@ -36,7 +36,7 @@ export default function TrackGameTwo({ onHandleChange, players }) {
               placeholder="0"
               onChange={(e) => onHandleChange(index, e)}
               value={element.score}
-              pattern="^-?([1-9]{1}|[0-9]{2}|[0-9]{3})$"
+              pattern="^-?([0-9]{1}|[0-9]{2}|[0-9]{3})$"
             />
           </ScoreContainer>
         </FlexContainer>
