@@ -23,7 +23,7 @@ TABULA RASA is an app for board players that tracks the results of individual ga
 ## Screenshots
 
 ![Game Page](https://user-images.githubusercontent.com/67676597/158783020-8c0247f8-1f12-475f-8a0d-7781e22fbdcf.jpg)
-![Form Page 1](https://user-images.githubusercontent.com/67676597/158783028-d4500c97-dbc1-4382-9226-adac566ab4b1.jpg)
+![Form Page 1](https://user-images.githubusercontent.com/67676597/158976775-5b5568fd-52c6-4a78-975d-3efc5c65da25.png)
 ![Form Page 2](https://user-images.githubusercontent.com/67676597/158783031-89b1837a-10fe-4feb-8ab3-76627b585a09.jpg)
 ![Game Page after entry a game](https://user-images.githubusercontent.com/67676597/158783033-4f629666-b4e5-4a08-9b62-5604eb453963.jpg)
 ![Detail view](https://user-images.githubusercontent.com/67676597/158783035-9b8a0246-805b-4a2c-add1-dd100ce9b0f8.jpg)
