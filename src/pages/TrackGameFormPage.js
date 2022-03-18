@@ -48,6 +48,9 @@ export default function AddGameFormPage({ onTrackGame }) {
     setPlayers([...players, { player: '', score: '' }]);
   };
   const removeFormFields = () => {
+    if (players.length === 1) {
+      return;
+    }
     const newPlayers = [...players];
     newPlayers.splice(0, 1);
     setPlayers(newPlayers);
