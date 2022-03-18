@@ -16,34 +16,45 @@ AddGameFormPage.propTypes = {
 
 const initialGameData = {
   nameOfGame: '',
-  playerNameOne: '',
-  scoreOne: '',
-  playerNameTwo: '',
-  scoreTwo: '',
-  playerNameThree: '',
-  scoreThree: '',
-  playerNameFour: '',
-  scoreFour: '',
+  players: [
+    { player: '', score: '' },
+    { player: '', score: '' }
+  ],
   isPlayersVisible: false
 };
-
 export default function AddGameFormPage({ onTrackGame }) {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
 
   const [gameData, setGameData] = useState(initialGameData);
+  const [players, setPlayers] = useState([
+    { player: '', score: '' },
+    { player: '', score: '' }
+  ]);
 
-  const handleChange = (event) => {
+  const handleChangeNameOfGame = (event) => {
     const { name, value } = event.target;
     setGameData({ ...gameData, [name]: value });
   };
 
-  const players = [
-    { player: gameData.playerNameOne, score: gameData.scoreOne },
-    { player: gameData.playerNameTwo, score: gameData.scoreTwo },
-    { player: gameData.playerNameThree, score: gameData.scoreThree },
-    { player: gameData.playerNameFour, score: gameData.scoreFour }
-  ];
+  const handleChangePlayer = (i, e) => {
+    const newPlayers = [...players];
+    newPlayers[i][e.target.name] = e.target.value;
+    setPlayers(newPlayers);
+    setGameData({ ...gameData, players });
+  };
+
+  const addFormFields = () => {
+    setPlayers([...players, { player: '', score: '' }]);
+  };
+  const removeFormFields = () => {
+    if (players.length === 1) {
+      return;
+    }
+    const newPlayers = [...players];
+    newPlayers.splice(0, 1);
+    setPlayers(newPlayers);
+  };
   const [sortedPlayers, setSortedPlayers] = useState([]);
 
   useEffect(() => {
@@ -52,7 +63,7 @@ export default function AddGameFormPage({ onTrackGame }) {
         score: 'score'
       };
       const sortProperty = types[type];
-      const sorted = [...players].sort((a, b) => b[sortProperty] - a[sortProperty]);
+      const sorted = [...gameData.players].sort((a, b) => b[sortProperty] - a[sortProperty]);
       setSortedPlayers(sorted);
     };
     sortArray('score');
@@ -75,9 +86,15 @@ export default function AddGameFormPage({ onTrackGame }) {
           </ButtonContainer>
         )}
         {step === 1 && (
-          <TrackGameOne onHandleChange={handleChange} gameData={gameData.nameOfGame} />
+          <TrackGameOne
+            onHandleChange={handleChangeNameOfGame}
+            onAddFormFields={addFormFields}
+            onRemoveFormFields={removeFormFields}
+            nameOfGame={gameData.nameOfGame}
+            players={players}
+          />
         )}
-        {step === 2 && <TrackGameTwo onHandleChange={handleChange} gameData={gameData} />}
+        {step === 2 && <TrackGameTwo onHandleChange={handleChangePlayer} players={players} />}
         <ButtonContainer>
           {step !== 2 && <DefaultButton type="button" label="CONTINUE" onClick={nextStep} />}
           {step === 2 && <PrimaryButton type="submit" label="CONFIRM" />}
@@ -88,7 +105,7 @@ export default function AddGameFormPage({ onTrackGame }) {
 
   async function handleTrackGame(event) {
     event.preventDefault();
-    if (gameData.playerNameOne === '') {
+    if (players[0].player === '') {
       nextStep();
       return;
     }
