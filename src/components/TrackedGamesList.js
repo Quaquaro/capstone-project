@@ -26,6 +26,10 @@ export default function TrackedGamesList({ games, onDelete }) {
   );
 }
 
+const getColorPink = ({ theme }) => theme.color.pink;
+const getColorNeonBlue = ({ theme }) => theme.color.neonBlue;
+const getColorSecondary = ({ theme }) => theme.color.secondary;
+
 const spin = keyframes`
 0% {background-position: top center;}
 100% {background-position: bottom center;}
@@ -49,11 +53,7 @@ const Card = styled.div`
     position: absolute;
     z-index: -1;
     border-radius: 20px;
-    background-image: linear-gradient(
-      0,
-      ${(props) => props.theme.color.pink},
-      ${(props) => props.theme.color.neonBlue}
-    );
+    background-image: linear-gradient(0, ${getColorPink}, ${getColorNeonBlue});
     background-size: 100% 200%;
     background-position: center center;
     top: -5px;
@@ -71,7 +71,7 @@ const CardContent = styled.ul`
   list-style: none;
   width: 100%;
   height: 100%;
-  background-color: ${(props) => props.theme.color.secondary};
+  background-color: ${getColorSecondary};
   border-radius: 15px;
   overflow: auto;
 `;

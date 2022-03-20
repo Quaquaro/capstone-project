@@ -6,6 +6,6 @@ export const StyledHeader = styled.header`
   align-items: center;
   gap: 20px;
   font-variation-settings: 'wght' 600;
-  color: ${(props) => props.theme.color.white};
-  background-color: ${(props) => props.theme.color.secondary};
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.secondary};
 `;
