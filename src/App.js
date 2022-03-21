@@ -7,7 +7,9 @@ import AddGameFormPage from './pages/TrackGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
 
-const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: '1' }];
+const infoText = [
+  { nameOfGame: 'Start tracking your first game!', players: [], id: '1', notes: '' }
+];
 
 function App() {
   const [games, setGames] = useLocalStorage('games', infoText);

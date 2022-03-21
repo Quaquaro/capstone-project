@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import TrackGameOne from '../components/TrackGameOne.js';
 import TrackGameTwo from '../components/TrackGameTwo.js';
+import TrackGameThree from '../components/TrackGameThree.js';
 import PrimaryButton from '../components/PrimaryButton.js';
 import DefaultButton from '../components/DefaultButton.js';
 import backarrow from '../img/backarrow.svg';
@@ -20,7 +21,8 @@ const initialGameData = {
     { player: '', score: '' },
     { player: '', score: '' }
   ],
-  isPlayersVisible: false
+  isPlayersVisible: false,
+  notes: ''
 };
 export default function AddGameFormPage({ onTrackGame }) {
   const [step, setStep] = useState(1);
@@ -32,7 +34,7 @@ export default function AddGameFormPage({ onTrackGame }) {
     { player: '', score: '' }
   ]);
 
-  const handleChangeNameOfGame = (event) => {
+  const handleChangeInput = (event) => {
     const { name, value } = event.target;
     setGameData({ ...gameData, [name]: value });
   };
@@ -87,7 +89,7 @@ export default function AddGameFormPage({ onTrackGame }) {
         )}
         {step === 1 && (
           <TrackGameOne
-            onHandleChange={handleChangeNameOfGame}
+            onHandleChange={handleChangeInput}
             onAddFormFields={addFormFields}
             onRemoveFormFields={removeFormFields}
             nameOfGame={gameData.nameOfGame}
@@ -95,9 +97,10 @@ export default function AddGameFormPage({ onTrackGame }) {
           />
         )}
         {step === 2 && <TrackGameTwo onHandleChange={handleChangePlayer} players={players} />}
+        {step === 3 && <TrackGameThree onHandleChange={handleChangeInput} notes={gameData.notes} />}
         <ButtonContainer>
-          {step !== 2 && <DefaultButton type="button" label="CONTINUE" onClick={nextStep} />}
-          {step === 2 && <PrimaryButton type="submit" label="CONFIRM" />}
+          {step !== 3 && <DefaultButton type="button" label="CONTINUE" onClick={nextStep} />}
+          {step === 3 && <PrimaryButton type="submit" label="CONFIRM" />}
         </ButtonContainer>
       </Form>
     </FormContainer>
@@ -113,14 +116,15 @@ export default function AddGameFormPage({ onTrackGame }) {
       nameOfGame: gameData.nameOfGame,
       players: sortedPlayers,
       id: nanoid(),
-      isPlayersVisible: false
+      isPlayersVisible: false,
+      notes: gameData.notes
     });
     setGameData(initialGameData);
     navigate('/', { replace: true });
   }
 
   function nextStep() {
-    if (step === 2 || gameData.nameOfGame === '') return;
+    if (step === 3 || gameData.nameOfGame === '') return;
     setStep((step) => step + 1);
   }
   function prevStep() {

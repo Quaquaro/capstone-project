@@ -20,10 +20,19 @@ export default function SteppedProgress({ step }) {
         <StepsContainer>
           <Step bgcolor={getColorNeonBlue} />
           <Step />
+          <Step />
         </StepsContainer>
       )}
       {step === 2 && (
         <StepsContainer>
+          <Step bgcolor={getColorNeonBlue} />
+          <Step bgcolor={getColorNeonBlue} />
+          <Step />
+        </StepsContainer>
+      )}
+      {step === 3 && (
+        <StepsContainer>
+          <Step bgcolor={getColorNeonBlue} />
           <Step bgcolor={getColorNeonBlue} />
           <Step bgcolor={getColorNeonBlue} />
         </StepsContainer>

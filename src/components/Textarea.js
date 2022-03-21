@@ -26,15 +26,14 @@ Textarea.defaultProps = {
   spellcheck: true,
   rows: 8,
   cols: 25,
-  value: '',
-  onChange: ''
+  value: ''
 };
 
 export default function Textarea({ name, labelText, ...props }) {
   return (
     <>
       <InputLabel htmlFor={name}>{labelText}</InputLabel>
-      <TextareaBox {...props} id={name} />
+      <TextareaBox name={name} {...props} id={name} />
     </>
   );
 }
