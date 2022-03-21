@@ -55,7 +55,7 @@ const FlexContainer = styled.div`
   gap: 60px;
   margin-top: 20px;
 `;
-const FlexColumnContainer = styled.div`
+export const FlexColumnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
