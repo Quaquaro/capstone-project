@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Input from './Input.js';
 import PropTypes from 'prop-types';
+import ProgressBar from './ProgressBar.js';
 
 TrackGameTwo.propTypes = {
   onHandleChange: PropTypes.func,
@@ -10,6 +11,7 @@ TrackGameTwo.propTypes = {
 export default function TrackGameTwo({ onHandleChange, players }) {
   return (
     <>
+      <ProgressBar progress="85" bgcolor={({ theme }) => theme.color.green} />
       {players.map((element, index) => (
         <FlexContainer key={index}>
           <PlayernameContainer>

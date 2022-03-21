@@ -1,7 +1,7 @@
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-//import useCounter from '../hooks/useCounter.js';
+import ProgressBar from './ProgressBar.js';
 import DefaultButton from '../components/DefaultButton.js';
 
 TrackGameOne.propTypes = {
@@ -21,6 +21,7 @@ export default function TrackGameOne({
 }) {
   return (
     <GameNameContainer>
+      <ProgressBar progress="50" bgcolor={({ theme }) => theme.color.yellow} />
       <StyledInput
         name="nameOfGame"
         labelText="Name of game"
