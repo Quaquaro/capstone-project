@@ -22,13 +22,13 @@ TABULA RASA is an app for board players that tracks the results of individual ga
 
 ## Screenshots
 
-![Game Page](https://user-images.githubusercontent.com/67676597/158783020-8c0247f8-1f12-475f-8a0d-7781e22fbdcf.jpg)
-![Form Page 1](https://user-images.githubusercontent.com/67676597/158976775-5b5568fd-52c6-4a78-975d-3efc5c65da25.png)
-![Form Page 2](https://user-images.githubusercontent.com/67676597/158783031-89b1837a-10fe-4feb-8ab3-76627b585a09.jpg)
-![Game Page after entry a game](https://user-images.githubusercontent.com/67676597/158783033-4f629666-b4e5-4a08-9b62-5604eb453963.jpg)
-![Detail view](https://user-images.githubusercontent.com/67676597/158783035-9b8a0246-805b-4a2c-add1-dd100ce9b0f8.jpg)
-![Delete Dialog](https://user-images.githubusercontent.com/67676597/158783039-70809614-3028-491a-8171-1669c354b24d.jpg)
-![Succes message](https://user-images.githubusercontent.com/67676597/158783040-3c2a9fca-d7a5-4c5d-a219-42d376c56ed1.jpg)
+<img src="https://user-images.githubusercontent.com/67676597/158783020-8c0247f8-1f12-475f-8a0d-7781e22fbdcf.jpg" alt="Game Page" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/159257723-646ad73c-d69b-4401-8b9a-9129adb0904f.png" alt="Form Page 1" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/159257749-8f9d68cc-eedb-498f-9a29-94f5173e7e64.png" alt="Form Page 2" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/158783033-4f629666-b4e5-4a08-9b62-5604eb453963.jpg" alt="Game Page after entry a game" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/158783035-9b8a0246-805b-4a2c-add1-dd100ce9b0f8.jpg" alt="Detail view" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/158783039-70809614-3028-491a-8171-1669c354b24d.jpg" alt="Delete Dialog" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/158783040-3c2a9fca-d7a5-4c5d-a219-42d376c56ed1.jpg" alt="Success message" width="300">
 
 
 ## Run Locally
