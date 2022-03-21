@@ -15,7 +15,7 @@ export default function SteppedProgress({ step }) {
 
   return (
     <Container>
-      <Progress></Progress>
+      <Progress />
       {step === 1 && (
         <StepsContainer>
           <Step bgcolor={getColorNeonBlue} />
