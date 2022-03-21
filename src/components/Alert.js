@@ -20,9 +20,9 @@ export default function Alert({ alertMessage }) {
 }
 
 export const AlertContainer = styled.div`
-  background-color: ${(props) => props.theme.color.secondary};
+  background-color: ${({ theme }) => theme.color.secondary};
   color: ${(props) => props.theme.color.green};
-  border: 1px solid ${(props) => props.theme.color.green};
+  border: 1px solid ${({ theme }) => theme.color.green};
   border-radius: 20px;
   margin: 20px 20px 0;
   display: flex;

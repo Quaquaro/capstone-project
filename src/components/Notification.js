@@ -19,6 +19,6 @@ export default function Notification({ notification }) {
 }
 
 const MessageContainer = styled(AlertContainer)`
-  color: ${(props) => props.theme.color.pink};
-  border: 1px solid ${(props) => props.theme.color.pink};
+  color: ${({ theme }) => theme.color.pink};
+  border: 1px solid ${({ theme }) => theme.color.pink};
 `;

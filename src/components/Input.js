@@ -8,18 +8,20 @@ Input.propTypes = {
   required: PropTypes.bool,
   autocomplete: PropTypes.string,
   inputmode: PropTypes.string,
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   onChange: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   pattern: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string.isRequired
 };
 
 Input.defaultProps = {
   type: 'text',
   placeholder: 'What is on your mind?',
-  labelText: 'Label '
+  labelText: 'Label ',
+  id: 'name',
+  value: 'value'
 };
 
 export default function Input({ name, labelText, ...props }) {
@@ -31,11 +33,13 @@ export default function Input({ name, labelText, ...props }) {
   );
 }
 
+const getColorWhite = ({ theme }) => theme.color.white;
+
 const InputBox = styled.input`
-  border: 2px solid ${(props) => props.theme.color.white};
+  border: 2px solid ${getColorWhite};
   border-radius: 9999em;
-  background-color: ${(props) => props.theme.color.secondary};
-  color: ${(props) => props.theme.color.white};
+  background-color: ${({ theme }) => theme.color.secondary};
+  color: ${getColorWhite};
   font-family: inherit;
   font-size: 18px;
   padding: 5px 10px;
@@ -43,7 +47,7 @@ const InputBox = styled.input`
   transition: 0.5s;
   text-align: center;
   &::placeholder {
-    color: ${(props) => props.theme.color.white};
+    color: ${getColorWhite};
     opacity: 0.6;
     text-align: center;
   }

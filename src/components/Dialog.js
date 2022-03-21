@@ -43,7 +43,7 @@ const DialogBox = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${(props) => props.theme.color.primary};
+  background-color: ${({ theme }) => theme.color.primary};
   padding: 30px;
   border-radius: 20px;
   z-index: 100;
@@ -56,7 +56,7 @@ const ButtonContainer = styled.div`
 `;
 
 const PinkButton = styled(DefaultButton)`
-  background-color: ${(props) => props.theme.color.pink};
+  background-color: ${({ theme }) => theme.color.pink};
   box-shadow: rgba(246, 49, 167, 0.4) 0px 5px;
   &:active {
     box-shadow: rgba(246, 49, 167, 0.4) 0px 5px, rgba(246, 49, 167, 0.3) 0px 10px,

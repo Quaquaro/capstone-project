@@ -22,5 +22,5 @@ export default function PrimaryButton({ label, ...props }) {
 }
 
 const ConfirmButton = styled(Button)`
-  background-color: ${(props) => props.theme.color.green};
+  background-color: ${({ theme }) => theme.color.green};
 `;

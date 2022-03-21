@@ -67,7 +67,7 @@ const GameGrid = styled.ul`
 const GameContainer = styled.div`
   position: relative;
   border-radius: 15px;
-  border: 1px solid ${(props) => props.theme.color.white};
+  border: 1px solid ${({ theme }) => theme.color.white};
   margin-top: 20px;
 `;
 

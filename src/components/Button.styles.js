@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  background-color: ${(props) => props.theme.color.neonBlue};
+  background-color: ${({ theme }) => theme.color.neonBlue};
   border-radius: 9999em;
   padding: 11px 20px;
-  color: ${(props) => props.theme.color.primary};
+  color: ${({ theme }) => theme.color.primary};
   border: none;
   font-variation-settings: 'wght' 600;
   font-size: 20px;

@@ -1,7 +1,7 @@
 import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-//import useCounter from '../hooks/useCounter.js';
+import SteppedProgress from '../components/SteppedProgress.js';
 import DefaultButton from '../components/DefaultButton.js';
 
 TrackGameOne.propTypes = {
@@ -21,6 +21,7 @@ export default function TrackGameOne({
 }) {
   return (
     <GameNameContainer>
+      <SteppedProgress step={1} />
       <StyledInput
         name="nameOfGame"
         labelText="Name of game"
@@ -55,7 +56,6 @@ export default function TrackGameOne({
 
 const GameNameContainer = styled.div`
   display: flex;
-  justify-content: end;
   align-items: center;
   flex-direction: column;
 `;
