@@ -7,16 +7,10 @@ const Template = (args) => <TrackGameTwo {...args} />;
 
 export const StepTwo = Template.bind({});
 StepTwo.args = {
-  gameData: {
-    nameOfGame: '',
-    playerNameOne: '',
-    scoreOne: '',
-    playerNameTwo: '',
-    scoreTwo: '',
-    playerNameThree: '',
-    scoreThree: '',
-    playerNameFour: '',
-    scoreFour: '',
-    isPlayersVisible: false
-  }
+  nameOfGame: '',
+  players: [
+    { player: '', score: '' },
+    { player: '', score: '' }
+  ],
+  isPlayersVisible: false
 };
