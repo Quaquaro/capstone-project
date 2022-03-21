@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Input from './Input.js';
 import PropTypes from 'prop-types';
-import ProgressBar from './ProgressBar.js';
+import SteppedProgress from './SteppedProgress.js';
 
 TrackGameTwo.propTypes = {
   onHandleChange: PropTypes.func,
@@ -11,10 +11,12 @@ TrackGameTwo.propTypes = {
 export default function TrackGameTwo({ onHandleChange, players }) {
   return (
     <>
-      <ProgressBar progress="85" bgcolor={({ theme }) => theme.color.green} />
+      <FlexColumnContainer>
+        <SteppedProgress step={2} />
+      </FlexColumnContainer>
       {players.map((element, index) => (
         <FlexContainer key={index}>
-          <PlayernameContainer>
+          <FlexColumnContainer>
             <StyledNameInput
               name="player"
               labelText={`Player ${index + 1}`}
@@ -27,8 +29,8 @@ export default function TrackGameTwo({ onHandleChange, players }) {
               required
               maxLength={20}
             />
-          </PlayernameContainer>
-          <ScoreContainer>
+          </FlexColumnContainer>
+          <FlexColumnContainer>
             <StyledScoreInput
               name="score"
               labelText="Score"
@@ -40,7 +42,7 @@ export default function TrackGameTwo({ onHandleChange, players }) {
               value={element.score}
               pattern="^-?([0-9]{1}|[0-9]{2}|[0-9]{3})$"
             />
-          </ScoreContainer>
+          </FlexColumnContainer>
         </FlexContainer>
       ))}
     </>
@@ -53,14 +55,7 @@ const FlexContainer = styled.div`
   gap: 60px;
   margin-top: 20px;
 `;
-const PlayernameContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
-
-const ScoreContainer = styled.div`
+const FlexColumnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
