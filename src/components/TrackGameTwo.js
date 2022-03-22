@@ -5,14 +5,25 @@ import SteppedProgress from './SteppedProgress.js';
 
 TrackGameTwo.propTypes = {
   onHandleChange: PropTypes.func,
+  handleOnClickDot: PropTypes.func,
+  handleOnClickBack: PropTypes.func,
   players: PropTypes.array
 };
 
-export default function TrackGameTwo({ onHandleChange, players }) {
+export default function TrackGameTwo({
+  onHandleChange,
+  players,
+  handleOnClickDot,
+  handleOnClickBack
+}) {
   return (
     <>
       <FlexColumnContainer>
-        <SteppedProgress step={2} />
+        <SteppedProgress
+          step={2}
+          handleOnClick={handleOnClickDot}
+          handleBackClick={handleOnClickBack}
+        />
       </FlexColumnContainer>
       {players.map((element, index) => (
         <FlexContainer key={index}>

@@ -8,6 +8,8 @@ TrackGameOne.propTypes = {
   onHandleChange: PropTypes.func,
   onRemoveFormFields: PropTypes.func,
   onAddFormFields: PropTypes.func,
+  handleOnClickDot: PropTypes.func,
+  handleOnClickBack: PropTypes.func,
   nameOfGame: PropTypes.string,
   players: PropTypes.array
 };
@@ -17,11 +19,17 @@ export default function TrackGameOne({
   nameOfGame,
   onRemoveFormFields,
   onAddFormFields,
-  players
+  players,
+  handleOnClickDot,
+  handleOnClickBack
 }) {
   return (
     <GameNameContainer>
-      <SteppedProgress step={1} />
+      <SteppedProgress
+        step={1}
+        handleOnClick={handleOnClickDot}
+        handleBackClick={handleOnClickBack}
+      />
       <StyledInput
         name="nameOfGame"
         labelText="Name of game"
@@ -55,6 +63,7 @@ export default function TrackGameOne({
 }
 
 const GameNameContainer = styled.div`
+  margin-top: 42px;
   display: flex;
   align-items: center;
   flex-direction: column;

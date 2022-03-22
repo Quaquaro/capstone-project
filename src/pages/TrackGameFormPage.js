@@ -77,7 +77,7 @@ export default function AddGameFormPage({ onTrackGame }) {
       <Form onSubmit={handleTrackGame}>
         {step !== 1 && (
           <ButtonContainer left>
-            <GoBackButton onClick={prevStep}>
+            <GoBackButton onClick={() => prevStep(1)}>
               <img
                 src={backarrow}
                 alt="A button with arrow points left"
@@ -94,12 +94,30 @@ export default function AddGameFormPage({ onTrackGame }) {
             onRemoveFormFields={removeFormFields}
             nameOfGame={gameData.nameOfGame}
             players={players}
+            handleOnClickDot={nextStep}
+            handleOnClickBack={prevStep}
           />
         )}
-        {step === 2 && <TrackGameTwo onHandleChange={handleChangePlayer} players={players} />}
-        {step === 3 && <TrackGameThree onHandleChange={handleChangeInput} notes={gameData.notes} />}
+        {step === 2 && (
+          <TrackGameTwo
+            onHandleChange={handleChangePlayer}
+            players={players}
+            handleOnClickDot={nextStep}
+            handleOnClickBack={prevStep}
+          />
+        )}
+        {step === 3 && (
+          <TrackGameThree
+            onHandleChange={handleChangeInput}
+            notes={gameData.notes}
+            handleOnClickDot={nextStep}
+            handleOnClickBack={prevStep}
+          />
+        )}
         <ButtonContainer>
-          {step !== 3 && <DefaultButton type="button" label="CONTINUE" onClick={nextStep} />}
+          {step !== 3 && (
+            <DefaultButton type="button" label="CONTINUE" onClick={() => nextStep(1)} />
+          )}
           {step === 3 && <PrimaryButton type="submit" label="CONFIRM" />}
         </ButtonContainer>
       </Form>
@@ -123,12 +141,12 @@ export default function AddGameFormPage({ onTrackGame }) {
     navigate('/', { replace: true });
   }
 
-  function nextStep() {
+  function nextStep(count) {
     if (step === 3 || gameData.nameOfGame === '') return;
-    setStep((step) => step + 1);
+    setStep((step) => step + count);
   }
-  function prevStep() {
-    setStep((step) => step - 1);
+  function prevStep(count) {
+    setStep((step) => step - count);
   }
 }
 

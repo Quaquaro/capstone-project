@@ -58,6 +58,7 @@ const GameContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.color.white};
   margin-top: 20px;
   padding: 8px 0 8px 8px;
+  user-select: none;
 `;
 
 const DeleteButton = styled.button`

@@ -2,15 +2,16 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 Step.propTypes = {
-  bgcolor: PropTypes.func
+  bgcolor: PropTypes.func,
+  handleClick: PropTypes.func
 };
 
 Step.defaultProps = {
   bgcolor: ({ theme }) => theme.color.white
 };
 
-export default function Step({ bgcolor }) {
-  return <StyledStep bgcolor={bgcolor}></StyledStep>;
+export default function Step({ bgcolor, handleClick }) {
+  return <StyledStep bgcolor={bgcolor} onClick={handleClick}></StyledStep>;
 }
 
 const StyledStep = styled.div`

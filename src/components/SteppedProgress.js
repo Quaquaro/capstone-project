@@ -3,37 +3,38 @@ import Step from './Step.js';
 import PropTypes from 'prop-types';
 
 SteppedProgress.propTypes = {
-  step: PropTypes.number
+  step: PropTypes.number,
+  handleOnClick: PropTypes.func,
+  handleBackClick: PropTypes.func
 };
 
 SteppedProgress.defaultProps = {
   step: 1
 };
 
-export default function SteppedProgress({ step }) {
+export default function SteppedProgress({ step, handleOnClick, handleBackClick }) {
   const getColorNeonBlue = ({ theme }) => theme.color.neonBlue;
-
   return (
     <Container>
       <Progress />
       {step === 1 && (
         <StepsContainer>
           <Step bgcolor={getColorNeonBlue} />
-          <Step />
-          <Step />
+          <Step handleClick={() => handleOnClick(1)} />
+          <Step handleClick={() => handleOnClick(2)} />
         </StepsContainer>
       )}
       {step === 2 && (
         <StepsContainer>
+          <Step bgcolor={getColorNeonBlue} handleClick={() => handleBackClick(1)} />
           <Step bgcolor={getColorNeonBlue} />
-          <Step bgcolor={getColorNeonBlue} />
-          <Step />
+          <Step handleClick={() => handleOnClick(1)} />
         </StepsContainer>
       )}
       {step === 3 && (
         <StepsContainer>
-          <Step bgcolor={getColorNeonBlue} />
-          <Step bgcolor={getColorNeonBlue} />
+          <Step bgcolor={getColorNeonBlue} handleClick={() => handleBackClick(2)} />
+          <Step bgcolor={getColorNeonBlue} handleClick={() => handleBackClick(1)} />
           <Step bgcolor={getColorNeonBlue} />
         </StepsContainer>
       )}
