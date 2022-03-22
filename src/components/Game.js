@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import bin from '../img/bin.svg';
+import { motion } from 'framer-motion';
 
 Game.propTypes = {
   players: PropTypes.array,
@@ -17,36 +18,38 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
   playersWithScore.splice(0, 1);
 
   return (
-    <GameContainer onClick={handleClick}>
-      {id !== '1' ? (
-        <>
+    <motion.div whileTap={{ scale: 0.8 }}>
+      <GameContainer onClick={handleClick}>
+        {id !== '1' ? (
+          <>
+            <StyledGameName>{nameOfGame}</StyledGameName>
+            {isPlayersVisible && (
+              <DeleteButton type="button" onClick={() => onDelete(id)}>
+                <img src={bin} alt="delete game button" width="18" aria-label="delete" />
+              </DeleteButton>
+            )}
+            <StyledTable>
+              <tbody>
+                <tr>
+                  {players[0]?.player && <td>{players[0]?.player}</td>}
+                  {players[0]?.score && <td>{players[0]?.score}</td>}
+                </tr>
+                {isPlayersVisible &&
+                  playersWithScore?.map(({ player, score, id }) => (
+                    <tr key={id}>
+                      <td>{player}</td>
+                      <td>{score}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </StyledTable>
+            {isPlayersVisible && <NotesParagraph>{notes}</NotesParagraph>}
+          </>
+        ) : (
           <StyledGameName>{nameOfGame}</StyledGameName>
-          {isPlayersVisible && (
-            <DeleteButton type="button" onClick={() => onDelete(id)}>
-              <img src={bin} alt="delete game button" width="18" aria-label="delete" />
-            </DeleteButton>
-          )}
-          <StyledTable>
-            <tbody>
-              <tr>
-                {players[0]?.player && <td>{players[0]?.player}</td>}
-                {players[0]?.score && <td>{players[0]?.score}</td>}
-              </tr>
-              {isPlayersVisible &&
-                playersWithScore?.map(({ player, score, id }) => (
-                  <tr key={id}>
-                    <td>{player}</td>
-                    <td>{score}</td>
-                  </tr>
-                ))}
-            </tbody>
-          </StyledTable>
-          {isPlayersVisible && <NotesParagraph>{notes}</NotesParagraph>}
-        </>
-      ) : (
-        <StyledGameName>{nameOfGame}</StyledGameName>
-      )}
-    </GameContainer>
+        )}
+      </GameContainer>
+    </motion.div>
   );
   function handleClick() {
     setIsPlayersVisible(!isPlayersVisible);
