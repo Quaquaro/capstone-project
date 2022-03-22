@@ -142,7 +142,9 @@ export default function AddGameFormPage({ onTrackGame }) {
   }
 
   function nextStep(count) {
+    const countOfPlayers = players.length;
     if (step === 3 || gameData.nameOfGame === '') return;
+    if (step === 2 && players[countOfPlayers - 1].score === '') return;
     setStep((step) => step + count);
   }
   function prevStep(count) {
