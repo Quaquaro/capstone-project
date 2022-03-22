@@ -5,7 +5,7 @@ I'm a webdev student at neue fische.
 
 ## Lessons Learned
 
-I've learned how to build multi-step forms with react and how to process user input. I've also learned how to build components in Storybook and how to test them with the react testing library.
+I've learned how to build multi-step forms with react and how to process user inputs. I've also learned how to build components in Storybook and how to test them with the react testing library.
 Additionally, I've got to know the framer-motion library and used it to implement animations in my app.
 
 
