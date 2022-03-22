@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import check from '../img/circle-check.svg';
+import { motion } from 'framer-motion';
 
 Alert.propTypes = {
   alertMessage: PropTypes.string
@@ -12,10 +13,12 @@ Alert.defaultProps = {
 
 export default function Alert({ alertMessage }) {
   return (
-    <AlertContainer>
-      <img src={check} alt="check-hook" width="16" />
-      <h3>{alertMessage}</h3>
-    </AlertContainer>
+    <motion.div animate={{ opacity: 1 }} transition={{ duration: 1 }} initial={{ opacity: 0 }}>
+      <AlertContainer>
+        <img src={check} alt="check-hook" width="16" />
+        <h3>{alertMessage}</h3>
+      </AlertContainer>
+    </motion.div>
   );
 }
 

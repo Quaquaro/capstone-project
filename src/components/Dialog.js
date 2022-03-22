@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import DefaultButton from './DefaultButton.js';
 import PrimaryButton from './PrimaryButton.js';
+import { motion } from 'framer-motion';
 
 Dialog.propTypes = {
   onDialog: PropTypes.func,
@@ -12,14 +13,16 @@ Dialog.propTypes = {
 export default function Dialog({ onDialog, message, nameOfGame }) {
   return (
     <Background onClick={() => onDialog(false)}>
-      <DialogBox onClick={(e) => e.stopPropagation()}>
-        <StyledPhrase>{message}</StyledPhrase>
-        <h1>{nameOfGame}</h1>
-        <ButtonContainer style={{ display: 'flex', alignItems: 'center' }}>
-          <PinkButton label="NO" onClick={() => onDialog(false)}></PinkButton>
-          <PrimaryButton label="YES" onClick={() => onDialog(true)}></PrimaryButton>
-        </ButtonContainer>
-      </DialogBox>
+      <motion.div animate={{ y: 350 }} transition={{ ease: 'easeOut', duration: 1 }}>
+        <DialogBox onClick={(e) => e.stopPropagation()}>
+          <StyledPhrase>{message}</StyledPhrase>
+          <h1>{nameOfGame}</h1>
+          <ButtonContainer style={{ display: 'flex', alignItems: 'center' }}>
+            <PinkButton label="NO" onClick={() => onDialog(false)}></PinkButton>
+            <PrimaryButton label="YES" onClick={() => onDialog(true)}></PrimaryButton>
+          </ButtonContainer>
+        </DialogBox>
+      </motion.div>
     </Background>
   );
 }
