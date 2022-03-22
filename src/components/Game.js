@@ -3,6 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import bin from '../img/bin.svg';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 Game.propTypes = {
   players: PropTypes.array,
@@ -13,6 +14,7 @@ Game.propTypes = {
 };
 
 export default function Game({ id, nameOfGame, players, onDelete, notes }) {
+  const navigate = useNavigate();
   const [isPlayersVisible, setIsPlayersVisible] = useState(false);
   const playersWithScore = players.filter((player) => player.score !== '');
   playersWithScore.splice(0, 1);
@@ -46,13 +48,17 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
             {isPlayersVisible && <NotesParagraph>{notes}</NotesParagraph>}
           </>
         ) : (
-          <StyledGameName>{nameOfGame}</StyledGameName>
+          <StyledGameName onClick={goToForm}>{nameOfGame}</StyledGameName>
         )}
       </GameContainer>
     </motion.div>
   );
   function handleClick() {
     setIsPlayersVisible(!isPlayersVisible);
+  }
+
+  function goToForm() {
+    navigate('/addgame', { replace: true });
   }
 }
 const GameContainer = styled.div`
