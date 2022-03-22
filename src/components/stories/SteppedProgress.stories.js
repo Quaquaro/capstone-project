@@ -1,4 +1,4 @@
-import SteppedProgress from './SteppedProgress.js';
+import SteppedProgress from '../SteppedProgress.js';
 export default {
   title: 'Component/SteppedProgress',
   component: SteppedProgress

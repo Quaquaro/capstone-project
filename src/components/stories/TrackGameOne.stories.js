@@ -1,4 +1,4 @@
-import TrackGameOne from './TrackGameOne.js';
+import TrackGameOne from '../TrackGameOne.js';
 export default {
   title: 'Component/Form',
   component: TrackGameOne

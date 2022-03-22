@@ -1,4 +1,4 @@
-import TrackedGamesList from './TrackedGamesList.js';
+import TrackedGamesList from '../TrackedGamesList.js';
 export default {
   title: 'Component/TrackedGamesList',
   component: TrackedGamesList

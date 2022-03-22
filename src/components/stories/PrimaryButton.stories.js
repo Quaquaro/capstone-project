@@ -1,4 +1,4 @@
-import Primary from './PrimaryButton.js';
+import Primary from '../PrimaryButton.js';
 export default {
   title: 'Component/Button',
   component: Primary

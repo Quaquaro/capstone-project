@@ -1,9 +1,9 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorFallback from './components/ErrorFallback.js';
+import ErrorFallback from './ErrorFallback.js';
 import GlobalFonts from './assets/variable/fonts.js';
 import { Route, Routes } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
-import AddGameFormPage from './pages/TrackGameFormPage.js';
+import TrackGameFormPage from './pages/TrackGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
 
@@ -49,7 +49,7 @@ function App() {
               />
             }
           />
-          <Route path="/addgame" element={<AddGameFormPage onTrackGame={trackGame} />} />
+          <Route path="/addgame" element={<TrackGameFormPage onTrackGame={trackGame} />} />
         </Routes>
       </ErrorBoundary>
     </>

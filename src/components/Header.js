@@ -1,5 +1,5 @@
 import logo from '../img/neonBlueDice.svg';
-import { StyledHeader } from './Header.styles.js';
+import { StyledHeader } from './styles/Header.styles.js';
 
 export default function Header() {
   return (

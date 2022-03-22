@@ -11,7 +11,7 @@ import PrimaryButton from '../components/PrimaryButton.js';
 import DefaultButton from '../components/DefaultButton.js';
 import backarrow from '../img/backarrow.svg';
 
-AddGameFormPage.propTypes = {
+TrackGameFormPage.propTypes = {
   onTrackGame: PropTypes.func
 };
 
@@ -24,7 +24,7 @@ const initialGameData = {
   isPlayersVisible: false,
   notes: ''
 };
-export default function AddGameFormPage({ onTrackGame }) {
+export default function TrackGameFormPage({ onTrackGame }) {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
 

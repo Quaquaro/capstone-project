@@ -1,4 +1,4 @@
-import Textarea from './Textarea.js';
+import Textarea from '../Textarea.js';
 export default {
   title: 'Component/Textarea',
   component: Textarea
