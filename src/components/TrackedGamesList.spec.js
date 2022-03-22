@@ -3,7 +3,7 @@ import TrackedGamesList from './TrackedGamesList.js';
 import Theme from '../Theme.js';
 
 describe('TrackedGamesList', () => {
-  it('renders name of game as a list item inside the item is a player and a score and a button', () => {
+  it('renders name of game as a list item inside the item is a player and a score', () => {
     const nameOfGame = [
       {
         nameOfGame: '7Wonders',
