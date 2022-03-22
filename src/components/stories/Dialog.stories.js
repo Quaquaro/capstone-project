@@ -1,4 +1,4 @@
-import Dialog from './Dialog.js';
+import Dialog from '../Dialog.js';
 export default {
   title: 'Component/Dialog',
   component: Dialog

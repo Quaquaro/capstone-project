@@ -33,9 +33,9 @@ export default function Input({ name, labelText, ...props }) {
   );
 }
 
-const getColorWhite = ({ theme }) => theme.color.white;
+export const getColorWhite = ({ theme }) => theme.color.white;
 
-const InputBox = styled.input`
+export const InputBox = styled.input`
   border: 2px solid ${getColorWhite};
   border-radius: 9999em;
   background-color: ${({ theme }) => theme.color.secondary};
@@ -57,7 +57,7 @@ const InputBox = styled.input`
   }
 `;
 
-const InputLabel = styled.label`
+export const InputLabel = styled.label`
   font-family: 'Roboto';
   font-size: 24px;
 `;

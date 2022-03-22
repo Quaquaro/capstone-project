@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './GlobalStyles.js';
 import Theme from './Theme.js';
-import ScrollToTop from './components/ScrollToTop.js';
+import ScrollToTop from './ScrollToTop.js';
 
 ReactDOM.render(
   <React.StrictMode>

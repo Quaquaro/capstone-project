@@ -1,4 +1,4 @@
-import FormHeader from './FormHeader.js';
+import FormHeader from '../FormHeader.js';
 
 export default {
   title: 'Component/FormHeader',

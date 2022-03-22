@@ -42,6 +42,8 @@ describe('TrackGameFormPage', () => {
     userEvent.type(screen.getAllByPlaceholderText('0')[0], testData.score);
     userEvent.type(screen.getAllByPlaceholderText('0')[1], testData.score);
     userEvent.type(screen.getAllByPlaceholderText('0')[2], testData.score);
+    userEvent.click(screen.getByText(/continue/i));
+    expect(screen.getByLabelText(/notes/i)).toBeInTheDocument();
     userEvent.click(screen.getByRole('button', { name: /confirm/i }));
     expect(handleTrackGame).toHaveBeenCalledTimes(1);
   });
@@ -51,7 +53,10 @@ describe('TrackGameFormPage', () => {
 
     userEvent.type(screen.getByText(/name Of Game/i), testData.nameOfGame);
     userEvent.click(screen.getByText(/continue/i));
-    userEvent.click(screen.getByRole('button', { name: /confirm/i }));
+    userEvent.type(screen.getByLabelText(/player 1/i), testData.playerName);
+    userEvent.type(screen.getByLabelText(/player 2/i), testData.playerName);
+    userEvent.type(screen.getAllByPlaceholderText('0')[1], testData.score);
+    userEvent.click(screen.getByText(/continue/i));
     expect(handleTrackGame).toHaveBeenCalledTimes(0);
   });
 });

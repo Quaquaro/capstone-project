@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import logo from '../img/greenDice.svg';
 import cancel from '../img/circle-cross-thin.svg';
-import { StyledHeader } from './Header.styles.js';
+import { StyledHeader } from './styles/Header.styles.js';
 
 export default function FormHeader() {
   const navigate = useNavigate();

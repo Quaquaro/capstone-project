@@ -11,7 +11,7 @@ export default function TrackedGamesList({ games, onDelete }) {
   return (
     <Card>
       <CardContent role="list">
-        {games.map(({ id, players, nameOfGame, isPlayersVisible }) => (
+        {games.map(({ id, players, nameOfGame, isPlayersVisible, notes }) => (
           <Game
             key={id}
             id={id}
@@ -19,6 +19,7 @@ export default function TrackedGamesList({ games, onDelete }) {
             nameOfGame={nameOfGame}
             onDelete={onDelete}
             isPlayersVisible={isPlayersVisible}
+            notes={notes}
           />
         ))}
       </CardContent>

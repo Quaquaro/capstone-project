@@ -1,13 +1,15 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorFallback from './components/ErrorFallback.js';
+import ErrorFallback from './ErrorFallback.js';
 import GlobalFonts from './assets/variable/fonts.js';
 import { Route, Routes } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
-import AddGameFormPage from './pages/TrackGameFormPage.js';
+import TrackGameFormPage from './pages/TrackGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
 
-const infoText = [{ nameOfGame: 'Start tracking your first game!', players: [], id: '1' }];
+const infoText = [
+  { nameOfGame: 'Start tracking your first game!', players: [], id: '1', notes: '' }
+];
 
 function App() {
   const [games, setGames] = useLocalStorage('games', infoText);
@@ -47,7 +49,7 @@ function App() {
               />
             }
           />
-          <Route path="/addgame" element={<AddGameFormPage onTrackGame={trackGame} />} />
+          <Route path="/addgame" element={<TrackGameFormPage onTrackGame={trackGame} />} />
         </Routes>
       </ErrorBoundary>
     </>

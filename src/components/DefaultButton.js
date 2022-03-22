@@ -1,4 +1,4 @@
-import { Button } from './Button.styles.js';
+import { Button } from './styles/Button.styles.js';
 import PropTypes from 'prop-types';
 
 DefaultButton.propTypes = {
