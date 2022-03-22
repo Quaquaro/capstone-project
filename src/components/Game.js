@@ -20,7 +20,7 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
   playersWithScore.splice(0, 1);
 
   return (
-    <motion.div whileTap={{ scale: 0.8 }}>
+    <motion.div whileTap={{ scale: 0.8 }} transition={{ duration: 0.5 }}>
       <GameContainer onClick={handleClick}>
         {id !== '1' ? (
           <>
@@ -91,6 +91,7 @@ const StyledGameName = styled.h3`
 
 const StyledTable = styled.table`
   width: 75%;
+  table-layout: fixed;
 `;
 
 const NotesParagraph = styled.p`
