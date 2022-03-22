@@ -53,7 +53,6 @@ const TextareaBox = styled.textarea`
   &::placeholder {
     color: ${getColorWhite};
     opacity: 0.6;
-    text-align: center;
   }
   &:focus {
     box-shadow: 0 0 10px 4px rgba(238, 255, 253, 0.75);

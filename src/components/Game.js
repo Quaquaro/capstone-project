@@ -11,12 +11,10 @@ Game.propTypes = {
   notes: PropTypes.string
 };
 
-export default function Game({ id, nameOfGame, players, onDelete }) {
+export default function Game({ id, nameOfGame, players, onDelete, notes }) {
   const [isPlayersVisible, setIsPlayersVisible] = useState(false);
-  const [rows, setRows] = useState(2);
   const playersWithScore = players.filter((player) => player.score !== '');
-  const otherPlayers = [...playersWithScore];
-  otherPlayers.splice(0, 1);
+  playersWithScore.splice(0, 1);
 
   return (
     <GameContainer onClick={handleClick}>
@@ -29,20 +27,21 @@ export default function Game({ id, nameOfGame, players, onDelete }) {
             </DeleteButton>
           )}
           <StyledTable>
-            <tr>
-              {players[0]?.player && <td>{players[0]?.player}</td>}
-              {players[0]?.score && <td>{players[0]?.score}</td>}
-            </tr>
-
-            {isPlayersVisible &&
-              otherPlayers?.map(({ player, score }) => (
-                <tr key={id}>
-                  <td>{player}</td>
-                  <td>{score}</td>
-                </tr>
-              ))}
-            {/* {isPlayersVisible && <p>{notes}</p>} */}
+            <tbody>
+              <tr>
+                {players[0]?.player && <td>{players[0]?.player}</td>}
+                {players[0]?.score && <td>{players[0]?.score}</td>}
+              </tr>
+              {isPlayersVisible &&
+                playersWithScore?.map(({ player, score, id }) => (
+                  <tr key={id}>
+                    <td>{player}</td>
+                    <td>{score}</td>
+                  </tr>
+                ))}
+            </tbody>
           </StyledTable>
+          {isPlayersVisible && <NotesParagraph>{notes}</NotesParagraph>}
         </>
       ) : (
         <StyledGameName>{nameOfGame}</StyledGameName>
@@ -51,11 +50,6 @@ export default function Game({ id, nameOfGame, players, onDelete }) {
   );
   function handleClick() {
     setIsPlayersVisible(!isPlayersVisible);
-    if (rows > 2) {
-      setRows(2);
-    } else {
-      setRows(playersWithScore.length + 2);
-    }
   }
 }
 const GameContainer = styled.div`
@@ -86,5 +80,9 @@ const StyledGameName = styled.h3`
 `;
 
 const StyledTable = styled.table`
-  width: 100%;
+  width: 75%;
+`;
+
+const NotesParagraph = styled.p`
+  margin-right: 8px;
 `;

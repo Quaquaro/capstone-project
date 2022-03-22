@@ -18,8 +18,8 @@ AddGameFormPage.propTypes = {
 const initialGameData = {
   nameOfGame: '',
   players: [
-    { player: '', score: '' },
-    { player: '', score: '' }
+    { player: '', score: '', id: '' },
+    { player: '', score: '', id: '' }
   ],
   isPlayersVisible: false,
   notes: ''
@@ -30,9 +30,10 @@ export default function AddGameFormPage({ onTrackGame }) {
 
   const [gameData, setGameData] = useState(initialGameData);
   const [players, setPlayers] = useState([
-    { player: '', score: '' },
-    { player: '', score: '' }
+    { player: '', score: '', id: nanoid() },
+    { player: '', score: '', id: nanoid() }
   ]);
+  const [sortedPlayers, setSortedPlayers] = useState([]);
 
   const handleChangeInput = (event) => {
     const { name, value } = event.target;
@@ -47,7 +48,7 @@ export default function AddGameFormPage({ onTrackGame }) {
   };
 
   const addFormFields = () => {
-    setPlayers([...players, { player: '', score: '' }]);
+    setPlayers([...players, { player: '', score: '', id: nanoid() }]);
   };
   const removeFormFields = () => {
     if (players.length === 1) {
@@ -57,7 +58,6 @@ export default function AddGameFormPage({ onTrackGame }) {
     newPlayers.splice(0, 1);
     setPlayers(newPlayers);
   };
-  const [sortedPlayers, setSortedPlayers] = useState([]);
 
   useEffect(() => {
     const sortArray = (type) => {
@@ -139,6 +139,7 @@ const FormContainer = styled.main`
   grid-row-gap: 5px;
 `;
 const GoBackButton = styled.button`
+  margin-top: 10px;
   outline: none;
   background: none;
   border: none;
