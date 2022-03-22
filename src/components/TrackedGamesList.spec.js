@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import TrackedGamesList from './TrackedGamesList.js';
 import Theme from '../Theme.js';
 
@@ -17,10 +18,13 @@ describe('TrackedGamesList', () => {
       }
     ];
     render(
-      <Theme>
-        <TrackedGamesList games={nameOfGame} />
-      </Theme>
+      <MemoryRouter>
+        <Theme>
+          <TrackedGamesList games={nameOfGame} />
+        </Theme>
+      </MemoryRouter>
     );
+
     expect(screen.getByText(/7wonders/i)).toBeInTheDocument();
     expect(screen.getByText(/gustav/i)).toBeInTheDocument();
     expect(screen.getByText(/5/i)).toBeInTheDocument();
