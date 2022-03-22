@@ -19,23 +19,35 @@ export default function SteppedProgress({ step, handleOnClick, handleBackClick }
       <Progress />
       {step === 1 && (
         <StepsContainer>
-          <Step bgcolor={getColorNeonBlue} />
-          <Step handleClick={() => handleOnClick(1)} />
-          <Step handleClick={() => handleOnClick(2)} />
+          <Step bgcolor={getColorNeonBlue} stepNumber={step} />
+          <Step handleClick={() => handleOnClick(1)} stepNumber={step + 1} />
+          <Step handleClick={() => handleOnClick(2)} stepNumber={step + 2} />
         </StepsContainer>
       )}
       {step === 2 && (
         <StepsContainer>
-          <Step bgcolor={getColorNeonBlue} handleClick={() => handleBackClick(1)} />
-          <Step bgcolor={getColorNeonBlue} />
-          <Step handleClick={() => handleOnClick(1)} />
+          <Step
+            bgcolor={getColorNeonBlue}
+            handleClick={() => handleBackClick(1)}
+            stepNumber={step - 1}
+          />
+          <Step bgcolor={getColorNeonBlue} stepNumber={step} />
+          <Step handleClick={() => handleOnClick(1)} stepNumber={step + 1} />
         </StepsContainer>
       )}
       {step === 3 && (
         <StepsContainer>
-          <Step bgcolor={getColorNeonBlue} handleClick={() => handleBackClick(2)} />
-          <Step bgcolor={getColorNeonBlue} handleClick={() => handleBackClick(1)} />
-          <Step bgcolor={getColorNeonBlue} />
+          <Step
+            bgcolor={getColorNeonBlue}
+            handleClick={() => handleBackClick(2)}
+            stepNumber={step - 2}
+          />
+          <Step
+            bgcolor={getColorNeonBlue}
+            handleClick={() => handleBackClick(1)}
+            stepNumber={step - 1}
+          />
+          <Step bgcolor={getColorNeonBlue} stepNumber={step} />
         </StepsContainer>
       )}
     </Container>
