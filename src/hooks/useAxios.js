@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-axios.defaults.baseURL = 'https://api.boardgameatlas.com/api';
+axios.defaults.baseURL = 'https://api.boardgameatlas.com';
 
 const useAxios = ({ url, method, body = null, headers = null }) => {
   const [response, setResponse] = useState(null);

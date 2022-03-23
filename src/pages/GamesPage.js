@@ -14,26 +14,44 @@ GamesPage.propTypes = {
   dialog: PropTypes.object,
   alert: PropTypes.object,
   onDialog: PropTypes.func,
-  notification: PropTypes.object
+  notification: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.any,
+  data: PropTypes.any
 };
 
-export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert, notification }) {
+export default function GamesPage({
+  games,
+  onDeleteGame,
+  onDialog,
+  dialog,
+  alert,
+  notification,
+  error,
+  loading,
+  data
+}) {
   const navigate = useNavigate();
+  console.log(data);
   return (
     <>
       <Header />
-
+      {loading ? (
+        <p>loading...</p>
+      ) : (
+        <GamePageLayout>
+          {error && <div>{error.message}</div>}
+          <TrackedGamesList games={games} onDelete={onDeleteGame} />
+          <ButtonContainer>
+            <DefaultButton onClick={handleOnClick} label="TRACK GAME" />
+          </ButtonContainer>
+          {dialog.isLoading && (
+            <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
+          )}
+        </GamePageLayout>
+      )}
       {alert.isVisible && <Alert alertMessage={alert.message} />}
       {notification.isVisible && <Notification notification={notification.message} />}
-      <GamePageLayout>
-        <TrackedGamesList games={games} onDelete={onDeleteGame} />
-        <ButtonContainer>
-          <DefaultButton onClick={handleOnClick} label="TRACK GAME" />
-        </ButtonContainer>
-        {dialog.isLoading && (
-          <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
-        )}
-      </GamePageLayout>
     </>
   );
   async function handleOnClick(e) {
