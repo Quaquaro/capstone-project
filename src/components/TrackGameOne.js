@@ -11,7 +11,8 @@ TrackGameOne.propTypes = {
   handleOnClickDot: PropTypes.func,
   handleOnClickBack: PropTypes.func,
   nameOfGame: PropTypes.string,
-  players: PropTypes.array
+  players: PropTypes.array,
+  data: PropTypes.object
 };
 
 export default function TrackGameOne({
@@ -21,7 +22,8 @@ export default function TrackGameOne({
   onAddFormFields,
   players,
   handleOnClickDot,
-  handleOnClickBack
+  handleOnClickBack,
+  data
 }) {
   return (
     <GameNameContainer>
@@ -31,6 +33,7 @@ export default function TrackGameOne({
         handleBackClick={handleOnClickBack}
       />
       <StyledInput
+        list="games"
         name="nameOfGame"
         labelText="Name of game"
         placeholder="e.g. Uno"
@@ -43,8 +46,12 @@ export default function TrackGameOne({
         value={nameOfGame}
         maxLength={24}
       />
+      <datalist id="games">
+        {data.games.map((game) => (
+          <option key={game.id} value={game.name} />
+        ))}
+      </datalist>
       <StyledParagraph>How many people played along?</StyledParagraph>
-
       <FlexContainer>
         <CircleButton
           label="-"

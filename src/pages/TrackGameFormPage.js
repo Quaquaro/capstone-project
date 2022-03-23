@@ -10,6 +10,10 @@ import TrackGameThree from '../components/TrackGameThree.js';
 import PrimaryButton from '../components/PrimaryButton.js';
 import DefaultButton from '../components/DefaultButton.js';
 import backarrow from '../img/backarrow.svg';
+import useAxios from '../hooks/useAxios.js';
+
+// eslint-disable-next-line no-undef
+const BOARDGAMEATLAS_CLIENT_ID = process.env.REACT_APP_BOARDGAMEATLAS_CLIENT_ID;
 
 TrackGameFormPage.propTypes = {
   onTrackGame: PropTypes.func
@@ -27,6 +31,18 @@ const initialGameData = {
 export default function TrackGameFormPage({ onTrackGame }) {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
+
+  const { response, loading, error } = useAxios({
+    method: 'get',
+    url: `/api/search?limit=100&order_by=rank&fields=id,name&client_id=${BOARDGAMEATLAS_CLIENT_ID}`
+  });
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (response !== null) {
+      setData(response);
+    }
+  }, [response]);
 
   const [gameData, setGameData] = useState(initialGameData);
   const [players, setPlayers] = useState([
@@ -74,53 +90,65 @@ export default function TrackGameFormPage({ onTrackGame }) {
   return (
     <FormContainer>
       <FormHeader />
-      <Form onSubmit={handleTrackGame}>
-        {step !== 1 && (
-          <ButtonContainer left>
-            <GoBackButton onClick={() => prevStep(1)}>
-              <img
-                src={backarrow}
-                alt="A button with arrow points left"
-                width="30"
-                aria-label="go back to previous"
-              />
-            </GoBackButton>
-          </ButtonContainer>
-        )}
-        {step === 1 && (
-          <TrackGameOne
-            onHandleChange={handleChangeInput}
-            onAddFormFields={addFormFields}
-            onRemoveFormFields={removeFormFields}
-            nameOfGame={gameData.nameOfGame}
-            players={players}
-            handleOnClickDot={nextStep}
-            handleOnClickBack={prevStep}
-          />
-        )}
-        {step === 2 && (
-          <TrackGameTwo
-            onHandleChange={handleChangePlayer}
-            players={players}
-            handleOnClickDot={nextStep}
-            handleOnClickBack={prevStep}
-          />
-        )}
-        {step === 3 && (
-          <TrackGameThree
-            onHandleChange={handleChangeInput}
-            notes={gameData.notes}
-            handleOnClickDot={nextStep}
-            handleOnClickBack={prevStep}
-          />
-        )}
-        <ButtonContainer>
-          {step !== 3 && (
-            <DefaultButton type="button" label="CONTINUE" onClick={() => nextStep(1)} />
+      {error && (
+        <div>
+          <p>{error.message}</p>
+        </div>
+      )}
+      {loading ? (
+        <div>
+          <p>Loading...</p>
+        </div>
+      ) : (
+        <Form onSubmit={handleTrackGame}>
+          {step !== 1 && (
+            <ButtonContainer left>
+              <GoBackButton onClick={() => prevStep(1)}>
+                <img
+                  src={backarrow}
+                  alt="A button with arrow points left"
+                  width="30"
+                  aria-label="go back to previous"
+                />
+              </GoBackButton>
+            </ButtonContainer>
           )}
-          {step === 3 && <PrimaryButton type="submit" label="CONFIRM" />}
-        </ButtonContainer>
-      </Form>
+          {step === 1 && (
+            <TrackGameOne
+              onHandleChange={handleChangeInput}
+              onAddFormFields={addFormFields}
+              onRemoveFormFields={removeFormFields}
+              nameOfGame={gameData.nameOfGame}
+              players={players}
+              handleOnClickDot={nextStep}
+              handleOnClickBack={prevStep}
+              data={data}
+            />
+          )}
+          {step === 2 && (
+            <TrackGameTwo
+              onHandleChange={handleChangePlayer}
+              players={players}
+              handleOnClickDot={nextStep}
+              handleOnClickBack={prevStep}
+            />
+          )}
+          {step === 3 && (
+            <TrackGameThree
+              onHandleChange={handleChangeInput}
+              notes={gameData.notes}
+              handleOnClickDot={nextStep}
+              handleOnClickBack={prevStep}
+            />
+          )}
+          <ButtonContainer>
+            {step !== 3 && (
+              <DefaultButton type="button" label="CONTINUE" onClick={() => nextStep(1)} />
+            )}
+            {step === 3 && <PrimaryButton type="submit" label="CONFIRM" />}
+          </ButtonContainer>
+        </Form>
+      )}
     </FormContainer>
   );
 

@@ -13,7 +13,8 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   pattern: PropTypes.string,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  list: PropTypes.string
 };
 
 Input.defaultProps = {

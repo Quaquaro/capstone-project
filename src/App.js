@@ -5,28 +5,13 @@ import { Route, Routes } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
 import TrackGameFormPage from './pages/TrackGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
-import { useState, useRef, useEffect } from 'react';
-import useAxios from './hooks/useAxios.js';
+import { useState, useRef } from 'react';
 
-// eslint-disable-next-line no-undef
-const BOARDGAMEATLAS_CLIENT_ID = process.env.REACT_APP_BOARDGAMEATLAS_CLIENT_ID;
 const infoText = [
   { nameOfGame: 'Start tracking your first game!', players: [], id: '1', notes: '' }
 ];
 
 function App() {
-  const { response, loading, error } = useAxios({
-    method: 'get',
-    url: `/api/search?name=colt&limit=10&client_id=${BOARDGAMEATLAS_CLIENT_ID}`
-  });
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    if (response !== null) {
-      setData(response);
-    }
-  }, [response]);
-
   const [games, setGames] = useLocalStorage('games', infoText);
   const [dialog, setDialog] = useState({
     message: '',
@@ -55,9 +40,6 @@ function App() {
             path="/"
             element={
               <GamesPage
-                loading={loading}
-                data={data}
-                error={error}
                 games={games}
                 onDeleteGame={handleDeleteGame}
                 dialog={dialog}
