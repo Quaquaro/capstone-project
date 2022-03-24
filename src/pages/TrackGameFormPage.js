@@ -11,6 +11,7 @@ import PrimaryButton from '../components/PrimaryButton.js';
 import DefaultButton from '../components/DefaultButton.js';
 import backarrow from '../img/backarrow.svg';
 import useAxios from '../hooks/useAxios.js';
+import { FlexColumnContainer } from '../components/TrackGameTwo.js';
 
 // eslint-disable-next-line no-undef
 const BOARDGAMEATLAS_CLIENT_ID = process.env.REACT_APP_BOARDGAMEATLAS_CLIENT_ID;
@@ -28,6 +29,7 @@ const initialGameData = {
   isPlayersVisible: false,
   notes: ''
 };
+
 export default function TrackGameFormPage({ onTrackGame }) {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
@@ -91,14 +93,14 @@ export default function TrackGameFormPage({ onTrackGame }) {
     <FormContainer>
       <FormHeader />
       {error && (
-        <div>
-          <p>{error.message}</p>
-        </div>
+        <FlexColumnContainer>
+          <StyledErrorMessage>{error.message}</StyledErrorMessage>
+        </FlexColumnContainer>
       )}
       {loading ? (
-        <div>
+        <FlexColumnContainer>
           <p>Loading...</p>
-        </div>
+        </FlexColumnContainer>
       ) : (
         <Form onSubmit={handleTrackGame}>
           {step !== 1 && (
@@ -152,7 +154,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
     </FormContainer>
   );
 
-  async function handleTrackGame(event) {
+  function handleTrackGame(event) {
     event.preventDefault();
     if (players[0].player === '') {
       nextStep();
@@ -186,6 +188,11 @@ const FormContainer = styled.main`
   grid-template-rows: 1fr 8fr 1fr;
   grid-row-gap: 5px;
 `;
+
+const StyledErrorMessage = styled.p`
+  color: ${({ theme }) => theme.color.pink};
+`;
+
 const GoBackButton = styled.button`
   margin-top: 10px;
   outline: none;

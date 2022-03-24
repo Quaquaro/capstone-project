@@ -37,7 +37,7 @@ export default function TrackGameOne({
         name="nameOfGame"
         labelText="Name of game"
         placeholder="e.g. Uno"
-        autocomplete="on"
+        autocomplete="off"
         inputmode="text"
         type="text"
         required
