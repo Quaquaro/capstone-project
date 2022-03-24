@@ -18,6 +18,10 @@ function Wrapper({ children }) {
 
 describe('TrackGameFormPage', () => {
   const handleTrackGame = jest.fn();
+  const mockLoading = false;
+  jest.mock('../hooks/useAxios.js', () => {
+    return jest.fn(() => ({ loading: mockLoading }));
+  });
   const testData = {
     nameOfGame: 'Test Game',
     playerName: 'Test Player',
@@ -28,7 +32,7 @@ describe('TrackGameFormPage', () => {
       wrapper: Wrapper
     });
     await waitFor(() => expect(screen.getByText(/name of game/i).toBeInTheDocument), {
-      timeout: 5000
+      timeout: 10000
     });
     expect(screen.getByRole('button', { name: /continue/i })).toBeInTheDocument();
     userEvent.type(screen.getByText(/name Of Game/i), testData.nameOfGame);
@@ -51,7 +55,7 @@ describe('TrackGameFormPage', () => {
   it('should not submit if input is empty', async () => {
     render(<TrackGameFormPage onTrackGame={handleTrackGame} />, { wrapper: Wrapper });
     await waitFor(() => expect(screen.getByText(/name of game/i).toBeInTheDocument), {
-      timeout: 5000
+      timeout: 10000
     });
     userEvent.type(screen.getByText(/name Of Game/i), testData.nameOfGame);
     userEvent.click(screen.getByText(/continue/i));
