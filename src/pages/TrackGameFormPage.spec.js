@@ -1,10 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TrackGameFormPage from './TrackGameFormPage.js';
 import Theme from '../Theme.js';
-
 Wrapper.propTypes = {
   children: PropTypes.object
 };
@@ -19,6 +18,10 @@ function Wrapper({ children }) {
 
 describe('TrackGameFormPage', () => {
   const handleTrackGame = jest.fn();
+  const mockLoading = false;
+  jest.mock('../hooks/useAxios.js', () => {
+    return jest.fn(() => ({ loading: mockLoading }));
+  });
   const testData = {
     nameOfGame: 'Test Game',
     playerName: 'Test Player',
@@ -28,8 +31,9 @@ describe('TrackGameFormPage', () => {
     render(<TrackGameFormPage onTrackGame={handleTrackGame} />, {
       wrapper: Wrapper
     });
-
-    expect(screen.getAllByRole('textbox').length).toBe(1);
+    await waitFor(() => expect(screen.getByText(/name of game/i).toBeInTheDocument), {
+      timeout: 10000
+    });
     expect(screen.getByRole('button', { name: /continue/i })).toBeInTheDocument();
     userEvent.type(screen.getByText(/name Of Game/i), testData.nameOfGame);
     userEvent.click(screen.getAllByRole('button')[2]);
@@ -48,9 +52,11 @@ describe('TrackGameFormPage', () => {
     expect(handleTrackGame).toHaveBeenCalledTimes(1);
   });
 
-  it('should not submit if input is empty', () => {
+  it('should not submit if input is empty', async () => {
     render(<TrackGameFormPage onTrackGame={handleTrackGame} />, { wrapper: Wrapper });
-
+    await waitFor(() => expect(screen.getByText(/name of game/i).toBeInTheDocument), {
+      timeout: 10000
+    });
     userEvent.type(screen.getByText(/name Of Game/i), testData.nameOfGame);
     userEvent.click(screen.getByText(/continue/i));
     userEvent.type(screen.getByLabelText(/player 1/i), testData.playerName);

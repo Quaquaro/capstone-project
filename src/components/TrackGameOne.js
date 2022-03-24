@@ -1,8 +1,8 @@
-import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SteppedProgress from '../components/SteppedProgress.js';
 import DefaultButton from '../components/DefaultButton.js';
+import Input from './Input.js';
 
 TrackGameOne.propTypes = {
   onHandleChange: PropTypes.func,
@@ -11,7 +11,8 @@ TrackGameOne.propTypes = {
   handleOnClickDot: PropTypes.func,
   handleOnClickBack: PropTypes.func,
   nameOfGame: PropTypes.string,
-  players: PropTypes.array
+  players: PropTypes.array,
+  datalistGameNames: PropTypes.object
 };
 
 export default function TrackGameOne({
@@ -21,7 +22,8 @@ export default function TrackGameOne({
   onAddFormFields,
   players,
   handleOnClickDot,
-  handleOnClickBack
+  handleOnClickBack,
+  datalistGameNames
 }) {
   return (
     <GameNameContainer>
@@ -31,10 +33,11 @@ export default function TrackGameOne({
         handleBackClick={handleOnClickBack}
       />
       <StyledInput
+        list="games"
         name="nameOfGame"
         labelText="Name of game"
         placeholder="e.g. Uno"
-        autocomplete="on"
+        autocomplete="off"
         inputmode="text"
         type="text"
         required
@@ -43,20 +46,20 @@ export default function TrackGameOne({
         value={nameOfGame}
         maxLength={24}
       />
+      <datalist id="games">
+        {datalistGameNames.games?.map((game) => (
+          <option key={game.id} value={game.name} />
+        ))}
+      </datalist>
       <StyledParagraph>How many people played along?</StyledParagraph>
-
       <FlexContainer>
-        <CircleButton
-          label="-"
-          aria-label="decrease button"
-          onClick={onRemoveFormFields}
-        ></CircleButton>
+        <CircleButton aria-label="decrease button" onClick={onRemoveFormFields}>
+          +
+        </CircleButton>
         <p>{players.length}</p>
-        <CircleButton
-          label="+"
-          aria-label="increase button"
-          onClick={onAddFormFields}
-        ></CircleButton>
+        <CircleButton aria-label="increase button" onClick={onAddFormFields}>
+          -
+        </CircleButton>
       </FlexContainer>
     </GameNameContainer>
   );

@@ -13,7 +13,8 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   pattern: PropTypes.string,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  list: PropTypes.string
 };
 
 Input.defaultProps = {
@@ -21,7 +22,8 @@ Input.defaultProps = {
   placeholder: 'What is on your mind?',
   labelText: 'Label ',
   id: 'name',
-  value: 'value'
+  value: 'value',
+  autocomplete: 'off'
 };
 
 export default function Input({ name, labelText, ...props }) {

@@ -3,8 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../img/greenDice.svg';
 import cancel from '../img/circle-cross-thin.svg';
 import { StyledHeader } from './styles/Header.styles.js';
+import PropTypes from 'prop-types';
 
-export default function FormHeader() {
+FormHeader.propTypes = {
+  error: PropTypes.any
+};
+
+export default function FormHeader({ error }) {
   const navigate = useNavigate();
   return (
     <StyledFormHeader>
@@ -16,7 +21,15 @@ export default function FormHeader() {
           height="64"
           onClick={handleOnClick}
         />
-        <h1>TABULA RASA</h1>
+        {error ? (
+          <StyledErrorMessage>
+            {error.message} !
+            <br />
+            Try to reload the page.
+          </StyledErrorMessage>
+        ) : (
+          <h1>TABULA RASA</h1>
+        )}
       </FlexBox>
 
       <IconButton onClick={handleOnClick}>
@@ -30,6 +43,11 @@ export default function FormHeader() {
     navigate('/', { replace: true });
   }
 }
+
+const StyledErrorMessage = styled.p`
+  color: ${({ theme }) => theme.color.pink};
+  text-align: center;
+`;
 
 const IconButton = styled.button`
   outline: none;

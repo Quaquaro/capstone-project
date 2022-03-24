@@ -12,12 +12,15 @@ Notification.defaultProps = {
 
 export default function Notification({ notification }) {
   return (
-    <motion.div animate={{ opacity: 1 }} transition={{ duration: 1 }} initial={{ opacity: 0 }}>
-      <MessageContainer>
-        <img src={cross} width="16" alt="pink cross" />
-        <h3>{notification}</h3>
-      </MessageContainer>
-    </motion.div>
+    <MessageContainer
+      as={motion.div}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      initial={{ opacity: 0 }}
+    >
+      <img src={cross} width="16" height="16" alt="" />
+      <h3>{notification}</h3>
+    </MessageContainer>
   );
 }
 

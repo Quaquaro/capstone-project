@@ -2,19 +2,19 @@ import { Button } from './styles/Button.styles.js';
 import PropTypes from 'prop-types';
 
 DefaultButton.propTypes = {
-  label: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   onClick: PropTypes.func
 };
 
 DefaultButton.defaultProps = {
-  label: 'DEFAULT'
+  children: 'DEFAULT'
 };
 
-export default function DefaultButton({ label, ...props }) {
+export default function DefaultButton({ children, ...props }) {
   return (
     <>
       <Button type="button" {...props}>
-        {label}
+        {children}
       </Button>
     </>
   );

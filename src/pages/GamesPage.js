@@ -19,16 +19,16 @@ GamesPage.propTypes = {
 
 export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert, notification }) {
   const navigate = useNavigate();
+
   return (
     <>
       <Header />
-
       {alert.isVisible && <Alert alertMessage={alert.message} />}
       {notification.isVisible && <Notification notification={notification.message} />}
       <GamePageLayout>
         <TrackedGamesList games={games} onDelete={onDeleteGame} />
         <ButtonContainer>
-          <DefaultButton onClick={handleOnClick} label="TRACK GAME" />
+          <DefaultButton onClick={handleOnClick}>TRACK GAME</DefaultButton>
         </ButtonContainer>
         {dialog.isLoading && (
           <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
@@ -36,9 +36,7 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
       </GamePageLayout>
     </>
   );
-  async function handleOnClick(e) {
-    e.preventDefault();
-
+  function handleOnClick() {
     navigate('/addgame', { replace: true });
   }
 }
