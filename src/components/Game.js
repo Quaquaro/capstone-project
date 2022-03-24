@@ -31,7 +31,7 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
           <StyledGameName>{nameOfGame}</StyledGameName>
           {isPlayersVisible && (
             <DeleteButton type="button" onClick={() => onDelete(id)}>
-              <img src={bin} alt="delete game button" width="18" aria-label="delete" />
+              <img src={bin} alt="delete game" width="18" />
             </DeleteButton>
           )}
           <StyledTable>
@@ -90,6 +90,7 @@ const DeleteButton = styled.button`
 
 const StyledGameName = styled.h3`
   margin: 0;
+  width: 85%;
 `;
 
 const StyledTable = styled.table`

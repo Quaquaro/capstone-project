@@ -18,7 +18,7 @@ export default function Notification({ notification }) {
       transition={{ duration: 1 }}
       initial={{ opacity: 0 }}
     >
-      <img src={cross} width="16" alt="pink cross" />
+      <img src={cross} width="16" height="16" alt="" />
       <h3>{notification}</h3>
     </MessageContainer>
   );

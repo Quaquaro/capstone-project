@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 axios.defaults.baseURL = 'https://api.boardgameatlas.com';
 
 const useAxios = (axiosParams) => {
-  const [response, setResponse] = useState(undefined);
+  const [response, setResponse] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 

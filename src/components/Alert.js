@@ -19,7 +19,7 @@ export default function Alert({ alertMessage }) {
       transition={{ duration: 1 }}
       initial={{ opacity: 0 }}
     >
-      <img src={check} alt="check-hook" width="16" />
+      <img src={check} alt="" width="16" height="16" />
       <h3>{alertMessage}</h3>
     </AlertContainer>
   );

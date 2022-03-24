@@ -39,11 +39,11 @@ export default function TrackGameFormPage({ onTrackGame }) {
     method: 'get',
     url: `/api/search?limit=100&order_by=rank&fields=id,name&client_id=${BOARDGAMEATLAS_CLIENT_ID}`
   });
-  const [data, setData] = useState([]);
+  const [datalistGameNames, setDatalistGameNames] = useState([]);
 
   useEffect(() => {
     if (response !== null) {
-      setData(response);
+      setDatalistGameNames(response);
     }
   }, [response]);
 
@@ -106,7 +106,12 @@ export default function TrackGameFormPage({ onTrackGame }) {
         <Form onSubmit={handleTrackGame}>
           {step !== 1 && (
             <ButtonContainer left>
-              <GoBackButton onClick={() => prevStep(1)}>
+              <GoBackButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  prevStep(1);
+                }}
+              >
                 <img
                   src={backarrow}
                   alt="A button with arrow points left"
@@ -125,7 +130,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
               players={players}
               handleOnClickDot={nextStep}
               handleOnClickBack={prevStep}
-              data={data}
+              datalistGameNames={datalistGameNames}
             />
           )}
           {step === 2 && (
@@ -146,9 +151,11 @@ export default function TrackGameFormPage({ onTrackGame }) {
           )}
           <ButtonContainer>
             {step !== 3 && (
-              <DefaultButton type="button" label="CONTINUE" onClick={() => nextStep(1)} />
+              <DefaultButton type="button" onClick={() => nextStep(1)}>
+                CONTINUE
+              </DefaultButton>
             )}
-            {step === 3 && <PrimaryButton type="submit" label="CONFIRM" />}
+            {step === 3 && <PrimaryButton type="submit">CONFIRM</PrimaryButton>}
           </ButtonContainer>
         </Form>
       )}

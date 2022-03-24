@@ -3,19 +3,19 @@ import { Button } from './styles/Button.styles.js';
 import PropTypes from 'prop-types';
 
 PrimaryButton.propTypes = {
-  label: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
   onClick: PropTypes.func
 };
 
 PrimaryButton.defaultProps = {
-  label: 'PRIMARY'
+  children: 'PRIMARY'
 };
 
-export default function PrimaryButton({ label, ...props }) {
+export default function PrimaryButton({ children, ...props }) {
   return (
     <>
       <ConfirmButton green type="submit" {...props}>
-        {label}
+        {children}
       </ConfirmButton>
     </>
   );

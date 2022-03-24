@@ -21,9 +21,9 @@ export default function Dialog({ onDialog, message, nameOfGame }) {
       >
         <StyledPhrase>{message}</StyledPhrase>
         <h1>{nameOfGame}</h1>
-        <ButtonContainer style={{ display: 'flex', alignItems: 'center' }}>
-          <PinkButton label="NO" onClick={() => onDialog(false)}></PinkButton>
-          <PrimaryButton label="YES" onClick={() => onDialog(true)}></PrimaryButton>
+        <ButtonContainer>
+          <PinkButton onClick={() => onDialog(false)}>NO</PinkButton>
+          <PrimaryButton onClick={() => onDialog(true)}>YES</PrimaryButton>
         </ButtonContainer>
       </DialogBox>
     </Background>

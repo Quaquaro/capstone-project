@@ -1,8 +1,8 @@
-import Input from './Input.js';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import SteppedProgress from '../components/SteppedProgress.js';
 import DefaultButton from '../components/DefaultButton.js';
+import Input from './Input.js';
 
 TrackGameOne.propTypes = {
   onHandleChange: PropTypes.func,
@@ -12,7 +12,7 @@ TrackGameOne.propTypes = {
   handleOnClickBack: PropTypes.func,
   nameOfGame: PropTypes.string,
   players: PropTypes.array,
-  data: PropTypes.object
+  datalistGameNames: PropTypes.object
 };
 
 export default function TrackGameOne({
@@ -23,7 +23,7 @@ export default function TrackGameOne({
   players,
   handleOnClickDot,
   handleOnClickBack,
-  data
+  datalistGameNames
 }) {
   return (
     <GameNameContainer>
@@ -47,23 +47,19 @@ export default function TrackGameOne({
         maxLength={24}
       />
       <datalist id="games">
-        {data?.games.map((game) => (
+        {datalistGameNames?.games.map((game) => (
           <option key={game.id} value={game.name} />
         ))}
       </datalist>
       <StyledParagraph>How many people played along?</StyledParagraph>
       <FlexContainer>
-        <CircleButton
-          label="-"
-          aria-label="decrease button"
-          onClick={onRemoveFormFields}
-        ></CircleButton>
+        <CircleButton aria-label="decrease button" onClick={onRemoveFormFields}>
+          +
+        </CircleButton>
         <p>{players.length}</p>
-        <CircleButton
-          label="+"
-          aria-label="increase button"
-          onClick={onAddFormFields}
-        ></CircleButton>
+        <CircleButton aria-label="increase button" onClick={onAddFormFields}>
+          -
+        </CircleButton>
       </FlexContainer>
     </GameNameContainer>
   );
