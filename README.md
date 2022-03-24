@@ -5,9 +5,12 @@ I'm a webdev student at neue fische.
 
 ## Lessons Learned
 
-I've learned how to build multi-step forms with react and how to process user inputs. I've also learned how to build components in Storybook and how to test them with the react testing library.
-Additionally, I've got to know the framer-motion library and used it to implement animations in my app.
+I have learned the following things:
 
+- Creating multi-step forms
+- Component and test driven development
+- Fetching data with axios
+- Animations with framer-motion
 
 # TABULA RASA
 
@@ -18,15 +21,15 @@ TABULA RASA is an app for board players that tracks the results of individual ga
 
 **Client:** React, styled-components
 
-**Tools:** Storybook, framer-motion
+**Tools:** Storybook, framer-motion, axios
 
 
 ## Screenshots
 
 <img src="https://user-images.githubusercontent.com/67676597/158783020-8c0247f8-1f12-475f-8a0d-7781e22fbdcf.jpg" alt="Game Page" width="300">
-<img src="https://user-images.githubusercontent.com/67676597/159506752-76daa7ec-4b42-45e6-98d3-61ef0601b7a2.png" alt="Form Page 1" width="300">
-<img src="https://user-images.githubusercontent.com/67676597/159507258-89b765bb-2c6e-4276-a5e8-77400cb1261d.png" alt="Form Page 2" width="300">
-<img src="https://user-images.githubusercontent.com/67676597/159507465-3006570c-5226-4c79-8c72-d68a029a6fab.png" alt="Form Page 3" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/159891564-90d67c0e-e338-4151-b546-28ddcd2afef2.png" alt="Form Page 1" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/159892518-b67cbdb8-7dee-42a7-bc84-60b766cd69ca.png" alt="Form Page 2" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/159892632-91070089-cb57-451b-9cab-43e1abc73bb7.png" alt="Form Page 3" width="300">
 
 <img src="https://user-images.githubusercontent.com/67676597/158783033-4f629666-b4e5-4a08-9b62-5604eb453963.jpg" alt="Game Page after entry a game" width="300">
 <img src="https://user-images.githubusercontent.com/67676597/159507689-1c0ff399-8b80-43f1-bff6-49c2aad52801.png" alt="Detail view" width="300">
@@ -72,8 +75,7 @@ To run tests, run the following command
 
 ## Roadmap
 
-- Add Boargame Atlas API
-
+- Use React Hook Forms and improve input validation
 - Add STRAPI Backend
 
 ## Color Reference
@@ -87,6 +89,9 @@ To run tests, run the following command
 | Pink | ![#F631A7](https://via.placeholder.com/10/F631A7?text=+) #F631A7 |
 | Neon blue | ![#05F2DB](https://via.placeholder.com/10/05F2DB?text=+) #05F2DB |
 
+## Known bugs
+
+The pattern attribute no longer has any influence on the score inputs. Therefore, it is possible to enter letters as score. With the introduction of react hook form this bug will be fixed.
 
 ## Feedback
 
