@@ -11,6 +11,7 @@ import PrimaryButton from '../components/PrimaryButton.js';
 import DefaultButton from '../components/DefaultButton.js';
 import backarrow from '../img/backarrow.svg';
 import useAxios from '../hooks/useAxios.js';
+import ThreeDotsWave from '../components/ThreeDotsWave.js';
 import { FlexColumnContainer } from '../components/TrackGameTwo.js';
 
 // eslint-disable-next-line no-undef
@@ -99,7 +100,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
       )}
       {loading ? (
         <FlexColumnContainer>
-          <p>Loading...</p>
+          <ThreeDotsWave />
         </FlexColumnContainer>
       ) : (
         <Form onSubmit={handleTrackGame}>
