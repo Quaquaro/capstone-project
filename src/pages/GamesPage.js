@@ -23,6 +23,8 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
   return (
     <>
       <Header />
+      {alert.isVisible && <Alert alertMessage={alert.message} />}
+      {notification.isVisible && <Notification notification={notification.message} />}
       <GamePageLayout>
         <TrackedGamesList games={games} onDelete={onDeleteGame} />
         <ButtonContainer>
@@ -32,9 +34,6 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
           <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
         )}
       </GamePageLayout>
-
-      {alert.isVisible && <Alert alertMessage={alert.message} />}
-      {notification.isVisible && <Notification notification={notification.message} />}
     </>
   );
   async function handleOnClick(e) {

@@ -20,38 +20,41 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
   playersWithScore.splice(0, 1);
 
   return (
-    <motion.div whileTap={{ scale: 0.8 }} transition={{ duration: 0.5 }}>
-      <GameContainer onClick={handleClick}>
-        {id !== '1' ? (
-          <>
-            <StyledGameName>{nameOfGame}</StyledGameName>
-            {isPlayersVisible && (
-              <DeleteButton type="button" onClick={() => onDelete(id)}>
-                <img src={bin} alt="delete game button" width="18" aria-label="delete" />
-              </DeleteButton>
-            )}
-            <StyledTable>
-              <tbody>
-                <tr>
-                  {players[0]?.player && <td>{players[0]?.player}</td>}
-                  {players[0]?.score && <td>{players[0]?.score}</td>}
-                </tr>
-                {isPlayersVisible &&
-                  playersWithScore?.map(({ player, score, id }) => (
-                    <tr key={id}>
-                      <td>{player}</td>
-                      <td>{score}</td>
-                    </tr>
-                  ))}
-              </tbody>
-            </StyledTable>
-            {isPlayersVisible && <NotesParagraph>{notes}</NotesParagraph>}
-          </>
-        ) : (
-          <StyledGameName onClick={goToForm}>{nameOfGame}</StyledGameName>
-        )}
-      </GameContainer>
-    </motion.div>
+    <GameContainer
+      as={motion.div}
+      onClick={handleClick}
+      whileTap={{ scale: 0.8 }}
+      transition={{ duration: 0.5 }}
+    >
+      {id !== '1' ? (
+        <>
+          <StyledGameName>{nameOfGame}</StyledGameName>
+          {isPlayersVisible && (
+            <DeleteButton type="button" onClick={() => onDelete(id)}>
+              <img src={bin} alt="delete game button" width="18" aria-label="delete" />
+            </DeleteButton>
+          )}
+          <StyledTable>
+            <tbody>
+              <tr>
+                {players[0]?.player && <td>{players[0]?.player}</td>}
+                {players[0]?.score && <td>{players[0]?.score}</td>}
+              </tr>
+              {isPlayersVisible &&
+                playersWithScore?.map(({ player, score, id }) => (
+                  <tr key={id}>
+                    <td>{player}</td>
+                    <td>{score}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </StyledTable>
+          {isPlayersVisible && <NotesParagraph>{notes}</NotesParagraph>}
+        </>
+      ) : (
+        <StyledGameName onClick={goToForm}>{nameOfGame}</StyledGameName>
+      )}
+    </GameContainer>
   );
   function handleClick() {
     setIsPlayersVisible(!isPlayersVisible);

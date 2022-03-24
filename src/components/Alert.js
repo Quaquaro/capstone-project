@@ -13,12 +13,15 @@ Alert.defaultProps = {
 
 export default function Alert({ alertMessage }) {
   return (
-    <motion.div animate={{ opacity: 1 }} transition={{ duration: 1 }} initial={{ opacity: 0 }}>
-      <AlertContainer>
-        <img src={check} alt="check-hook" width="16" />
-        <h3>{alertMessage}</h3>
-      </AlertContainer>
-    </motion.div>
+    <AlertContainer
+      as={motion.div}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      initial={{ opacity: 0 }}
+    >
+      <img src={check} alt="check-hook" width="16" />
+      <h3>{alertMessage}</h3>
+    </AlertContainer>
   );
 }
 
