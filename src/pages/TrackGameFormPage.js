@@ -39,7 +39,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
     method: 'get',
     url: `/api/search?limit=100&order_by=rank&fields=id,name&client_id=${BOARDGAMEATLAS_CLIENT_ID}`
   });
-  const [datalistGameNames, setDatalistGameNames] = useState([]);
+  const [datalistGameNames, setDatalistGameNames] = useState({});
 
   useEffect(() => {
     if (response !== null) {
@@ -92,12 +92,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
 
   return (
     <FormContainer>
-      <FormHeader />
-      {error && (
-        <FlexColumnContainer>
-          <StyledErrorMessage>{error.message}</StyledErrorMessage>
-        </FlexColumnContainer>
-      )}
+      <FormHeader error={error} />
       {loading ? (
         <FlexColumnContainer>
           <ThreeDotsWave />
@@ -195,10 +190,6 @@ const FormContainer = styled.main`
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 8fr 1fr;
   grid-row-gap: 5px;
-`;
-
-const StyledErrorMessage = styled.p`
-  color: ${({ theme }) => theme.color.pink};
 `;
 
 const GoBackButton = styled.button`
