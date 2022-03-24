@@ -49,7 +49,6 @@ const Card = styled.div`
     content: '';
     width: 345px;
     height: 510px;
-    overflow: auto;
     display: block;
     position: absolute;
     z-index: -1;

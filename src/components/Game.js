@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import bin from '../img/bin.svg';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import defaultImage from '../img/defaultImage.svg';
 
 Game.propTypes = {
   players: PropTypes.array,
@@ -17,6 +18,7 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
   const navigate = useNavigate();
   const [isPlayersVisible, setIsPlayersVisible] = useState(false);
   const playersWithScore = players.filter((player) => player.score !== '');
+  const gameImage = false;
   playersWithScore.splice(0, 1);
 
   return (
@@ -31,9 +33,16 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
           <StyledGameName>{nameOfGame}</StyledGameName>
           {isPlayersVisible && (
             <DeleteButton type="button" onClick={() => onDelete(id)}>
-              <img src={bin} alt="delete game" width="18" />
+              <img src={bin} alt="delete game" width="18" height="18" />
             </DeleteButton>
           )}
+          {gameImage
+            ? isPlayersVisible && (
+                <GameImage src={gameImage} alt="picture of the game" width="85" height="76" />
+              )
+            : isPlayersVisible && (
+                <GameImage src={defaultImage} alt="picture of the game" width="85" height="76" />
+              )}
           <StyledTable>
             <tbody>
               <tr>
@@ -91,6 +100,10 @@ const DeleteButton = styled.button`
 const StyledGameName = styled.h3`
   margin: 0;
   width: 85%;
+`;
+
+const GameImage = styled.img`
+  margin-top: 8px;
 `;
 
 const StyledTable = styled.table`
