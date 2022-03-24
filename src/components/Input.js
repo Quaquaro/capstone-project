@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import circlecheck from '../img/circle-check.svg';
+import pinkCross from '../img/circle-cross.svg';
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
@@ -56,6 +58,18 @@ export const InputBox = styled.input`
   &:focus {
     box-shadow: 0 0 10px 4px rgba(238, 255, 253, 0.75);
     outline: none;
+  }
+  &:valid {
+    background: url(${circlecheck});
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 10px;
+  }
+  &:invalid {
+    background: url(${pinkCross});
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 10px;
   }
 `;
 
