@@ -47,7 +47,7 @@ export default function TrackGameOne({
         maxLength={24}
       />
       <datalist id="games">
-        {data.games.map((game) => (
+        {data?.games.map((game) => (
           <option key={game.id} value={game.name} />
         ))}
       </datalist>
