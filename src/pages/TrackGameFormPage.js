@@ -166,12 +166,17 @@ export default function TrackGameFormPage({ onTrackGame }) {
       nextStep();
       return;
     }
+    const filteredGameData = datalistGameNames.games.filter(
+      (game) => game.name === gameData.nameOfGame
+    );
+
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
       players: sortedPlayers,
       id: nanoid(),
       isPlayersVisible: false,
-      notes: gameData.notes
+      notes: gameData.notes,
+      img_url: filteredGameData[0]?.image_url || ''
     });
     setGameData(initialGameData);
     navigate('/', { replace: true });

@@ -10,16 +10,16 @@ Game.propTypes = {
   players: PropTypes.array,
   onDelete: PropTypes.func,
   nameOfGame: PropTypes.string,
+  gameImage: PropTypes.string,
   id: PropTypes.string,
   notes: PropTypes.string
 };
 
-export default function Game({ id, nameOfGame, players, onDelete, notes }) {
+export default function Game({ id, nameOfGame, players, onDelete, notes, gameImage }) {
   const navigate = useNavigate();
   const [isPlayersVisible, setIsPlayersVisible] = useState(false);
   const playersWithScore = players.filter((player) => player.score !== '');
   playersWithScore.splice(0, 1);
-  const gameImage = false;
 
   return (
     <GameContainer
