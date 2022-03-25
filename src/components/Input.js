@@ -14,6 +14,7 @@ Input.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
+  minLength: PropTypes.number,
   pattern: PropTypes.string,
   id: PropTypes.string.isRequired,
   list: PropTypes.string

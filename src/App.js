@@ -1,7 +1,8 @@
+import { AnimatePresence } from 'framer-motion';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorFallback from './ErrorFallback.js';
 import GlobalFonts from './assets/variable/fonts.js';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
 import TrackGameFormPage from './pages/TrackGameFormPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
@@ -12,6 +13,7 @@ const infoText = [
 ];
 
 function App() {
+  const location = useLocation();
   const [games, setGames] = useLocalStorage('games', infoText);
   const [dialog, setDialog] = useState({
     message: '',
@@ -35,22 +37,24 @@ function App() {
     <>
       <GlobalFonts />
       <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <GamesPage
-                games={games}
-                onDeleteGame={handleDeleteGame}
-                dialog={dialog}
-                onDialog={confirmDelete}
-                alert={alert}
-                notification={notification}
-              />
-            }
-          />
-          <Route path="/addgame" element={<TrackGameFormPage onTrackGame={trackGame} />} />
-        </Routes>
+        <AnimatePresence exitBeforeEnter>
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <GamesPage
+                  games={games}
+                  onDeleteGame={handleDeleteGame}
+                  dialog={dialog}
+                  onDialog={confirmDelete}
+                  alert={alert}
+                  notification={notification}
+                />
+              }
+            />
+            <Route path="/addgame" element={<TrackGameFormPage onTrackGame={trackGame} />} />
+          </Routes>
+        </AnimatePresence>
       </ErrorBoundary>
     </>
   );

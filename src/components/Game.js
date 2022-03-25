@@ -18,8 +18,8 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
   const navigate = useNavigate();
   const [isPlayersVisible, setIsPlayersVisible] = useState(false);
   const playersWithScore = players.filter((player) => player.score !== '');
-  const gameImage = false;
   playersWithScore.splice(0, 1);
+  const gameImage = false;
 
   return (
     <GameContainer

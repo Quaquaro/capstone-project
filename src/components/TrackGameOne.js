@@ -44,6 +44,7 @@ export default function TrackGameOne({
         autoFocus
         onChange={onHandleChange}
         value={nameOfGame}
+        minLength={3}
         maxLength={24}
       />
       <datalist id="games">

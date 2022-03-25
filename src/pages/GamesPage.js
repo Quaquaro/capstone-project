@@ -7,6 +7,7 @@ import Header from '../components/Header.js';
 import Dialog from '../components/Dialog.js';
 import Alert from '../components/Alert.js';
 import Notification from '../components/Notification.js';
+import PageSwitchAnimation from '../components/PageSwitchAnimation.js';
 
 GamesPage.propTypes = {
   games: PropTypes.array,
@@ -23,17 +24,19 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
   return (
     <>
       <Header />
-      {alert.isVisible && <Alert alertMessage={alert.message} />}
-      {notification.isVisible && <Notification notification={notification.message} />}
-      <GamePageLayout>
-        <TrackedGamesList games={games} onDelete={onDeleteGame} />
-        <ButtonContainer>
-          <DefaultButton onClick={handleOnClick}>TRACK GAME</DefaultButton>
-        </ButtonContainer>
-        {dialog.isLoading && (
-          <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
-        )}
-      </GamePageLayout>
+      <PageSwitchAnimation>
+        {alert.isVisible && <Alert alertMessage={alert.message} />}
+        {notification.isVisible && <Notification notification={notification.message} />}
+        <GamePageLayout>
+          <TrackedGamesList games={games} onDelete={onDeleteGame} />
+          <ButtonContainer>
+            <DefaultButton onClick={handleOnClick}>TRACK GAME</DefaultButton>
+          </ButtonContainer>
+          {dialog.isLoading && (
+            <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
+          )}
+        </GamePageLayout>
+      </PageSwitchAnimation>
     </>
   );
   function handleOnClick() {
@@ -42,6 +45,7 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
 }
 
 const GamePageLayout = styled.main`
+  overflow-y: hidden;
   display: grid;
   grid-template-rows: 8fr 1fr;
   grid-template-columns: 1fr;
