@@ -28,7 +28,6 @@ const initialGameData = {
     { player: '', score: '', id: '' },
     { player: '', score: '', id: '' }
   ],
-  isPlayersVisible: false,
   notes: ''
 };
 

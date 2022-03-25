@@ -18,7 +18,7 @@ function Wrapper({ children }) {
 
 describe('TrackGameFormPage', () => {
   const handleTrackGame = jest.fn();
-  const mockLoading = false;
+  let mockLoading = false;
   jest.mock('../hooks/useAxios.js', () => {
     return jest.fn(() => ({ loading: mockLoading }));
   });
