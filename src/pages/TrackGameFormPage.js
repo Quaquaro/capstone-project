@@ -165,7 +165,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
       nextStep();
       return;
     }
-    const filteredGameData = datalistGameNames.games.filter(
+    const filteredGameData = datalistGameNames?.games.filter(
       (game) => game.name === gameData.nameOfGame
     );
 
