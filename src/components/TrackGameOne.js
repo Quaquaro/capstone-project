@@ -37,7 +37,7 @@ export default function TrackGameOne({
         name="nameOfGame"
         labelText="Name of game"
         placeholder="e.g. Uno"
-        autocomplete="off"
+        autocomplete="false"
         inputmode="text"
         type="text"
         required
@@ -55,11 +55,11 @@ export default function TrackGameOne({
       <StyledParagraph>How many people played along?</StyledParagraph>
       <FlexContainer>
         <CircleButton aria-label="decrease button" onClick={onRemoveFormFields}>
-          +
+          -
         </CircleButton>
         <p>{players.length}</p>
         <CircleButton aria-label="increase button" onClick={onAddFormFields}>
-          -
+          +
         </CircleButton>
       </FlexContainer>
     </GameNameContainer>

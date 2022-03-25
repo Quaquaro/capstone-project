@@ -100,7 +100,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
             <ThreeDotsWave />
           </FlexColumnContainer>
         ) : (
-          <Form onSubmit={handleTrackGame}>
+          <Form onSubmit={handleTrackGame} autocomplete="off">
             {step !== 1 && (
               <ButtonContainer left>
                 <GoBackButton
