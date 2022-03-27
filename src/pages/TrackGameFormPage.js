@@ -1,3 +1,4 @@
+import PageSwitchAnimation from '../components/PageSwitchAnimation.js';
 import PropTypes from 'prop-types';
 import FormHeader from '../components/FormHeader.js';
 import styled from 'styled-components';
@@ -27,7 +28,6 @@ const initialGameData = {
     { player: '', score: '', id: '' },
     { player: '', score: '', id: '' }
   ],
-  isPlayersVisible: false,
   notes: ''
 };
 
@@ -37,7 +37,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
 
   const { response, loading, error } = useAxios({
     method: 'get',
-    url: `/api/search?limit=100&order_by=rank&fields=id,name&client_id=${BOARDGAMEATLAS_CLIENT_ID}`
+    url: `/api/search?limit=100&order_by=rank&fields=id,name,image_url&client_id=${BOARDGAMEATLAS_CLIENT_ID}`
   });
   const [datalistGameNames, setDatalistGameNames] = useState({});
 
@@ -91,70 +91,73 @@ export default function TrackGameFormPage({ onTrackGame }) {
   }, [gameData]);
 
   return (
-    <FormContainer>
-      <FormHeader error={error} />
-      {loading ? (
-        <FlexColumnContainer>
-          <ThreeDotsWave />
-        </FlexColumnContainer>
-      ) : (
-        <Form onSubmit={handleTrackGame}>
-          {step !== 1 && (
-            <ButtonContainer left>
-              <GoBackButton
-                onClick={(e) => {
-                  e.preventDefault();
-                  prevStep(1);
-                }}
-              >
-                <img
-                  src={backarrow}
-                  alt="A button with arrow points left"
-                  width="30"
-                  aria-label="go back to previous"
-                />
-              </GoBackButton>
-            </ButtonContainer>
-          )}
-          {step === 1 && (
-            <TrackGameOne
-              onHandleChange={handleChangeInput}
-              onAddFormFields={addFormFields}
-              onRemoveFormFields={removeFormFields}
-              nameOfGame={gameData.nameOfGame}
-              players={players}
-              handleOnClickDot={nextStep}
-              handleOnClickBack={prevStep}
-              datalistGameNames={datalistGameNames}
-            />
-          )}
-          {step === 2 && (
-            <TrackGameTwo
-              onHandleChange={handleChangePlayer}
-              players={players}
-              handleOnClickDot={nextStep}
-              handleOnClickBack={prevStep}
-            />
-          )}
-          {step === 3 && (
-            <TrackGameThree
-              onHandleChange={handleChangeInput}
-              notes={gameData.notes}
-              handleOnClickDot={nextStep}
-              handleOnClickBack={prevStep}
-            />
-          )}
-          <ButtonContainer>
-            {step !== 3 && (
-              <DefaultButton type="button" onClick={() => nextStep(1)}>
-                CONTINUE
-              </DefaultButton>
+    <PageSwitchAnimation>
+      <FormContainer>
+        <FormHeader error={error} />
+        {loading ? (
+          <FlexColumnContainer>
+            <ThreeDotsWave />
+          </FlexColumnContainer>
+        ) : (
+          <Form onSubmit={handleTrackGame} autocomplete="off">
+            {step !== 1 && (
+              <ButtonContainer left>
+                <GoBackButton
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    prevStep(1);
+                  }}
+                >
+                  <img
+                    src={backarrow}
+                    alt="A button with arrow points left"
+                    width="30"
+                    aria-label="go back to previous"
+                  />
+                </GoBackButton>
+              </ButtonContainer>
             )}
-            {step === 3 && <PrimaryButton type="submit">CONFIRM</PrimaryButton>}
-          </ButtonContainer>
-        </Form>
-      )}
-    </FormContainer>
+            {step === 1 && (
+              <TrackGameOne
+                onHandleChange={handleChangeInput}
+                onAddFormFields={addFormFields}
+                onRemoveFormFields={removeFormFields}
+                nameOfGame={gameData.nameOfGame}
+                players={players}
+                handleOnClickDot={nextStep}
+                handleOnClickBack={prevStep}
+                datalistGameNames={datalistGameNames}
+              />
+            )}
+            {step === 2 && (
+              <TrackGameTwo
+                onHandleChange={handleChangePlayer}
+                players={players}
+                handleOnClickDot={nextStep}
+                handleOnClickBack={prevStep}
+              />
+            )}
+            {step === 3 && (
+              <TrackGameThree
+                onHandleChange={handleChangeInput}
+                notes={gameData.notes}
+                handleOnClickDot={nextStep}
+                handleOnClickBack={prevStep}
+              />
+            )}
+            <ButtonContainer>
+              {step !== 3 && (
+                <DefaultButton type="button" onClick={() => nextStep(1)}>
+                  CONTINUE
+                </DefaultButton>
+              )}
+              {step === 3 && <PrimaryButton type="submit">CONFIRM</PrimaryButton>}
+            </ButtonContainer>
+          </Form>
+        )}
+      </FormContainer>
+    </PageSwitchAnimation>
   );
 
   function handleTrackGame(event) {
@@ -163,12 +166,17 @@ export default function TrackGameFormPage({ onTrackGame }) {
       nextStep();
       return;
     }
+    const filteredGameData = datalistGameNames.games
+      ? datalistGameNames.games.filter((game) => game.name === gameData.nameOfGame)
+      : [];
+
     onTrackGame({
       nameOfGame: gameData.nameOfGame,
       players: sortedPlayers,
       id: nanoid(),
       isPlayersVisible: false,
-      notes: gameData.notes
+      notes: gameData.notes,
+      img_url: filteredGameData[0]?.image_url || ''
     });
     setGameData(initialGameData);
     navigate('/', { replace: true });
@@ -186,6 +194,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
 }
 
 const FormContainer = styled.main`
+  overflow-y: hidden;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 8fr 1fr;

@@ -11,14 +11,14 @@ export default function TrackedGamesList({ games, onDelete }) {
   return (
     <Card>
       <CardContent role="list">
-        {games.map(({ id, players, nameOfGame, isPlayersVisible, notes }) => (
+        {games.map(({ id, players, nameOfGame, notes, img_url }) => (
           <Game
             key={id}
             id={id}
+            gameImage={img_url}
             players={players}
             nameOfGame={nameOfGame}
             onDelete={onDelete}
-            isPlayersVisible={isPlayersVisible}
             notes={notes}
           />
         ))}
@@ -49,7 +49,6 @@ const Card = styled.div`
     content: '';
     width: 345px;
     height: 510px;
-    overflow: auto;
     display: block;
     position: absolute;
     z-index: -1;

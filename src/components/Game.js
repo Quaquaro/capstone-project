@@ -4,16 +4,18 @@ import PropTypes from 'prop-types';
 import bin from '../img/bin.svg';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import defaultImage from '../img/defaultImage.svg';
 
 Game.propTypes = {
   players: PropTypes.array,
   onDelete: PropTypes.func,
   nameOfGame: PropTypes.string,
+  gameImage: PropTypes.string,
   id: PropTypes.string,
   notes: PropTypes.string
 };
 
-export default function Game({ id, nameOfGame, players, onDelete, notes }) {
+export default function Game({ id, nameOfGame, players, onDelete, notes, gameImage }) {
   const navigate = useNavigate();
   const [isPlayersVisible, setIsPlayersVisible] = useState(false);
   const playersWithScore = players.filter((player) => player.score !== '');
@@ -31,9 +33,16 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
           <StyledGameName>{nameOfGame}</StyledGameName>
           {isPlayersVisible && (
             <DeleteButton type="button" onClick={() => onDelete(id)}>
-              <img src={bin} alt="delete game" width="18" />
+              <img src={bin} alt="delete game" width="18" height="18" />
             </DeleteButton>
           )}
+          {gameImage
+            ? isPlayersVisible && (
+                <GameImage src={gameImage} alt="picture of the game" width="85" height="76" />
+              )
+            : isPlayersVisible && (
+                <GameImage src={defaultImage} alt="picture of the game" width="85" height="76" />
+              )}
           <StyledTable>
             <tbody>
               <tr>
@@ -52,7 +61,9 @@ export default function Game({ id, nameOfGame, players, onDelete, notes }) {
           {isPlayersVisible && <NotesParagraph>{notes}</NotesParagraph>}
         </>
       ) : (
-        <StyledGameName onClick={goToForm}>{nameOfGame}</StyledGameName>
+        <StyledGameName empty onClick={goToForm}>
+          {nameOfGame}
+        </StyledGameName>
       )}
     </GameContainer>
   );
@@ -91,6 +102,11 @@ const DeleteButton = styled.button`
 const StyledGameName = styled.h3`
   margin: 0;
   width: 85%;
+  ${(props) => props.empty && `text-align: center; width: 100%`}
+`;
+
+const GameImage = styled.img`
+  margin-top: 8px;
 `;
 
 const StyledTable = styled.table`
