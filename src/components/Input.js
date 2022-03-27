@@ -12,6 +12,7 @@ Input.propTypes = {
   inputmode: PropTypes.string,
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func,
+  onKeyPress: PropTypes.func,
   value: PropTypes.string.isRequired,
   maxLength: PropTypes.number,
   minLength: PropTypes.number,

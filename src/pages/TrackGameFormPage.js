@@ -103,6 +103,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
             {step !== 1 && (
               <ButtonContainer left>
                 <GoBackButton
+                  type="button"
                   onClick={(e) => {
                     e.preventDefault();
                     prevStep(1);

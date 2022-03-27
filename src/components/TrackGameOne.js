@@ -46,6 +46,11 @@ export default function TrackGameOne({
         value={nameOfGame}
         minLength={3}
         maxLength={24}
+        onKeyPress={(e) => {
+          if (e.key === 'Enter') {
+            handleOnClickDot(1);
+          }
+        }}
       />
       <datalist id="games">
         {datalistGameNames.games?.map((game) => (
