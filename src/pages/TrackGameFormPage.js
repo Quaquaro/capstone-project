@@ -12,8 +12,8 @@ import PrimaryButton from '../components/PrimaryButton.js';
 import DefaultButton from '../components/DefaultButton.js';
 import backarrow from '../img/backarrow.svg';
 import useAxios from '../hooks/useAxios.js';
-import ThreeDotsWave from '../components/ThreeDotsWave.js';
 import { FlexColumnContainer } from '../components/TrackGameTwo.js';
+import Loader from '../components/Loader.js';
 
 // eslint-disable-next-line no-undef
 const BOARDGAMEATLAS_CLIENT_ID = process.env.REACT_APP_BOARDGAMEATLAS_CLIENT_ID;
@@ -96,7 +96,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
         <FormHeader error={error} />
         {loading ? (
           <FlexColumnContainer>
-            <ThreeDotsWave />
+            <Loader />
           </FlexColumnContainer>
         ) : (
           <Form onSubmit={handleTrackGame} autocomplete="off">
