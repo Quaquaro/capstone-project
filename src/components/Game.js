@@ -61,7 +61,9 @@ export default function Game({ id, nameOfGame, players, onDelete, notes, gameIma
           {isPlayersVisible && <NotesParagraph>{notes}</NotesParagraph>}
         </>
       ) : (
-        <StyledGameName onClick={goToForm}>{nameOfGame}</StyledGameName>
+        <StyledGameName empty onClick={goToForm}>
+          {nameOfGame}
+        </StyledGameName>
       )}
     </GameContainer>
   );
@@ -100,6 +102,7 @@ const DeleteButton = styled.button`
 const StyledGameName = styled.h3`
   margin: 0;
   width: 85%;
+  ${(props) => props.empty && `text-align: center; width: 100%`}
 `;
 
 const GameImage = styled.img`
