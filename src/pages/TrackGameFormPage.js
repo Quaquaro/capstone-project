@@ -67,8 +67,12 @@ export default function TrackGameFormPage({ onTrackGame }) {
   };
 
   const addFormFields = () => {
+    if (players.length === 8) {
+      return;
+    }
     setPlayers([...players, { player: '', score: '', id: nanoid() }]);
   };
+
   const removeFormFields = () => {
     if (players.length === 1) {
       return;
