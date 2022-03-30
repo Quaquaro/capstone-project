@@ -33,7 +33,7 @@ export default function FormHeader({ error }) {
       </FlexBox>
 
       <IconButton onClick={handleOnClick}>
-        <img src={cancel} alt="A button with a X" width="64" height="64" aria-label="cancel" />
+        <img src={cancel} alt="cancel" width="64" height="64" />
       </IconButton>
     </StyledFormHeader>
   );
@@ -55,7 +55,7 @@ const IconButton = styled.button`
   border: none;
 
   &:active {
-    opacity: 0.7;
+    scale: 0.7;
   }
 `;
 
@@ -63,10 +63,11 @@ export const FlexBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const StyledFormHeader = styled(StyledHeader)`
   justify-content: space-between;
   gap: 0;
+  max-height: 88px;
 `;

@@ -197,7 +197,7 @@ const FormContainer = styled.main`
   overflow-y: hidden;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 7fr 1fr;
   grid-row-gap: 5px;
 `;
 
