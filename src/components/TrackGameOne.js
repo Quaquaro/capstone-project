@@ -45,7 +45,7 @@ export default function TrackGameOne({
         onChange={onHandleChange}
         value={nameOfGame}
         minLength={3}
-        maxLength={24}
+        maxLength={50}
         onKeyPress={(e) => {
           if (e.key === 'Enter') {
             handleOnClickDot(1);
