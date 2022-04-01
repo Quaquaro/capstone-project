@@ -24,11 +24,12 @@ TABULA RASA is aimed at all passionate board players who want to keep track of t
 **Tools:** Storybook, framer-motion, axios
 
 
-## Screenshots
+## Screenshots!
+
 
 <img src="https://user-images.githubusercontent.com/67676597/158783020-8c0247f8-1f12-475f-8a0d-7781e22fbdcf.jpg" alt="Game Page" width="300">
 <img src="https://user-images.githubusercontent.com/67676597/160276487-37eed58c-bbfb-4906-bd7f-97fe869d124a.png" alt="Form Page 1" width="300">
-<img src="https://user-images.githubusercontent.com/67676597/160276526-e60de24c-940f-41e9-b40f-92a5118da02b.png" alt="Form Page 2" width="300">
+<img src="https://user-images.githubusercontent.com/67676597/161292239-9cb5c588-ef56-404b-84ef-ae2e3adb338b.png" alt="Form Page 2" width="300">
 <img src="https://user-images.githubusercontent.com/67676597/159892632-91070089-cb57-451b-9cab-43e1abc73bb7.png" alt="Form Page 3" width="300">
 
 <img src="https://user-images.githubusercontent.com/67676597/158783033-4f629666-b4e5-4a08-9b62-5604eb453963.jpg" alt="Game Page after entry a game" width="300">
