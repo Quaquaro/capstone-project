@@ -15,7 +15,7 @@ I have learned the following things:
 # TABULA RASA
 
 This is my capstone-project, which I created in connection with the webdevelopment-bootcamp at neue fische.
-TABULA RASA is an app for board players that tracks the results of individual games.  
+TABULA RASA is aimed at all passionate board players who want to keep track of the games they have played. The app allows you to track the results of up to eight players and make notes for the next round.
 
 ## Tech Stack
 
