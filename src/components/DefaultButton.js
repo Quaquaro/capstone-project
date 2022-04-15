@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 DefaultButton.propTypes = {
   children: PropTypes.string.isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  hoverState: PropTypes.bool
 };
 
 DefaultButton.defaultProps = {
