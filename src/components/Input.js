@@ -26,7 +26,6 @@ Input.defaultProps = {
   placeholder: 'What is on your mind?',
   labelText: 'Label ',
   id: 'name',
-  value: 'value',
   autocomplete: 'off'
 };
 
