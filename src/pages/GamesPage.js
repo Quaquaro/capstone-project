@@ -61,7 +61,7 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
 const GamePageLayout = styled.main`
   overflow-y: hidden;
   display: grid;
-  grid-template-rows: 8fr 1fr;
+  grid-template-rows: 1fr 8fr 1fr;
   grid-template-columns: 1fr;
   place-content: center;
   max-height: 760px;
