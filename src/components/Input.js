@@ -13,7 +13,7 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onKeyPress: PropTypes.func,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   maxLength: PropTypes.number,
   minLength: PropTypes.number,
   pattern: PropTypes.string,
