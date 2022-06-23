@@ -13,7 +13,7 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   onKeyPress: PropTypes.func,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   maxLength: PropTypes.number,
   minLength: PropTypes.number,
   pattern: PropTypes.string,
@@ -26,7 +26,6 @@ Input.defaultProps = {
   placeholder: 'What is on your mind?',
   labelText: 'Label ',
   id: 'name',
-  value: 'value',
   autocomplete: 'off'
 };
 

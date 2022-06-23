@@ -1,7 +1,6 @@
-
 ## 🚀 About Me
-I'm a webdev student at neue fische.
 
+I'm a webdev student at neue fische.
 
 ## Lessons Learned
 
@@ -23,9 +22,7 @@ TABULA RASA is aimed at all passionate board players who want to keep track of t
 
 **Tools:** Storybook, framer-motion, axios
 
-
 ## Screenshots!
-
 
 <img src="https://user-images.githubusercontent.com/67676597/158783020-8c0247f8-1f12-475f-8a0d-7781e22fbdcf.jpg" alt="Game Page" width="300">
 <img src="https://user-images.githubusercontent.com/67676597/160276487-37eed58c-bbfb-4906-bd7f-97fe869d124a.png" alt="Form Page 1" width="300">
@@ -37,7 +34,6 @@ TABULA RASA is aimed at all passionate board players who want to keep track of t
 <img src="https://user-images.githubusercontent.com/67676597/160276626-84aaa776-260f-4752-bde6-d406ff5ca73b.png" alt="Delete Dialog" width="300">
 <img src="https://user-images.githubusercontent.com/67676597/158783040-3c2a9fca-d7a5-4c5d-a219-42d376c56ed1.jpg" alt="Success message" width="300">
 <img src="https://user-images.githubusercontent.com/67676597/160276640-53941c96-267e-472b-9f05-68e96ee1d217.png" alt="Error message" width="300">
-
 
 ## Run Locally
 
@@ -73,7 +69,6 @@ To run tests, run the following command
   npm test
 ```
 
-
 ## Roadmap
 
 - Use React Hook Forms and improve input validation
@@ -81,13 +76,13 @@ To run tests, run the following command
 
 ## Color Reference
 
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| Black | ![#1B1B1B](https://via.placeholder.com/10/1b1b1b?text=+) #1B1B1B |
-| Darkgrey | ![#313131](https://via.placeholder.com/10/313131?text=+) #313131 |
-| White | ![#EEFFFD](https://via.placeholder.com/10/eefffd?text=+) EEFFFD |
-| Green | ![#31CC62](https://via.placeholder.com/10/31CC62?text=+) #31CC62 |
-| Pink | ![#F631A7](https://via.placeholder.com/10/F631A7?text=+) #F631A7 |
+| Color     | Hex                                                              |
+| --------- | ---------------------------------------------------------------- |
+| Black     | ![#1B1B1B](https://via.placeholder.com/10/1b1b1b?text=+) #1B1B1B |
+| Darkgrey  | ![#313131](https://via.placeholder.com/10/313131?text=+) #313131 |
+| White     | ![#EEFFFD](https://via.placeholder.com/10/eefffd?text=+) EEFFFD  |
+| Green     | ![#31CC62](https://via.placeholder.com/10/31CC62?text=+) #31CC62 |
+| Pink      | ![#F631A7](https://via.placeholder.com/10/F631A7?text=+) #F631A7 |
 | Neon blue | ![#05F2DB](https://via.placeholder.com/10/05F2DB?text=+) #05F2DB |
 
 ## Known bugs
@@ -98,10 +93,6 @@ The pattern attribute no longer has any influence on the score inputs. Therefore
 
 If you have any feedback, please reach out to me at quaquaro@gmail.com
 
-
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-
-
