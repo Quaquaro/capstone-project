@@ -1,4 +1,5 @@
 import axios from 'axios';
+import confetti from 'canvas-confetti';
 import PageSwitchAnimation from '../components/PageSwitchAnimation.js';
 import PropTypes from 'prop-types';
 import FormHeader from '../components/FormHeader.js';
@@ -273,6 +274,15 @@ export default function TrackGameFormPage({ onTrackGame, playerGroups = [] }) {
       date: gameData.date || getTodayDateString(),
       img_url: filteredGameData[0]?.image_url || editGame?.gameImage || ''
     });
+    // eslint-disable-next-line no-undef
+    if (process.env.NODE_ENV !== 'test') {
+      try {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      } catch (e) {
+        // ignore in environments without canvas
+      }
+    }
+
     setGameData(initialGameData);
     navigate('/', { replace: true });
   }

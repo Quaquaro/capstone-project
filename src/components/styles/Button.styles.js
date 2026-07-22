@@ -1,24 +1,31 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  background-color: ${({ theme }) => theme.color.neonBlue};
+  background: ${({ theme }) => theme.color.glassBg || 'rgba(31, 31, 51, 0.75)'};
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: ${({ theme }) => theme.color.neonBlue};
+  border: 1.5px solid ${({ theme }) => theme.color.neonBlue};
   border-radius: 9999em;
-  padding: 11px 20px;
-  color: ${({ theme }) => theme.color.primary};
-  border: none;
-  font-variation-settings: 'wght' 600;
-  font-size: 20px;
-  box-shadow: rgba(5, 242, 219, 0.4) 0px 5px;
+  padding: 10px 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-  ${(props) => props.green && `box-shadow: rgba(49, 204, 98, 0.4) 0px 5px;`}
+  &:hover {
+    background-color: ${({ theme }) => theme.color.neonBlue};
+    color: ${({ theme }) => theme.color.primary};
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+    transform: translateY(-2px);
+  }
+
   &:active {
-    box-shadow: rgba(5, 242, 219, 0.4) 0px 5px, rgba(5, 242, 219, 0.3) 0px 10px,
-      rgba(5, 242, 219, 0.2) 0px 15px, rgba(5, 242, 219, 0.1) 0px 20px,
-      rgba(5, 242, 219, 0.05) 0px 25px;
-    ${(props) =>
-      props.green &&
-      `box-shadow: rgba(49, 204, 98, 0.4) 0px 5px, rgba(49, 204, 98, 0.3) 0px 10px,
-      rgba(49, 204, 98, 0.2) 0px 15px, rgba(49, 204, 98, 0.1) 0px 20px,
-      rgba(49, 204, 98, 0.05) 0px 25px;`}
+    transform: translateY(1px);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
   }
 `;
