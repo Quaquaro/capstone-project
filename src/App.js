@@ -7,6 +7,7 @@ import GamesPage from './pages/GamesPage.js';
 import TrackGameFormPage from './pages/TrackGameFormPage.js';
 import CatalogManagementPage from './pages/CatalogManagementPage.js';
 import GroupsManagementPage from './pages/GroupsManagementPage.js';
+import StatsPage from './pages/StatsPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
 
@@ -90,6 +91,7 @@ function App() {
                 />
               }
             />
+            <Route path="/stats" element={<StatsPage games={games} />} />
           </Routes>
         </AnimatePresence>
       </ErrorBoundary>

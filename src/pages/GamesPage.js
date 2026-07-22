@@ -56,6 +56,7 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
             <DefaultButton onClick={handleOnClick}>TRACK GAME</DefaultButton>
             <DefaultButton onClick={() => navigate('/catalog')}>CATALOG</DefaultButton>
             <DefaultButton onClick={() => navigate('/groups')}>GROUPS</DefaultButton>
+            <DefaultButton onClick={() => navigate('/stats')}>STATS 📊</DefaultButton>
           </ButtonContainer>
           {dialog.isLoading && (
             <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
