@@ -29,11 +29,12 @@ Input.defaultProps = {
   autocomplete: 'off'
 };
 
-export default function Input({ name, labelText, ...props }) {
+export default function Input({ name, labelText, id, ...props }) {
+  const inputId = id || name;
   return (
     <>
-      <InputLabel htmlFor={name}>{labelText}</InputLabel>
-      <InputBox name={name} {...props} id={name} />
+      <InputLabel htmlFor={inputId}>{labelText}</InputLabel>
+      <InputBox name={name} id={inputId} {...props} />
     </>
   );
 }

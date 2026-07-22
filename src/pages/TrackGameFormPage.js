@@ -15,9 +15,6 @@ import useAxios from '../hooks/useAxios.js';
 import { FlexColumnContainer } from '../components/TrackGameTwo.js';
 import Loader from '../components/Loader.js';
 
-// eslint-disable-next-line no-undef
-const BOARDGAMEATLAS_CLIENT_ID = process.env.REACT_APP_BOARDGAMEATLAS_CLIENT_ID;
-
 TrackGameFormPage.propTypes = {
   onTrackGame: PropTypes.func
 };
@@ -37,7 +34,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
 
   const { response, loading, error } = useAxios({
     method: 'get',
-    url: `/api/search?limit=100&order_by=rank&fields=id,name,image_url&client_id=${BOARDGAMEATLAS_CLIENT_ID}`
+    url: '/api/boardgames'
   });
   const [datalistGameNames, setDatalistGameNames] = useState({});
 
@@ -54,6 +51,13 @@ export default function TrackGameFormPage({ onTrackGame }) {
   ]);
   const [sortedPlayers, setSortedPlayers] = useState([]);
 
+  const isScoreValid = (score) => {
+    if (score === null || score === undefined) return false;
+    const str = String(score).trim();
+    if (str === '') return false;
+    return /^-?\d{1,3}$/.test(str);
+  };
+
   const handleChangeInput = (event) => {
     const { name, value } = event.target;
     setGameData({ ...gameData, [name]: value });
@@ -63,14 +67,16 @@ export default function TrackGameFormPage({ onTrackGame }) {
     const newPlayers = [...players];
     newPlayers[i][e.target.name] = e.target.value;
     setPlayers(newPlayers);
-    setGameData({ ...gameData, players });
+    setGameData({ ...gameData, players: newPlayers });
   };
 
   const addFormFields = () => {
     if (players.length === 8) {
       return;
     }
-    setPlayers([...players, { player: '', score: '', id: nanoid() }]);
+    const updatedPlayers = [...players, { player: '', score: '', id: nanoid() }];
+    setPlayers(updatedPlayers);
+    setGameData({ ...gameData, players: updatedPlayers });
   };
 
   const removeFormFields = () => {
@@ -78,8 +84,9 @@ export default function TrackGameFormPage({ onTrackGame }) {
       return;
     }
     const newPlayers = [...players];
-    newPlayers.splice(0, 1);
+    newPlayers.pop();
     setPlayers(newPlayers);
+    setGameData({ ...gameData, players: newPlayers });
   };
 
   useEffect(() => {
@@ -88,11 +95,13 @@ export default function TrackGameFormPage({ onTrackGame }) {
         score: 'score'
       };
       const sortProperty = types[type];
-      const sorted = [...gameData.players].sort((a, b) => b[sortProperty] - a[sortProperty]);
+      const sorted = [...(gameData.players || players)].sort(
+        (a, b) => Number(b[sortProperty] || 0) - Number(a[sortProperty] || 0)
+      );
       setSortedPlayers(sorted);
     };
     sortArray('score');
-  }, [gameData]);
+  }, [gameData, players]);
 
   return (
     <PageSwitchAnimation>
@@ -164,12 +173,19 @@ export default function TrackGameFormPage({ onTrackGame }) {
     </PageSwitchAnimation>
   );
 
+  function isStepTwoValid() {
+    return players.every((p) => p.player && p.player.trim() !== '' && isScoreValid(p.score));
+  }
+
   function handleTrackGame(event) {
     event.preventDefault();
-    if (players[0].player === '') {
-      nextStep();
+    if (!gameData.nameOfGame || gameData.nameOfGame.trim() === '') {
       return;
     }
+    if (!isStepTwoValid()) {
+      return;
+    }
+
     const filteredGameData = datalistGameNames.games
       ? datalistGameNames.games.filter((game) => game.name === gameData.nameOfGame)
       : [];
@@ -186,14 +202,18 @@ export default function TrackGameFormPage({ onTrackGame }) {
     navigate('/', { replace: true });
   }
 
-  function nextStep(count) {
-    const countOfPlayers = players.length;
-    if (step === 3 || gameData.nameOfGame === '') return;
-    if (step === 2 && players[countOfPlayers - 1].score === '') return;
-    setStep((step) => step + count);
+  function nextStep(count = 1) {
+    if (step === 3) return;
+    if (step === 1) {
+      if (!gameData.nameOfGame || gameData.nameOfGame.trim() === '') return;
+      setStep((step) => step + count);
+    } else if (step === 2) {
+      if (!isStepTwoValid()) return;
+      setStep((step) => step + count);
+    }
   }
-  function prevStep(count) {
-    setStep((step) => step - count);
+  function prevStep(count = 1) {
+    setStep((step) => Math.max(1, step - count));
   }
 }
 

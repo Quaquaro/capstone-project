@@ -29,6 +29,7 @@ export default function TrackGameTwo({
         <FlexContainer key={index}>
           <FlexColumnContainer>
             <StyledNameInput
+              id={`player-${index + 1}`}
               name="player"
               labelText={`Player ${index + 1}`}
               autocomplete="off"
@@ -43,6 +44,7 @@ export default function TrackGameTwo({
           </FlexColumnContainer>
           <FlexColumnContainer>
             <StyledScoreInput
+              id={`score-${index + 1}`}
               name="score"
               labelText="Score"
               type="text"

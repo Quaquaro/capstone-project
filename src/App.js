@@ -5,6 +5,7 @@ import GlobalFonts from './assets/variable/fonts.js';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import GamesPage from './pages/GamesPage.js';
 import TrackGameFormPage from './pages/TrackGameFormPage.js';
+import CatalogManagementPage from './pages/CatalogManagementPage.js';
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { useState, useRef } from 'react';
 
@@ -53,6 +54,7 @@ function App() {
               }
             />
             <Route path="/addgame" element={<TrackGameFormPage onTrackGame={trackGame} />} />
+            <Route path="/catalog" element={<CatalogManagementPage />} />
           </Routes>
         </AnimatePresence>
       </ErrorBoundary>

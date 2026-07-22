@@ -61,4 +61,19 @@ describe('TrackGameFormPage', () => {
     userEvent.click(screen.getByText(/continue/i));
     expect(handleTrackGame).toHaveBeenCalledTimes(0);
   });
+
+  it('should not proceed to step 3 if score contains letters', async () => {
+    render(<TrackGameFormPage onTrackGame={handleTrackGame} />, { wrapper: Wrapper });
+    await waitFor(() => expect(screen.getByText(/name of game/i).toBeInTheDocument), {
+      timeout: 10000
+    });
+    userEvent.type(screen.getByText(/name Of Game/i), testData.nameOfGame);
+    userEvent.click(screen.getByText(/continue/i));
+    userEvent.type(screen.getByLabelText(/player 1/i), testData.playerName);
+    userEvent.type(screen.getByLabelText(/player 2/i), testData.playerName);
+    userEvent.type(screen.getAllByPlaceholderText('0')[0], 'abc');
+    userEvent.type(screen.getAllByPlaceholderText('0')[1], testData.score);
+    userEvent.click(screen.getByText(/continue/i));
+    expect(screen.queryByLabelText(/notes/i)).not.toBeInTheDocument();
+  });
 });

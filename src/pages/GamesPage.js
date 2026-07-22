@@ -45,6 +45,7 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
           <TrackedGamesList games={searchResults} onDelete={onDeleteGame} />
           <ButtonContainer>
             <DefaultButton onClick={handleOnClick}>TRACK GAME</DefaultButton>
+            <DefaultButton onClick={() => navigate('/catalog')}>CATALOG</DefaultButton>
           </ButtonContainer>
           {dialog.isLoading && (
             <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
@@ -73,5 +74,6 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 15px;
   margin: 10px 0 20px;
 `;
