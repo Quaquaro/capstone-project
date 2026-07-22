@@ -22,13 +22,15 @@ function Wrapper({ children }) {
 
 describe('CatalogManagementPage', () => {
   const mockGames = [
-    { id: '1', name: 'Catan', image_url: '' },
-    { id: '2', name: 'Carcassonne', image_url: '' }
+    { id: '1', name: 'Catan', image_url: '', default_player_count: 4 },
+    { id: '2', name: 'Carcassonne', image_url: '', default_player_count: 2 }
   ];
 
   beforeEach(() => {
     axios.get.mockResolvedValue({ data: { games: mockGames } });
-    axios.post.mockResolvedValue({ data: { id: '3', name: 'Dominion', image_url: '' } });
+    axios.post.mockResolvedValue({
+      data: { id: '3', name: 'Dominion', image_url: '', default_player_count: null }
+    });
     axios.delete.mockResolvedValue({ data: { message: 'Deleted' } });
   });
 
@@ -53,7 +55,8 @@ describe('CatalogManagementPage', () => {
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith('/api/boardgames', {
         name: 'Dominion',
-        image_url: ''
+        image_url: '',
+        default_player_count: null
       });
     });
   });
@@ -71,7 +74,9 @@ describe('CatalogManagementPage', () => {
   });
 
   it('allows editing an existing game in the catalog', async () => {
-    axios.put.mockResolvedValue({ data: { id: '1', name: 'Catan Expanded', image_url: '' } });
+    axios.put.mockResolvedValue({
+      data: { id: '1', name: 'Catan Expanded', image_url: '', default_player_count: 4 }
+    });
     render(<CatalogManagementPage />, { wrapper: Wrapper });
 
     await waitFor(() => expect(screen.getByText('Catan')).toBeInTheDocument());
@@ -86,7 +91,8 @@ describe('CatalogManagementPage', () => {
     await waitFor(() => {
       expect(axios.put).toHaveBeenCalledWith('/api/boardgames/1', {
         name: 'Catan Expanded',
-        image_url: ''
+        image_url: '',
+        default_player_count: 4
       });
     });
   });

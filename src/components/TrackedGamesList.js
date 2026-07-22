@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 
 TrackedGamesList.propTypes = {
   games: PropTypes.array,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  onShowHighscore: PropTypes.func
 };
 
-export default function TrackedGamesList({ games, onDelete }) {
+export default function TrackedGamesList({ games, onDelete, onShowHighscore }) {
   return (
     <Card>
       <CardContent role="list">
-        {games.map(({ id, players, nameOfGame, notes, img_url }) => (
+        {games.map(({ id, players, nameOfGame, notes, img_url, date }) => (
           <Game
             key={id}
             id={id}
@@ -20,6 +21,8 @@ export default function TrackedGamesList({ games, onDelete }) {
             nameOfGame={nameOfGame}
             onDelete={onDelete}
             notes={notes}
+            date={date}
+            onShowHighscore={onShowHighscore}
           />
         ))}
       </CardContent>

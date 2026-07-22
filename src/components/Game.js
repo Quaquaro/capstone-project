@@ -9,13 +9,24 @@ import defaultImage from '../img/defaultImage.svg';
 Game.propTypes = {
   players: PropTypes.array,
   onDelete: PropTypes.func,
+  onShowHighscore: PropTypes.func,
   nameOfGame: PropTypes.string,
   gameImage: PropTypes.string,
   id: PropTypes.string,
-  notes: PropTypes.string
+  notes: PropTypes.string,
+  date: PropTypes.string
 };
 
-export default function Game({ id, nameOfGame, players, onDelete, notes, gameImage }) {
+export default function Game({
+  id,
+  nameOfGame,
+  players,
+  onDelete,
+  onShowHighscore,
+  notes,
+  gameImage,
+  date
+}) {
   const navigate = useNavigate();
   const [isPlayersVisible, setIsPlayersVisible] = useState(false);
   const playersWithScore = players.filter((player) => player.score !== '');
@@ -30,11 +41,57 @@ export default function Game({ id, nameOfGame, players, onDelete, notes, gameIma
     >
       {id !== '1' ? (
         <>
-          <StyledGameName>{nameOfGame}</StyledGameName>
+          <HeaderGroup>
+            <div>
+              <StyledGameName>{nameOfGame}</StyledGameName>
+              {date && <StyledDate>{date}</StyledDate>}
+            </div>
+          </HeaderGroup>
           {isPlayersVisible && (
-            <DeleteButton type="button" onClick={() => onDelete(id)}>
-              <img src={bin} alt="delete game" width="18" height="18" />
-            </DeleteButton>
+            <ButtonGroup>
+              {onShowHighscore && (
+                <HighscoreButton
+                  type="button"
+                  aria-label={`highscore for ${nameOfGame}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onShowHighscore(nameOfGame);
+                  }}
+                >
+                  🏆
+                </HighscoreButton>
+              )}
+              <EditMatchButton
+                type="button"
+                aria-label={`edit match ${nameOfGame}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate('/addgame', {
+                    state: {
+                      editGame: {
+                        id,
+                        nameOfGame,
+                        players,
+                        notes,
+                        date,
+                        gameImage
+                      }
+                    }
+                  });
+                }}
+              >
+                ✏️
+              </EditMatchButton>
+              <DeleteButton
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onDelete(id);
+                }}
+              >
+                <img src={bin} alt="delete game" width="18" height="18" />
+              </DeleteButton>
+            </ButtonGroup>
           )}
           {gameImage
             ? isPlayersVisible && (
@@ -45,10 +102,10 @@ export default function Game({ id, nameOfGame, players, onDelete, notes, gameIma
               )}
           <StyledTable>
             <tbody>
-              <tr>
-                {players[0]?.player && <td>{players[0]?.player}</td>}
+              <WinnerRow>
+                {players[0]?.player && <td>👑 {players[0]?.player}</td>}
                 {players[0]?.score && <td>{players[0]?.score}</td>}
-              </tr>
+              </WinnerRow>
               {isPlayersVisible &&
                 playersWithScore?.map(({ player, score, id }) => (
                   <tr key={id}>
@@ -84,16 +141,51 @@ const GameContainer = styled.div`
   user-select: none;
 `;
 
-const DeleteButton = styled.button`
+const HeaderGroup = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 85%;
+`;
+
+const ButtonGroup = styled.div`
   position: absolute;
   right: 5px;
   top: 5px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+`;
+
+const HighscoreButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  &:active {
+    opacity: 0.7;
+  }
+`;
+
+const EditMatchButton = styled.button`
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  &:active {
+    opacity: 0.7;
+  }
+`;
+
+const DeleteButton = styled.button`
   background: none;
   border: none;
   width: 25px;
   display: flex;
   justify-content: center;
-  margin: 5px 5px 0 0;
+  margin: 0;
   &:active {
     opacity: 0.7;
   }
@@ -103,6 +195,14 @@ const StyledGameName = styled.h3`
   margin: 0;
   width: 85%;
   ${(props) => props.empty && `text-align: center; width: 100%`}
+`;
+
+const StyledDate = styled.span`
+  font-family: 'Roboto';
+  font-size: 12px;
+  color: ${({ theme }) => theme.color.neonBlue};
+  display: block;
+  margin-top: 2px;
 `;
 
 const GameImage = styled.img`
@@ -116,4 +216,9 @@ const StyledTable = styled.table`
 
 const NotesParagraph = styled.p`
   margin-right: 8px;
+`;
+
+const WinnerRow = styled.tr`
+  color: ${({ theme }) => theme.color.yellow};
+  font-weight: bold;
 `;

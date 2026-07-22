@@ -42,7 +42,7 @@ app.get('/api/boardgames', (req, res) => {
 
 // POST /api/boardgames - Add a new board game to catalog
 app.post('/api/boardgames', (req, res) => {
-  const { name, image_url } = req.body;
+  const { name, image_url, default_player_count } = req.body;
   if (!name || name.trim() === '') {
     return res.status(400).json({ error: 'Game name is required' });
   }
@@ -51,7 +51,8 @@ app.post('/api/boardgames', (req, res) => {
   const newGame = {
     id: String(Date.now()),
     name: name.trim(),
-    image_url: image_url || ''
+    image_url: image_url || '',
+    default_player_count: default_player_count ? Number(default_player_count) : null
   };
 
   boardgames.push(newGame);
@@ -62,7 +63,7 @@ app.post('/api/boardgames', (req, res) => {
 // PUT /api/boardgames/:id - Update an existing board game in catalog
 app.put('/api/boardgames/:id', (req, res) => {
   const { id } = req.params;
-  const { name, image_url } = req.body;
+  const { name, image_url, default_player_count } = req.body;
 
   if (!name || name.trim() === '') {
     return res.status(400).json({ error: 'Game name is required' });
@@ -78,7 +79,11 @@ app.put('/api/boardgames/:id', (req, res) => {
   boardgames[index] = {
     ...boardgames[index],
     name: name.trim(),
-    image_url: image_url !== undefined ? image_url.trim() : boardgames[index].image_url
+    image_url: image_url !== undefined ? image_url.trim() : boardgames[index].image_url,
+    default_player_count:
+      default_player_count !== undefined
+        ? Number(default_player_count)
+        : boardgames[index].default_player_count
   };
 
   writeJSON(boardgamesPath, boardgames);

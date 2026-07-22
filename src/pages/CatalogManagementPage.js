@@ -14,12 +14,14 @@ export default function CatalogManagementPage() {
   const [boardgames, setBoardgames] = useState([]);
   const [name, setName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [defaultPlayerCount, setDefaultPlayerCount] = useState('');
   const [message, setMessage] = useState('');
 
   // Editing state
   const [editingId, setEditingId] = useState(null);
   const [editName, setEditName] = useState('');
   const [editImageUrl, setEditImageUrl] = useState('');
+  const [editDefaultPlayerCount, setEditDefaultPlayerCount] = useState('');
 
   const fetchBoardgames = async () => {
     try {
@@ -43,10 +45,12 @@ export default function CatalogManagementPage() {
     try {
       await axios.post('/api/boardgames', {
         name: name.trim(),
-        image_url: imageUrl.trim()
+        image_url: imageUrl.trim(),
+        default_player_count: defaultPlayerCount ? Number(defaultPlayerCount) : null
       });
       setName('');
       setImageUrl('');
+      setDefaultPlayerCount('');
       setMessage('Game successfully added!');
       fetchBoardgames();
       setTimeout(() => setMessage(''), 3000);
@@ -61,12 +65,18 @@ export default function CatalogManagementPage() {
     setEditingId(game.id);
     setEditName(game.name);
     setEditImageUrl(game.image_url || '');
+    setEditDefaultPlayerCount(
+      game.default_player_count !== undefined && game.default_player_count !== null
+        ? String(game.default_player_count)
+        : ''
+    );
   };
 
   const cancelEdit = () => {
     setEditingId(null);
     setEditName('');
     setEditImageUrl('');
+    setEditDefaultPlayerCount('');
   };
 
   const handleSaveEdit = async (e, id) => {
@@ -76,7 +86,8 @@ export default function CatalogManagementPage() {
     try {
       await axios.put(`/api/boardgames/${id}`, {
         name: editName.trim(),
-        image_url: editImageUrl.trim()
+        image_url: editImageUrl.trim(),
+        default_player_count: editDefaultPlayerCount ? Number(editDefaultPlayerCount) : null
       });
       setMessage('Game updated successfully!');
       cancelEdit();
@@ -140,6 +151,18 @@ export default function CatalogManagementPage() {
               />
             </InputGroup>
 
+            <InputGroup>
+              <Input
+                name="defaultPlayerCount"
+                id="defaultPlayerCount"
+                labelText="Default Player Count (Optional)"
+                placeholder="e.g. 4"
+                type="number"
+                value={defaultPlayerCount}
+                onChange={(e) => setDefaultPlayerCount(e.target.value)}
+              />
+            </InputGroup>
+
             <ButtonWrapper>
               <PrimaryButton type="submit">ADD TO CATALOG</PrimaryButton>
             </ButtonWrapper>
@@ -167,6 +190,13 @@ export default function CatalogManagementPage() {
                         placeholder="Image URL"
                         aria-label={`edit image url for ${game.name}`}
                       />
+                      <InlineInput
+                        type="number"
+                        value={editDefaultPlayerCount}
+                        onChange={(e) => setEditDefaultPlayerCount(e.target.value)}
+                        placeholder="Default Players"
+                        aria-label={`edit default player count for ${game.name}`}
+                      />
                       <ActionGroup>
                         <SaveBtn type="submit">Save</SaveBtn>
                         <CancelBtn type="button" onClick={cancelEdit}>
@@ -183,6 +213,11 @@ export default function CatalogManagementPage() {
                       )}
                       <GameInfo>
                         <GameTitle>{game.name}</GameTitle>
+                        {game.default_player_count ? (
+                          <DefaultPlayerTag>
+                            👥 {game.default_player_count} Players
+                          </DefaultPlayerTag>
+                        ) : null}
                         <ActionGroup>
                           <EditBtn
                             type="button"
@@ -333,8 +368,15 @@ const GameTitle = styled.span`
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   word-break: break-word;
+`;
+
+const DefaultPlayerTag = styled.span`
+  color: ${({ theme }) => theme.color.yellow};
+  font-family: 'Roboto';
+  font-size: 11px;
+  margin-bottom: 8px;
 `;
 
 const ActionGroup = styled.div`

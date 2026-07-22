@@ -34,7 +34,7 @@ describe('TrackGameFormPage', () => {
     userEvent.type(screen.getByText(/name Of Game/i), testData.nameOfGame);
     userEvent.click(screen.getAllByRole('button')[2]);
     userEvent.click(screen.getByText(/continue/i));
-    expect(screen.getAllByText(/player*/i).length).toBe(3);
+    expect(screen.getAllByText(/^player \d+$/i).length).toBe(3);
     expect(screen.getAllByPlaceholderText(/0/).length).toBe(3);
     userEvent.type(screen.getByLabelText(/player 1/i), testData.playerName);
     userEvent.type(screen.getByLabelText(/player 2/i), testData.playerName);

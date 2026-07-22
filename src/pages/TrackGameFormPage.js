@@ -1,9 +1,10 @@
+import axios from 'axios';
 import PageSwitchAnimation from '../components/PageSwitchAnimation.js';
 import PropTypes from 'prop-types';
 import FormHeader from '../components/FormHeader.js';
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 import TrackGameOne from '../components/TrackGameOne.js';
 import TrackGameTwo from '../components/TrackGameTwo.js';
@@ -16,8 +17,11 @@ import { FlexColumnContainer } from '../components/TrackGameTwo.js';
 import Loader from '../components/Loader.js';
 
 TrackGameFormPage.propTypes = {
-  onTrackGame: PropTypes.func
+  onTrackGame: PropTypes.func,
+  playerGroups: PropTypes.array
 };
+
+const getTodayDateString = () => new Date().toISOString().slice(0, 10);
 
 const initialGameData = {
   nameOfGame: '',
@@ -25,12 +29,15 @@ const initialGameData = {
     { player: '', score: '', id: '' },
     { player: '', score: '', id: '' }
   ],
-  notes: ''
+  notes: '',
+  date: getTodayDateString()
 };
 
-export default function TrackGameFormPage({ onTrackGame }) {
+export default function TrackGameFormPage({ onTrackGame, playerGroups = [] }) {
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
+  const location = useLocation();
+  const editGame = location.state?.editGame;
 
   const { response, loading, error } = useAxios({
     method: 'get',
@@ -44,11 +51,30 @@ export default function TrackGameFormPage({ onTrackGame }) {
     }
   }, [response]);
 
-  const [gameData, setGameData] = useState(initialGameData);
-  const [players, setPlayers] = useState([
-    { player: '', score: '', id: nanoid() },
-    { player: '', score: '', id: nanoid() }
-  ]);
+  const [gameData, setGameData] = useState(() => {
+    if (editGame) {
+      return {
+        nameOfGame: editGame.nameOfGame || '',
+        notes: editGame.notes || '',
+        date: editGame.date || getTodayDateString()
+      };
+    }
+    return initialGameData;
+  });
+
+  const [players, setPlayers] = useState(() => {
+    if (editGame && Array.isArray(editGame.players) && editGame.players.length > 0) {
+      return editGame.players.map((p) => ({
+        player: p.player || '',
+        score: p.score !== undefined && p.score !== null ? String(p.score) : '',
+        id: p.id || nanoid()
+      }));
+    }
+    return [
+      { player: '', score: '', id: nanoid() },
+      { player: '', score: '', id: nanoid() }
+    ];
+  });
   const [sortedPlayers, setSortedPlayers] = useState([]);
 
   const isScoreValid = (score) => {
@@ -61,6 +87,26 @@ export default function TrackGameFormPage({ onTrackGame }) {
   const handleChangeInput = (event) => {
     const { name, value } = event.target;
     setGameData({ ...gameData, [name]: value });
+
+    if (name === 'nameOfGame' && datalistGameNames?.games) {
+      const match = datalistGameNames.games.find(
+        (g) => g.name.toLowerCase() === value.trim().toLowerCase()
+      );
+      if (match && match.default_player_count && match.default_player_count > 0 && !editGame) {
+        const count = Math.min(8, Math.max(1, Number(match.default_player_count)));
+        const currentCount = players.length;
+        if (count > currentCount) {
+          const added = Array.from({ length: count - currentCount }, () => ({
+            player: '',
+            score: '',
+            id: nanoid()
+          }));
+          setPlayers([...players, ...added]);
+        } else if (count < currentCount) {
+          setPlayers(players.slice(0, count));
+        }
+      }
+    }
   };
 
   const handleChangePlayer = (i, e) => {
@@ -68,6 +114,19 @@ export default function TrackGameFormPage({ onTrackGame }) {
     newPlayers[i][e.target.name] = e.target.value;
     setPlayers(newPlayers);
     setGameData({ ...gameData, players: newPlayers });
+  };
+
+  const handleSelectPlayerGroup = (groupId) => {
+    const selectedGroup = playerGroups.find((g) => g.id === groupId);
+    if (selectedGroup && Array.isArray(selectedGroup.players)) {
+      const newPlayers = selectedGroup.players.map((playerName) => ({
+        player: playerName,
+        score: '',
+        id: nanoid()
+      }));
+      setPlayers(newPlayers);
+      setGameData({ ...gameData, players: newPlayers });
+    }
   };
 
   const addFormFields = () => {
@@ -147,6 +206,8 @@ export default function TrackGameFormPage({ onTrackGame }) {
               <TrackGameTwo
                 onHandleChange={handleChangePlayer}
                 players={players}
+                playerGroups={playerGroups}
+                onSelectGroup={handleSelectPlayerGroup}
                 handleOnClickDot={nextStep}
                 handleOnClickBack={prevStep}
               />
@@ -155,6 +216,7 @@ export default function TrackGameFormPage({ onTrackGame }) {
               <TrackGameThree
                 onHandleChange={handleChangeInput}
                 notes={gameData.notes}
+                date={gameData.date}
                 handleOnClickDot={nextStep}
                 handleOnClickBack={prevStep}
               />
@@ -186,17 +248,30 @@ export default function TrackGameFormPage({ onTrackGame }) {
       return;
     }
 
+    const gameNameTrimmed = gameData.nameOfGame.trim();
+    const existingGame = datalistGameNames.games
+      ? datalistGameNames.games.find(
+          (game) => game.name.toLowerCase() === gameNameTrimmed.toLowerCase()
+        )
+      : null;
+
+    // eslint-disable-next-line no-undef
+    if (!existingGame && process.env.NODE_ENV !== 'test') {
+      axios.post('/api/boardgames', { name: gameNameTrimmed }).catch(() => {});
+    }
+
     const filteredGameData = datalistGameNames.games
       ? datalistGameNames.games.filter((game) => game.name === gameData.nameOfGame)
       : [];
 
     onTrackGame({
+      id: editGame?.id || nanoid(),
       nameOfGame: gameData.nameOfGame,
       players: sortedPlayers,
-      id: nanoid(),
       isPlayersVisible: false,
       notes: gameData.notes,
-      img_url: filteredGameData[0]?.image_url || ''
+      date: gameData.date || getTodayDateString(),
+      img_url: filteredGameData[0]?.image_url || editGame?.gameImage || ''
     });
     setGameData(initialGameData);
     navigate('/', { replace: true });

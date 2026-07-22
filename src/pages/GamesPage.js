@@ -10,6 +10,7 @@ import Alert from '../components/Alert.js';
 import Notification from '../components/Notification.js';
 import PageSwitchAnimation from '../components/PageSwitchAnimation.js';
 import SearchBar from '../components/SearchBar.js';
+import HighscoreModal from '../components/HighscoreModal.js';
 
 GamesPage.propTypes = {
   games: PropTypes.array,
@@ -23,10 +24,13 @@ GamesPage.propTypes = {
 export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert, notification }) {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
+  const [highscoreGame, setHighscoreGame] = useState(null);
+
   const handleSearchInputChange = (event) => {
     const { value } = event.target;
     setQuery(value);
   };
+
   const searchResults = games.filter((game) => {
     if (query === '') {
       return game;
@@ -34,6 +38,7 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
       return game;
     }
   });
+
   return (
     <>
       <Header />
@@ -42,13 +47,25 @@ export default function GamesPage({ games, onDeleteGame, onDialog, dialog, alert
         {notification.isVisible && <Notification notification={notification.message} />}
         <GamePageLayout>
           <SearchBar onChange={handleSearchInputChange} />
-          <TrackedGamesList games={searchResults} onDelete={onDeleteGame} />
+          <TrackedGamesList
+            games={searchResults}
+            onDelete={onDeleteGame}
+            onShowHighscore={(gameName) => setHighscoreGame(gameName)}
+          />
           <ButtonContainer>
             <DefaultButton onClick={handleOnClick}>TRACK GAME</DefaultButton>
             <DefaultButton onClick={() => navigate('/catalog')}>CATALOG</DefaultButton>
+            <DefaultButton onClick={() => navigate('/groups')}>GROUPS</DefaultButton>
           </ButtonContainer>
           {dialog.isLoading && (
             <Dialog message={dialog.message} nameOfGame={dialog.nameOfGame} onDialog={onDialog} />
+          )}
+          {highscoreGame && (
+            <HighscoreModal
+              nameOfGame={highscoreGame}
+              games={games}
+              onClose={() => setHighscoreGame(null)}
+            />
           )}
         </GamePageLayout>
       </PageSwitchAnimation>
