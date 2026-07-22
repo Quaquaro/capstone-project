@@ -1,10 +1,11 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import bin from '../img/bin.svg';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import defaultImage from '../img/defaultImage.svg';
+import { formatDateToDDMMYY } from '../utils/formatDate.js';
 
 Game.propTypes = {
   players: PropTypes.array,
@@ -44,7 +45,7 @@ export default function Game({
           <HeaderGroup>
             <div>
               <StyledGameName>{nameOfGame}</StyledGameName>
-              {date && <StyledDate>{date}</StyledDate>}
+              {date && <StyledDate>{formatDateToDDMMYY(date)}</StyledDate>}
             </div>
           </HeaderGroup>
           {isPlayersVisible && (
@@ -132,13 +133,29 @@ export default function Game({
     navigate('/addgame', { replace: true });
   }
 }
+const pulseWinner = keyframes`
+  0% { transform: scale(1); filter: drop-shadow(0 0 2px #f2db05); }
+  50% { transform: scale(1.02); filter: drop-shadow(0 0 6px #f2db05); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 2px #f2db05); }
+`;
+
 const GameContainer = styled.div`
   position: relative;
   border-radius: 15px;
-  border: 1px solid ${({ theme }) => theme.color.white};
+  background: ${({ theme }) => theme.color.glassBg};
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid ${({ theme }) => theme.color.glassBorder};
+  box-shadow: ${({ theme }) => theme.color.glassShadow};
   margin-top: 20px;
-  padding: 8px 0 8px 8px;
+  padding: 10px 12px;
   user-select: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: ${({ theme }) => theme.color.neonBlue};
+    box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.3);
+  }
 `;
 
 const HeaderGroup = styled.div`
@@ -221,4 +238,5 @@ const NotesParagraph = styled.p`
 const WinnerRow = styled.tr`
   color: ${({ theme }) => theme.color.yellow};
   font-weight: bold;
+  animation: ${pulseWinner} 2.5s infinite ease-in-out;
 `;

@@ -1,6 +1,9 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import confetti from 'canvas-confetti';
 import PrimaryButton from './PrimaryButton.js';
+import { formatDateToDDMMYY } from '../utils/formatDate.js';
 
 HighscoreModal.propTypes = {
   nameOfGame: PropTypes.string.isRequired,
@@ -9,6 +12,17 @@ HighscoreModal.propTypes = {
 };
 
 export default function HighscoreModal({ nameOfGame, games, onClose }) {
+  useEffect(() => {
+    // eslint-disable-next-line no-undef
+    if (process.env.NODE_ENV !== 'test') {
+      try {
+        confetti({ particleCount: 60, spread: 60, colors: ['#f2db05', '#00f0ff', '#ffffff'] });
+      } catch (e) {
+        // ignore in non-browser envs
+      }
+    }
+  }, []);
+
   // Extract all player scores across matches for this game
   const matchingGames = games.filter(
     (game) => game.nameOfGame && game.nameOfGame.toLowerCase() === nameOfGame.toLowerCase()
@@ -57,7 +71,7 @@ export default function HighscoreModal({ nameOfGame, games, onClose }) {
                   <td>{medals[index] || `#${index + 1}`}</td>
                   <td>{item.player}</td>
                   <td>{item.score}</td>
-                  <td>{item.date}</td>
+                  <td>{formatDateToDDMMYY(item.date)}</td>
                 </tr>
               ))}
             </tbody>
@@ -81,7 +95,9 @@ const Overlay = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,21 +105,24 @@ const Overlay = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  background-color: ${({ theme }) => theme.color.secondary};
+  background: ${({ theme }) => theme.color.glassBg};
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 2px solid ${({ theme }) => theme.color.neonBlue};
-  border-radius: 15px;
-  padding: 20px;
-  width: 320px;
+  border-radius: 20px;
+  padding: 24px;
+  width: 330px;
   max-width: 90vw;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.35);
   text-align: center;
 `;
 
 const ModalHeader = styled.h2`
   color: ${({ theme }) => theme.color.yellow};
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 0;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  text-shadow: 0 0 10px rgba(242, 219, 5, 0.5);
 `;
 
 const ScoreTable = styled.table`
@@ -115,18 +134,20 @@ const ScoreTable = styled.table`
 
   th,
   td {
-    padding: 6px 4px;
+    padding: 8px 4px;
     text-align: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   th {
     color: ${({ theme }) => theme.color.neonBlue};
+    font-weight: bold;
   }
 
   tbody tr:nth-child(1) {
     color: ${({ theme }) => theme.color.yellow};
     font-weight: bold;
+    font-size: 14px;
   }
 `;
 
